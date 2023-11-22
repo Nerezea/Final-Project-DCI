@@ -1,0 +1,7 @@
+POST Befehl -> http://localhost:5000/createNote
+
+json testcode: 
+{
+  "testnote": "test2",
+  "testnote2": "test2"
+}
