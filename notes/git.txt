@@ -3,7 +3,7 @@
 3. git checkout dev
 4. git pull
 5. git checkout *name*
-6. git merge dev (eventuell auch git merge main)
+6. git merge dev
 ACHTUNG: Schritt 6 kann es zu Problemen kommen wenn ihr noch aktive Änderungen habt die ihr nicht gepushed habt
 Daraufhin arbeitet ganz normal auf eurer Branch
 
