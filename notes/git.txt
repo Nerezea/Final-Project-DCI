@@ -19,3 +19,5 @@ Am ende des Tages oder wenn ihr ein feature komplettiert habt und es gepushed ha
 
 *name* ersetzen durch euren Namen
 *message* ersetzen durch eure commit message
+
+Eventuell einmalig: git branch --set-upstream-to=origin/dev dev
