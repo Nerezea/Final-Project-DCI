@@ -16,3 +16,6 @@ Am ende des Tages oder wenn ihr ein feature komplettiert habt und es gepushed ha
 (1.) git checkout dev
 (2.) git merge *name*
 (3.) git checkout *name*
+
+*name* ersetzen durch euren Namen
+*message* ersetzen durch eure commit message
