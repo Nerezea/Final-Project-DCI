@@ -3,7 +3,7 @@
 3. git checkout dev
 4. git pull
 5. git checkout *name*
-6. git merge main/dev (<- kommt drauf an worauf wir uns einigen)
+6. git merge dev
 ACHTUNG: Schritt 6 kann es zu Problemen kommen wenn ihr noch aktive Änderungen habt die ihr nicht gepushed habt
 Daraufhin arbeitet ganz normal auf eurer Branch
 
@@ -16,3 +16,8 @@ Am ende des Tages oder wenn ihr ein feature komplettiert habt und es gepushed ha
 (1.) git checkout dev
 (2.) git merge *name*
 (3.) git checkout *name*
+
+*name* ersetzen durch euren Namen
+*message* ersetzen durch eure commit message
+
+Eventuell einmalig: git branch --set-upstream-to=origin/dev dev
