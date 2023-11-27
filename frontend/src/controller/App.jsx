@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import Layout from "./view/components/Layout.jsx";
-import Landing from "./view/pages/landing.jsx";
-import Login from "./view/pages/login.jsx";
-import Newsfeed from "./view/pages/newsfeed.jsx";
-import NotFoundPage from "./view/pages/notfoundpage.jsx";
-import Teacher from "./view/pages/teacher.jsx";
-import TeacherEvents from "./view/pages/teacherevents.jsx";
+import Layout from "./Layout.jsx";
+import Landing from "../view/pages/landing.jsx";
+import Login from "../view/pages/login.jsx";
+import Newsfeed from "../view/pages/newsfeed.jsx";
+import NotFoundPage from "../view/pages/notfoundpage.jsx";
+import Teacher from "../view/pages/teacher.jsx";
+import TeacherEvents from "../view/pages/teacherevents.jsx";
 
 const App = () => {
   return (
