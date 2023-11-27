@@ -6,6 +6,7 @@ import Newsfeed from "../view/pages/newsfeed.jsx";
 import NotFoundPage from "../view/pages/notfoundpage.jsx";
 import Teacher from "../view/pages/teacher.jsx";
 import TeacherEvents from "../view/pages/teacherevents.jsx";
+import Manager from "../view/pages/manager.jsx";
 
 const App = () => {
   return (
@@ -16,6 +17,10 @@ const App = () => {
         <Route path="/newsfeed" element={<Newsfeed />} />
         <Route path="/teacher">
           <Route index element={<Teacher />} />
+          <Route path=":events" element={<TeacherEvents />} />
+        </Route>
+        <Route path="/manager">
+          <Route index element={<Manager />} />
           <Route path=":events" element={<TeacherEvents />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
