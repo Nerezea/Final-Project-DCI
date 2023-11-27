@@ -1,12 +1,29 @@
 import { model, Schema } from "mongoose";
 
+export const Roles = {
+  PARENT: "parent",
+  ADMIN: "admin",
+  TEACHER: "teacher",
+  SUPER_ADMIN: "superAdmin",
+};
+
 const userSchema = new Schema({
-  password: { type: String, required: true, minlength: 6 },
   email: { type: String, unique: true, required: true },
+  password: { type: String, required: true, minlength: 6 },
+  fullName: String,
   role: {
     type: String,
-    enum: ["user", "admin", "lehrer"],
-    default: "user",
+    enum: [Roles.ADMIN, Roles.PARENT, Roles.TEACHER, Roles.SUPER_ADMIN],
+    default: Roles.PARENT,
+  },
+  profile: {
+    type: Schema.Types.Mixed,
+    // teacher 
+    // school : String,
+    
+    // parent
+    // school : String,
+    // class : String,
   },
 });
 
