@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "scss": "sass --watch ./src/css/scss/main.scss ./src/css/main.css --no-source-map"
   },
   "dependencies": {
     "react": "^18.2.0",
