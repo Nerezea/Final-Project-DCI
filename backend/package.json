@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "joi": "^17.11.0",
@@ -21,5 +22,8 @@
     "react-seeds": "^0.4.0",
     "seed": "^0.4.4",
     "xpress": "^2.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
