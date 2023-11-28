@@ -19,7 +19,6 @@
     "mongoose": "^8.0.1",
     "react-router-dom": "^6.20.0",
     "react-seeds": "^0.4.0",
-    "seed": "^0.4.4",
-    "xpress": "^2.4.6"
+    "seed": "^0.4.4"
   }
 }
