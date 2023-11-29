@@ -1,22 +1,22 @@
 import { NavLink } from "react-router-dom";
-
+import { FcCollaboration } from "react-icons/fc";
 const header = () => {
   return (
     <nav className="header-wrapper">
       <div className="logo">
         <NavLink to="/" className="brand">
-          Name APP
+          <FcCollaboration /> Name APP
         </NavLink>
       </div>
       <div className="nav-wrapper">
         <div className="navigation">
-          <NavLink to="/about" activeClassName="activeClass">
+          <NavLink to="/about" className="activeClass">
             BlaBla
           </NavLink>
-          <NavLink to="/contact" activeClassName="activeClass">
+          <NavLink to="/contact" className="activeClass">
             BlaBla
           </NavLink>
-          <NavLink to="/users" activeClassName="activeClass">
+          <NavLink to="/users" className="activeClass">
             BlaBla
           </NavLink>
         </div>
