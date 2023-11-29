@@ -1,7 +1,9 @@
 import { Router } from "express";
 import {
-    createTeacher,
-    getTeachers,
+  createTeacher,
+  deleteTeacher,
+  getTeachers,
+  updateTeacher,
 } from "../controller/teacher.controller.js";
 import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
@@ -11,7 +13,15 @@ import { createTeacherSchema } from "../validation/teacher.schema.js";
 
 const router = Router();
 
-router.get("/", auth, hasRole(Roles.ADMIN), getTeachers);
-router.post("/", auth, hasRole(Roles.ADMIN),validate(createTeacherSchema), createTeacher);
+router.get("/", auth, hasRole(Roles.MANAGER), getTeachers);
+router.post(
+  "/",
+  auth,
+  hasRole(Roles.MANAGER),
+  validate(createTeacherSchema),
+  createTeacher
+);
+router.delete("/:teacherId", auth, hasRole(Roles.MANAGER), deleteTeacher);
+router.put("/:teacherId", auth, hasRole(Roles.MANAGER), updateTeacher);
 
 export default router;
