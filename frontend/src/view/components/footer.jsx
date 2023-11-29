@@ -1,57 +1,38 @@
-import {
-  Box,
-  FooterContainer,
-  Row,
-  Column,
-  FooterLink,
-  Heading,
-} from "./footerStyle.jsx";
-const Footer = () => {
-  return (
-    <Box>
-      <FooterContainer>
-        <Row>
-          <Column>
-            <Heading>About Us</Heading>
-            <FooterLink href="#">Aim</FooterLink>
-            <FooterLink href="#">Vision</FooterLink>
-          </Column>
-          
-          <Column>
-            <Heading>Contact Us</Heading>
-            <FooterLink href="#">abfghhjk</FooterLink>
-            <FooterLink href="#">assfsfdg</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Social Media</Heading>
-            <FooterLink href="#">
-              <i className="fab fa-facebook-f">
-                <span
-                  style={{
-                    marginLeft: "10px",
-                  }}
-                >
-                  Facebook
-                </span>
-              </i>
-            </FooterLink>
-            
-            <FooterLink href="#">
-              <i className="fab fa-twitter">
-                <span
-                  style={{
-                    marginLeft: "10px",
-                  }}
-                >
-                  Twitter
-                </span>
-              </i>
-            </FooterLink>
-          </Column>
-        </Row>
-      </FooterContainer>
-    </Box>
-  );
-};
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
-export default Footer;
+const footer = () => {
+  return (
+    <Paper sx={{marginTop: 'calc(3% + 20px)', bottom: 0,width: '100%'}} component="footer" square variant="outlined">
+    <Container maxWidth="lg">
+      <Box
+        sx={{
+          flexGrow: 1,
+          justifyContent: "center",
+          display: "flex",
+          my:1
+        }}
+      >
+        
+      </Box>
+
+      <Box
+        sx={{
+          flexGrow: 1,
+          justifyContent: "center",
+          display: "flex",
+          mb:1,
+        }}
+      >
+        <Typography variant="caption" color="initial">
+          Copyright ©2024. [] Limited
+        </Typography>
+      </Box>
+    </Container>
+  </Paper>
+  )
+}
+
+export default footer
