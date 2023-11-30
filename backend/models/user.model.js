@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 export const Roles = {
   PARENT: "parent",
-  ADMIN: "admin",
+  MANAGER: "manager",
   TEACHER: "teacher",
   SUPER_ADMIN: "superAdmin",
 };
@@ -13,7 +13,7 @@ const userSchema = new Schema({
   fullName: String,
   role: {
     type: String,
-    enum: [Roles.ADMIN, Roles.PARENT, Roles.TEACHER, Roles.SUPER_ADMIN],
+    enum: [Roles.MANAGER, Roles.PARENT, Roles.TEACHER, Roles.SUPER_ADMIN],
     default: Roles.PARENT,
   },
   profile: {

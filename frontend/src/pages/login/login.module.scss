@@ -1,0 +1,137 @@
+@import "../../assets/css/mixin.scss";
+
+
+.login {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  background-image: url(../../assets/2012-movie-collage31-scaled.jpg);
+}
+
+.login_form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  // height: 900px;
+  background-color: #0f0c29d9;
+  border-radius: 10px;
+  box-shadow: 10px 0px 18px 16px rgba(0, 0, 0, 0.886);
+
+  @include respond(phone) {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 50px;
+    font-weight: 900;
+    font-size: 70px;
+    margin-bottom: 4rem;
+    margin-top: 10px;
+    text-align: center;
+    color: #f9f1f1;
+
+    @include respond(phone) {
+      margin-bottom: 3rem;
+      font-size: 2rem;
+    }
+  }
+
+  input {
+    width: 300px;
+    height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    outline: none;
+    background-color: #0f0c29e4;
+
+    @include respond(phone) {
+      width : 80%;
+    }
+
+    color: #fff;
+
+    &:focus {
+      border: 1px solid #000;
+    }
+  }
+
+  button {
+    border: none;
+    color: #fff;
+    background-image: linear-gradient(30deg, #0400ff64, #4ce3f799);
+    border-radius: 20px;
+    background-size: 100% auto;
+    font-family: inherit;
+    font-size: 17px;
+    padding: 0.6em 1.5em;
+    text-align: center;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  button:hover {
+    background-position: right center;
+    background-size: 200% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+  }
+
+  @keyframes pulse512 {
+    0% {
+      box-shadow: 0 0 0 0 #05bada66;
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    }
+  }
+  .linkChange {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+    background-color: #0f0c29ae;
+    margin-top: 2rem;
+
+    font-size: 50px;
+
+    cursor: pointer;
+
+
+    &:hover p {
+      color: #fff;
+    }
+    p {
+      position: relative;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      text-decoration: none;
+      font-size: 50px;
+      margin: 0 auto;
+      font-weight: 900;
+
+      @include respond(phone) {
+        font-size: 2rem;
+      }
+    }
+  }
+}

@@ -1,13 +1,8 @@
-// import React from 'react'
-import Header from "../../components/header/header.jsx"
+import React from 'react'
+
 const Landing = () => {
-  
   return (
-    <>
-   <Header/>
-
-
-    </>
+    <div>Landing</div>
   )
 }
 
