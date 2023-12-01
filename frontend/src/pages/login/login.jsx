@@ -5,7 +5,7 @@ import api from "../../api/api.js";
 import { AuthApi } from "../../api/authApi.js";
 import { login } from "../../store/slice/auth.slice.js";
 import { loginSchema } from "../../validation/auth.validation.jsx";
-import style from "./login.module.scss";
+import style from "../../css/main.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
     if (error) return toast.warn(error.message);
     AuthApi.login(email, password)
       .then((res) => {
-        api.defaults.headers.token = res.data.token
+        api.defaults.headers.token = res.data.token;
         dispatch(
           login({
             token: res.data.token,

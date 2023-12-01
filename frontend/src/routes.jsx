@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/landing/landing";
 import Login from "./pages/login/login";
@@ -38,7 +37,9 @@ const AppRoutes = () => {
       <Route path="/" element={<Landing />} />
       <Route
         path="/login"
-        element={isAuthenticated ? <Navigate to={getPanelAddress()} /> : <Login />}
+        element={
+          isAuthenticated ? <Navigate to={getPanelAddress()} /> : <Login />
+        }
       />
       <Route
         path="/manager/*"
