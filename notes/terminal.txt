@@ -4,3 +4,7 @@ npm run database - startet die connection zum mongodb server
 -> frontend
 npm run start - startet die frontend anwendung
 npm run scss - aktualisiert die scss datei
+
+Falls Konflikt mit package-lock-json
+1. rm -rf node_modules package-lock.json
+2. npm install
