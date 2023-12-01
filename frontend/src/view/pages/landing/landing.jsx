@@ -45,8 +45,7 @@ const Landing = () => {
       <div className="slide slide0 scrolling_active">
         <div className="slide-part slide-left-part">
           <div className="slide-skew">
-            <div className="slide-content content-left-part">
-            </div>
+            <div className="slide-content content-left-part"></div>
           </div>
         </div>
         <div className="slide-part slide-right-part">
@@ -87,56 +86,6 @@ const Landing = () => {
               <h3 className="slide-title">Third slide</h3>
               <p className="slide-subtitle">Keep scrolling down</p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="slide slide3">
-        <div className="slide-part slide-left-part">
-          <div className="slide-skew">
-            <div className="slide-content content-left-part">
-              <h3 className="slide-title">Fourth slide</h3>
-              <p className="slide-subtitle">Look what beautiful photos</p>
-            </div>
-          </div>
-        </div>
-        <div className="slide-part slide-right-part">
-          <div className="slide-skew">
-            <div className="slide-content content-right-part"></div>
-          </div>
-        </div>
-      </div>
-
-      <div className="slide slide4">
-        <div className="slide-part slide-left-part">
-          <div className="slide-skew">
-            <div className="slide-content content-left-part"></div>
-          </div>
-        </div>
-        <div className="slide-part slide-right-part">
-          <div className="slide-skew">
-            <div className="slide-content content-right-part">
-              <h3 className="slide-title">Fifth slide</h3>
-              <p className="slide-subtitle">We are getting close to the end</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="slide slide5">
-        <div className="slide-part slide-left-part">
-          <div className="slide-skew">
-            <div className="slide-content content-left-part">
-              <h3 className="slide-title">Sixth slide</h3>
-              <p className="slide-subtitle">
-                Last slide. But if you want, you can keep scrolling
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="slide-part slide-right-part">
-          <div className="slide-skew">
-            <div className="slide-content content-right-part"></div>
           </div>
         </div>
       </div>
