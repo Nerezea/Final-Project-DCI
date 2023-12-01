@@ -4,7 +4,7 @@ import UserModel from "../models/user.model.js";
 
 export async function login(req, res) {
   const { email, password } = req.body;
-  
+
   const user = await UserModel.findOne({ email });
 
   if (!user) {
@@ -19,7 +19,7 @@ export async function login(req, res) {
     process.env.JWT_SECRET,
     { expiresIn: "1d" }
   );
-  res.send({ token });
+  res.send({ token, role: user.role, fullName: user.fullName });
 }
 
 // export async function register(req, res) {
@@ -47,4 +47,3 @@ export async function login(req, res) {
 // }
 
 //test
-
