@@ -62,10 +62,10 @@ body {
 }
 
 .slider-container {
-  position: relative;
+  width: 100vw;
   height: 100vh;
-  min-width: 320px;
   overflow: hidden;
+  position: relative;
 }
 
 .slide-part {
@@ -154,7 +154,9 @@ body {
 }
 
 .slide0 .slide-left-part .slide-content {
-  background-image: url();
+  background-image: url("https://i.ibb.co/7pnLdhz/slide1.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .slide1 .slide-left-part .slide-content {
@@ -162,7 +164,9 @@ body {
 }
 
 .slide1 .slide-right-part .slide-content {
-  background-image: url();
+  background-image: url("https://i.ibb.co/cwBdZX2/slide2.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .slide2 .slide-right-part .slide-content {
@@ -170,29 +174,7 @@ body {
 }
 
 .slide2 .slide-left-part .slide-content {
-  background-image: url();
-}
-
-.slide3 .slide-left-part .slide-content {
-  background-color: #ca6e3d;
-}
-
-.slide3 .slide-right-part .slide-content {
-  background-image: url();
-}
-
-.slide4 .slide-right-part .slide-content {
-  background-color: #0070a6;
-}
-
-.slide4 .slide-left-part .slide-content {
-  background-image: url();
-}
-
-.slide5 .slide-left-part .slide-content {
-  background-color: #b03634;
-}
-
-.slide5 .slide-right-part .slide-content {
-  background-image: url();
+  background-image: url("https://i.ibb.co/yXvZCN0/slide6.jpg");
+  background-position: center;
+  background-size: cover;
 }
