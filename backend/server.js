@@ -21,9 +21,8 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB with mongoose");
 
-    // seedFirstSchool()
+    //seedFirstSchool();
     // seedClass()
-
   })
   .catch(() => {
     console.log("Connection failed");
