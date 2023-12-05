@@ -27,20 +27,26 @@ export const getTeacherById = async (req, res) => {
 };
 
 export const createTeacher = async (req, res) => {
-  const school = await getSchoolOfManagerById(req.user.id);
-
-  const body = req.body;
-  // hash password
-  const hashedPassword = await hashPassword(body.password);
-  // create teacher
-  const user = await userModel.create({
-    email: body.email,
-    password: hashedPassword,
-    fullName: body.fullName,
-    role: Roles.TEACHER,
-    profile: { school: school._id, image: body.image },
-  });
-  res.send(user);
+  try {
+    
+    const school = await getSchoolOfManagerById(req.user.id);
+  
+    const body = req.body;
+    // hash password
+    const hashedPassword = await hashPassword(body.password);
+    // create teacher
+    const user = await userModel.create({
+      email: body.email,
+      password: hashedPassword,
+      fullName: body.fullName,
+      role: Roles.TEACHER,
+      profile: { school: school._id, image: body.image },
+    });
+    res.send(user);
+  } catch (error) {
+    res.status(400).send({ message: "email is already exist" });
+    
+  }
 };
 
 export const deleteTeacher = async (req, res) => {

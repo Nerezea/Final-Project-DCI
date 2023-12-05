@@ -95,7 +95,7 @@ const managerMenus = [
   },
   {
     label: "Class List",
-    link: "/manager/class",
+    link: "/manager/classes",
     icon: <Class />,
   },
   {

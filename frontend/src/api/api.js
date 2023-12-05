@@ -12,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.response.use(undefined, (error) => {
   if (error.response.status === 401) {
-    localStorage.clear();
+   localStorage.clear();
     window.location.reload();
   }
 
@@ -22,3 +22,4 @@ api.interceptors.response.use(undefined, (error) => {
 });
 
 export default api;
+//test
