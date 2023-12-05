@@ -16,14 +16,19 @@ const userSchema = new Schema({
     enum: [Roles.MANAGER, Roles.PARENT, Roles.TEACHER, Roles.SUPER_ADMIN],
     default: Roles.PARENT,
   },
+
   profile: {
     type: Schema.Types.Mixed,
     // teacher 
     // school : String,
+    // image : String,
     
     // parent
     // school : String,
     // class : String,
+    // birthDay : String,
+    // image : String,
+
   },
 });
 

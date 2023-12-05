@@ -1,10 +1,19 @@
-import api from "./api";
+import myAxios from "./api";
 
 export const TeachersApi = {
   getTeachers() {
-    return api.get("/manageTeacher");
+    return myAxios.get("/manageTeacher");
+  },
+  getTeacherById(id) {
+    return myAxios.get(`/manageTeacher/${id}`);
   },
   addTeacher(body) {
-    return api.post("/manageTeacher",body);
+    return myAxios.post("/manageTeacher", body);
+  },
+  deleteTeacher(id) {
+    return myAxios.delete(`/manageTeacher/${id}`);
+  },
+  updateTeacher(id, body) {
+    return myAxios.put(`/manageTeacher/${id}`, body);
   },
 };

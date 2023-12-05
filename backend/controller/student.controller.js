@@ -4,10 +4,7 @@ import { hashPassword } from "./hash.controller.js";
 
 // manager requests list of teachers
 export const getStudents = async (req, res) => {
-  // id of manager
-  const userId = req.user.id;
-  // find school of manager
-  const school = await schoolModel.findOne({ admin: userId });
+  const school = await getSchoolOfManagerById(req.user.id);
 
   const classId = req.query.class;
   // find list of users where role is teacher and her/his school is above school
@@ -23,10 +20,7 @@ export const getStudents = async (req, res) => {
 };
 
 export const createStudent = async (req, res) => {
-  // id of manager
-  const userId = req.user.id;
-  // find school of manager
-  const school = await schoolModel.findOne({ admin: userId });
+  const school = await getSchoolOfManagerById(req.user.id);
 
   const body = req.body;
   // hash password
@@ -37,16 +31,13 @@ export const createStudent = async (req, res) => {
     password: hashedPassword,
     fullName: body.fullName,
     role: Roles.PARENT,
-    profile: { school: school._id, class: body.class },
+    profile: { school: school._id, class: body.class, birthDay: body.birthDay,tel:body.tel },
   });
   res.send(user);
 };
 
 export const deleteStudent = async (req, res) => {
-  // id of manager
-  const userId = req.user.id;
-  // find school of manager
-  const school = await schoolModel.findOne({ admin: userId });
+  const school = await getSchoolOfManagerById(req.user.id);
 
   const { studentId } = req.params;
   const user = await userModel.findOneAndDelete({
@@ -59,10 +50,8 @@ export const deleteStudent = async (req, res) => {
 };
 
 export const updateTeacher = async (req, res) => {
-  // id of manager
-  const userId = req.user.id;
-  // find school of manager
-  const school = await schoolModel.findOne({ admin: userId });
+  const school = await getSchoolOfManagerById(req.user.id);
+
   const body = req.body;
 
   if (body.password) body.password = await hashPassword(body.password);

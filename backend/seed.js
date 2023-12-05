@@ -6,7 +6,7 @@ import classModel from "./models/class.model.js";
 export async function seedFirstSchool() {
   const hashedPassword = await hashPassword("123456");
   const admin = await userModel.create({
-    email: "admin1@gmail.com",
+    email: "admin@gmail.com",
     password: hashedPassword,
     fullName: "admin admini",
     role: Roles.MANAGER,
