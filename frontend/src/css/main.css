@@ -25,156 +25,99 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem;
+  padding: 3px;
   font-size: 1.8rem;
-  background-color: #3f3d56;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: rgb(38, 2, 58);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+  color: white;
   flex-direction: row;
   text-align: center;
   align-items: center;
-  color: #fff;
   z-index: 9999;
+  filter: brightness(1.6);
 }
 
-.logo .brand {
-  color: #fff;
-  text-decoration: none;
+iframe {
+  width: 70px;
+  height: 50px;
+  border: none;
+  color: white;
 }
 
 .nav-wrapper .navigation,
 .nav-wrapper .navigation a,
 .nav-wrapper .navigation a:hover,
 .nav-wrapper .navigation a:focus {
-  color: #fff;
   padding: 5px 10px;
   text-decoration: none;
 }
 
 .activeClass {
-  border-bottom: 1px solid red;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.slider-container {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  --border-width: 3px;
   position: relative;
-}
-
-.slide-part {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100vh;
-  transition: transform 1s;
-}
-
-.slide-skew {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 140%;
-  height: 100%;
-  background-color: #272727;
-  transform: skewX(-18deg);
-}
-
-.slide-left-part {
-  left: 0;
-  transform: translateX(-32.5vh) translateY(100%) translateZ(0);
-}
-
-.slide-left-part .slide-skew {
-  left: -40%;
-}
-
-.slide-left-part .slide-content {
-  padding: auto 30%;
-  transform-origin: 100% 0;
-}
-
-.slide-right-part {
-  left: 50%;
-  transform: translateX(32.5vh) translateY(-100%) translateZ(0);
-}
-
-.slide-right-part .slide-skew {
-  right: -40%;
-}
-
-.slide-right-part .slide-content {
-  padding: auto 30%;
-  transform-origin: 0 100%;
-}
-
-.slide-content {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 30%;
-  background-size: cover;
-  transform: skewX(18deg);
-  color: #ffffff;
-  font-size: 3vh;
-  text-align: center;
-}
-
-.slide-title {
-  font-size: 6vh;
+  width: 70px;
+  height: 30px;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  color: white;
+  background: #222;
+  border-radius: var(--border-width);
 }
-
-.slide {
+.activeClass::after {
   position: absolute;
-  top: 0;
-  left: 0;
+  content: "";
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  z-index: -1;
+  width: calc(100% + var(--border-width) * 2);
+  height: calc(100% + var(--border-width) * 2);
+  background: linear-gradient(60deg, hsl(224, 100%, 49%), hsl(269, 100%, 32%), hsl(314, 93%, 53%), hsl(359, 83%, 50%), hsl(47, 68%, 57%), hsl(89, 89%, 50%), hsl(134, 95%, 32%), hsl(179, 90%, 28%));
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: calc(2 * var(--border-width));
+  animation: moveGradient 2s alternate infinite;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: rgb(0, 0, 0) center no-repeat;
+  z-index: 1;
 }
 
-.scrolling_active .slide-part {
-  transform: translateX(0) translateY(0) translateZ(0);
+.loader-iframe {
+  width: 150px;
+  height: 150px;
+  border: none;
 }
 
-.slide0 .slide-right-part .slide-content {
-  background-color: #5287ae;
+.loader-title {
+  display: flex;
+  justify-content: center;
 }
 
-.slide0 .slide-left-part .slide-content {
-  background-image: url("https://i.ibb.co/7pnLdhz/slide1.jpg");
-  background-position: center;
-  background-size: cover;
+.loader-title span {
+  width: 20px;
+  height: 10px;
+  color: white;
+  margin-top: 10px;
+  animation: blink 2s infinite;
+  animation-fill-mode: both;
 }
 
-.slide1 .slide-left-part .slide-content {
-  background-color: #fead51;
-}
-
-.slide1 .slide-right-part .slide-content {
-  background-image: url("https://i.ibb.co/cwBdZX2/slide2.jpg");
-  background-position: center;
-  background-size: cover;
-}
-
-.slide2 .slide-right-part .slide-content {
-  background-color: #709f5f;
-}
-
-.slide2 .slide-left-part .slide-content {
-  background-image: url("https://i.ibb.co/yXvZCN0/slide6.jpg");
-  background-position: center;
-  background-size: cover;
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

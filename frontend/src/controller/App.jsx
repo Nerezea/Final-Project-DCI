@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout.jsx";
+import Loader from "../view/pages/loader/loader.jsx";
 import Landing from "../view/pages/landing/landing.jsx";
 import Login from "../view/pages/login/login.jsx";
 import Newsfeed from "../view/pages/newsfeed/newsfeed.jsx";
@@ -12,6 +13,7 @@ const App = () => {
   return (
     <Layout>
       <Routes>
+        <Route path="/" element={<Loader />} />
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/newsfeed" element={<Newsfeed />} />
