@@ -1,0 +1,14 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding : 2rem;
+  margin: 1rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap :1rem;
+    // align-items: flex-start;
+    
+  }
+}

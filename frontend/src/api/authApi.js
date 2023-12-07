@@ -6,9 +6,8 @@ export const AuthApi = {
       email,
       password,
     });
-  }
-  
+  },
+  studentRegister(body) {
+    return api.post("/auth/studentRegister", body);
+  },
 };
-
-
-//test
