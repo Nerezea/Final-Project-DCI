@@ -1,0 +1,40 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  background-color: #3f3d56;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(black, 0.2);
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  color: #fff;
+  z-index: 9999;
+}
+
+.logo {
+  .brand {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.nav-wrapper {
+  .navigation,
+  .navigation a,
+  .navigation a:hover,
+  .navigation a:focus {
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+}
+
+.activeClass {
+  border-bottom: 1px solid red;
+}
