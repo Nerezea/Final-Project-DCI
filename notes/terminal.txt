@@ -1,6 +1,0 @@
--> backend
-npm run database - startet die connection zum mongodb server
-
--> frontend
-npm run start - startet die frontend anwendung
-npm run scss - aktualisiert die scss datei
