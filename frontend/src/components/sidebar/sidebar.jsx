@@ -1,7 +1,8 @@
 import { useTheme } from "@emotion/react";
 import {
-  AccountCircle,
-  ChildFriendly,
+  CalendarMonth,
+  Chat,
+  People,
   Class,
   Event,
   Feed,
@@ -9,12 +10,8 @@ import {
   Menu,
   School,
   Sick,
-  CalendarMonth,
-  Chat,
 } from "@mui/icons-material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -26,8 +23,8 @@ import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 import { Roles } from "../../store/slice/auth.slice";
-import { Link } from "react-router-dom";
 import style from "./sidebar.module.scss";
 
 const drawerWidth = 240;
@@ -101,7 +98,7 @@ const managerMenus = [
   {
     label: "Students",
     link: "/manager/students",
-    icon: <ChildFriendly />,
+    icon: <People />,
   },
   {
     label: "Events",
@@ -209,7 +206,7 @@ const Sidebar = () => {
   };
 
   return (
-    <Drawer style={{zIndex:1}} variant="permanent" open={open}>
+    <Drawer style={{ zIndex: 1 }} variant="permanent" open={open}>
       <DrawerHeader>
         <IconButton onClick={handleDrawerToggle}>
           <ChevronRightIcon />
@@ -218,7 +215,14 @@ const Sidebar = () => {
       <Divider />
       <List>
         {menus.map((menu, index) => (
-          <Link className={style.link} key={menu.link} to={menu.link}>
+          <NavLink
+            className={style.link}
+            style={({ isActive }) => ({
+              color: isActive ? "#4db5ff" : "gray",
+            })}
+            key={menu.link}
+            to={menu.link}
+          >
             <ListItem key={menu} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
@@ -242,7 +246,7 @@ const Sidebar = () => {
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
         ))}
       </List>
     </Drawer>

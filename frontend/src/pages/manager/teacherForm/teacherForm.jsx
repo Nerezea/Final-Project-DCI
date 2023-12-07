@@ -1,4 +1,4 @@
-import { Button, Card, TextField } from "@mui/material";
+import { Button, Card, CircularProgress, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { TeachersApi } from "../../../api/teachersApi";
 import { toast } from "react-toastify";
@@ -10,8 +10,10 @@ const TeacherForm = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [image, setImage] = useState();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // read more : https://reactrouter.com/en/main/hooks/use-params
   const { teacherId } = useParams();
@@ -21,6 +23,8 @@ const TeacherForm = () => {
       TeachersApi.getTeacherById(teacherId).then((res) => {
         setEmail(res.data.email);
         setFullName(res.data.fullName);
+        setPhone(res.data.phone);
+        setImage(res.data.image);
       });
   }, []);
 
@@ -30,7 +34,8 @@ const TeacherForm = () => {
       const body = {
         email,
         fullName,
-        image
+        image,
+        phone,
       };
       if (password) body.password = password;
       TeachersApi.updateTeacher(teacherId, body)
@@ -44,7 +49,8 @@ const TeacherForm = () => {
         email,
         password,
         fullName,
-        image
+        image,
+        phone,
       })
         .then(() => {
           toast.success("teacher added");
@@ -58,11 +64,15 @@ const TeacherForm = () => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
+    setLoading(true);
     UploadApi.upload(formData)
       .then((res) => {
         setImage(res.data.link);
       })
-      .catch((err) => toast.error(err));
+      .catch((err) => toast.error(err))
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -83,6 +93,12 @@ const TeacherForm = () => {
           label="FullName"
           placeholder="fullName"
         ></TextField>
+          <TextField
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          label="Phone"
+          placeholder="phone"
+        ></TextField>
         <TextField
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -92,6 +108,7 @@ const TeacherForm = () => {
         ></TextField>
 
         <input type="file" onChange={handleChangeFile} />
+        {loading && <CircularProgress></CircularProgress>}
         {image && <img src={image} width={100} />}
         <Button onClick={handleSubmit} type="submit" variant="contained">
           Submit

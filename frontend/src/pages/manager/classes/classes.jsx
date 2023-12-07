@@ -1,7 +1,7 @@
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, ChildFriendly, People } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ClassesApi } from "../../../api/classesApi";
 import DataTable from "../../../components/datatable/datatable";
@@ -34,7 +34,7 @@ const Classes = () => {
   const columns = [
     {
       header: "Name",
-      accessorKey : "name"
+      accessorKey: "name",
     },
     { header: "Teacher", accessorKey: "teacher.fullName" },
     {
@@ -48,6 +48,13 @@ const Classes = () => {
           <Link to={`/manager/classes/edit/${row._id}`}>
             <IconButton>
               <Edit />
+            </IconButton>
+          </Link>
+          <Link
+            to={`/manager/students?classId=${row._id}&className=${row.name}`}
+          >
+            <IconButton>
+              <People />
             </IconButton>
           </Link>
         </>

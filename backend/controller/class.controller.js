@@ -50,6 +50,8 @@ export const deleteClass = async (req, res) => {
   });
   if (!user) return res.status(400).send({ message: "class not found" });
 
+  await userModel.updateMany({ class: classId }, { $unset: { class: true } });
+
   res.sendStatus(200);
 };
 

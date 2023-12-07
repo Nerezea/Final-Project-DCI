@@ -1,35 +1,42 @@
+import { AccountCircle, Delete, Edit } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TeachersApi } from "../../../api/teachersApi";
 import DataTable from "../../../components/datatable/datatable";
-import style from "./teachers.module.scss";
-import { AccountCircle, Delete, Edit } from "@mui/icons-material";
+import style from "./students.module.scss";
+import { StudentsApi } from "../../../api/studentApi";
+import ModalRegisterLink from "./components/modalRegisterLink";
 
-const Teachers = () => {
-  const [teachers, setTeachers] = useState([]);
+const Students = () => {
+  const [data, setData] = useState([]);
+  const [searchParams] = useSearchParams();
+  const [openModal, setOpenModal] = useState(false);
 
+  const classId = searchParams.get("classId")
+  const className = searchParams.get("className");
+  
   useEffect(() => {
     getAllData();
-  }, []);
+  }, [classId]);
 
   function getAllData() {
-    TeachersApi.getTeachers()
+    StudentsApi.getStudents(classId)
       .then((res) => {
-        setTeachers(res.data);
+        setData(res.data);
       })
       .catch((err) => toast.error(err));
   }
 
-  function handleRemoveItem(teacherId) {
-    TeachersApi.deleteTeacher(teacherId)
+  function handleRemoveItem(id) {
+    StudentsApi.deleteStudent(id)
       .then((res) => {
-        // lösung 1
+        // approach 1
         // setTeachers(teachers.filter(item=>item._id!==teacherId))
-        // lösung 2
+        // approach 2
         getAllData();
-        toast.success("teacher deleted");
+        toast.success("student deleted");
       })
       .catch((err) => toast.error(err));
   }
@@ -51,6 +58,8 @@ const Teachers = () => {
       },
     },
     { header: "Email", accessorKey: "email" },
+    { header: "Class", accessorKey: "class.name" },
+    { header: "BirthDay", accessorKey: "birthDay" },
     { header: "Phone", accessorKey: "phone" },
     {
       header: "Actions",
@@ -60,7 +69,7 @@ const Teachers = () => {
           <IconButton onClick={() => handleRemoveItem(row._id)}>
             <Delete />
           </IconButton>
-          <Link to={`/manager/teachers/edit/${row._id}`}>
+          <Link to={`/manager/students/edit/${row._id}`}>
             <IconButton>
               <Edit />
             </IconButton>
@@ -71,18 +80,31 @@ const Teachers = () => {
     },
   ];
 
+
   return (
     <div className={style.page}>
       <header className={style.header}>
-        <h1>Teachers</h1>
-        <Link to="/manager/teachers/add">
+        <h1>Students {className && `- ${className}`}</h1>
+
+        {classId && (
+          <Button
+            variant="outlined"
+            color="info"
+            onClick={() => setOpenModal(true)}
+          >
+            Generate Register Link
+          </Button>
+        )}
+        <Link to="/manager/students/add">
           <Button variant="contained">Add</Button>
         </Link>
       </header>
 
-      <DataTable data={teachers} columns={columns} />
+      <DataTable data={data} columns={columns} />
+        <ModalRegisterLink open={openModal} onClose={() => setOpenModal(false)} classId={classId} className={className} />
+
     </div>
   );
 };
 
-export default Teachers;
+export default Students;

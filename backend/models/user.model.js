@@ -16,20 +16,20 @@ const userSchema = new Schema({
     enum: [Roles.MANAGER, Roles.PARENT, Roles.TEACHER, Roles.SUPER_ADMIN],
     default: Roles.PARENT,
   },
-
-  profile: {
-    type: Schema.Types.Mixed,
-    // teacher 
-    // school : String,
-    // image : String,
-    
-    // parent
-    // school : String,
-    // class : String,
-    // birthDay : String,
-    // image : String,
-
-  },
+  phone: String,
+  image: String,
+  // parent
+  class: { type: Schema.Types.ObjectId, ref: "class" },
+  birthDay: String,
+  address: String,
+  // teacher , parent
+  school: { type: Schema.Types.ObjectId, ref: "school" },
 });
+
+userSchema.methods.toJSON = function(){
+  const object = this.toObject()
+  delete object.password;
+  return object;
+}
 
 export default model("user", userSchema);

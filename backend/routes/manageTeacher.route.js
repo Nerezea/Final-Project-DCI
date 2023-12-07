@@ -10,7 +10,7 @@ import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
 import { Roles } from "../models/user.model.js";
 import { validate } from "../middleware/validate.middleware.js";
-import { createTeacherSchema } from "../validation/teacher.schema.js";
+import { createTeacherSchema, updateTeacherSchema } from "../validation/teacher.schema.js";
 
 const router = Router();
 
@@ -24,6 +24,13 @@ router.post(
   createTeacher
 );
 router.delete("/:teacherId", auth, hasRole(Roles.MANAGER), deleteTeacher);
-router.put("/:teacherId", auth, hasRole(Roles.MANAGER), updateTeacher);
+
+router.put(
+  "/:teacherId",
+  auth,
+  hasRole(Roles.MANAGER),
+  validate(updateTeacherSchema),
+  updateTeacher
+);
 
 export default router;

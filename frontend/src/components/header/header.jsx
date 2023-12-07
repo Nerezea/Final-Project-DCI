@@ -11,6 +11,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slice/auth.slice";
 import style from "./header.module.scss";
+import { Logo } from "../logo/logo";
 
 export default function Header() {
   const { isAuthenticated, role, fullName } = useSelector(
@@ -47,7 +48,7 @@ export default function Header() {
           <MenuIcon />
         </IconButton> */}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Hi School
+          <Logo/>
         </Typography>
         {/* <AccountCircle/> */}
         <Typography>

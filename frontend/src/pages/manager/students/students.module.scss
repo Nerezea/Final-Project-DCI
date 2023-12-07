@@ -1,0 +1,25 @@
+.page {
+
+  header {
+    display: flex;
+    align-items: center;
+    gap : 1rem;
+
+    h1 {
+      margin-right: auto;
+    }
+  }
+  .avatar {
+    width: 2rem;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    font-size: 4rem;
+  }
+
+  .nameContainer {
+    display: flex;
+    align-items: center;
+    gap : 0.5rem
+  }
+}

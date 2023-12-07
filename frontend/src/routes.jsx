@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/layout";
@@ -12,6 +12,12 @@ import Feed from "./pages/teacher/feed/feed";
 import { Roles } from "./store/slice/auth.slice";
 import Classes from "./pages/manager/classes/classes";
 import ClassForm from "./pages/manager/classForm/classForm";
+import Students from "./pages/manager/students/students";
+import StudentForm from "./pages/manager/studentForm/studentForm";
+import Register from "./pages/register/register";
+import Loader from "./pages/loader/loader";
+import EventForm from "./pages/manager/eventForm/event";
+import NewsFeedForm from "./pages/manager/newsFeedForm/newsFeedForm";
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -34,14 +40,26 @@ const AppRoutes = () => {
         return "/";
     }
   }
+  const [showLoader, setShowLoader] = useState(true);
+
 
   return (
+    <>
+    {showLoader ? (
+      <Loader setShowLoader={setShowLoader} />
+    ) : (
+    
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route
+        path="/preRegister"
+        element={ <Register />}
+      />
       <Route
         path="/login"
         element={isAuthenticated ? <Navigate to={getPanelAddress()} /> : <Login />}
       />
+      
       <Route
         path="/manager/*"
         element={hasRole(Roles.MANAGER) ? <Layout /> : <Navigate to="/login" />}
@@ -52,7 +70,12 @@ const AppRoutes = () => {
         <Route path="classes" element={<Classes />}></Route>
         <Route path="classes/add" element={<ClassForm />}></Route>
         <Route path="classes/edit/:classId" element={<ClassForm />}></Route>
+        <Route path="students" element={<Students />}></Route>
+        <Route path="students/add" element={<StudentForm />}></Route>
+        <Route path="students/edit/:studentId" element={<StudentForm />}></Route>
         <Route path="" element={<Navigate to="/manager/teachers" />}></Route>
+        <Route path="events" element={<EventForm/>}></Route>
+        <Route path="feed" element={<NewsFeedForm/>}></Route>
       </Route>
       <Route
         path="/teacher/*"
@@ -79,6 +102,9 @@ const AppRoutes = () => {
         <Route path="" element={<Navigate to="/admin/schools" />}></Route>
       </Route>
     </Routes>
+    )}
+
+</>
   );
 };
 

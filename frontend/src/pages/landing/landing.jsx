@@ -1,9 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import style from './landing.module.scss';
 
 const Landing = () => {
-  return (
-    <div>Landing</div>
-  )
-}
+  const navigate = useNavigate();
 
-export default Landing
+  function handleLogin() {
+    navigate('/login');
+  }
+
+  return (
+    <>
+      
+    <div className={style.landing} >
+      <h1>Landing</h1>
+      <button onClick={handleLogin}>Go to Login</button>
+    </div>
+    </>
+  );
+};
+
+export default Landing;
