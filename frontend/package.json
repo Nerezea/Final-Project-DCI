@@ -17,6 +17,8 @@
     "axios": "^1.6.2",
     "framer-motion-3d": "^10.16.14",
     "joi": "^17.11.0",
+    "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
     "material-react-table": "^2.0.4",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
