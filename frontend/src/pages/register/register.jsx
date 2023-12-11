@@ -1,11 +1,14 @@
-import { Button, Card, TextField } from "@mui/material";
+import { Button, Card, CircularProgress, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import style from './register.module.scss'
+import style from "./register.module.scss";
+import { AuthApi } from "../../api/authApi";
+import { UploadApi } from "../../api/uploadApi";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [searchParams] = useSearchParams();
-
+  const [success, setSuccess] = useState(false);
   const [form, setForm] = useState({
     email: "",
     fullName: "",
@@ -41,23 +44,28 @@ const Register = () => {
     setForm({ ...form });
   };
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // if (studentId) {
-    //   StudentsApi.updateStudent(studentId, form)
-    //     .then(() => {
-    //       toast.success("student edited");
-    //       navigate(-1);
-    //     })
-    //     .catch((err) => toast.error(err));
-    // } else {
-    //   StudentsApi.addStudent(form)
-    //     .then(() => {
-    //       toast.success("student added");
-    //       navigate(-1);
-    //     })
-    //     .catch((err) => toast.error(err));
-    // }
+    e.preventDefault();
+    AuthApi.studentRegister(form)
+      .then(() => {
+        // toast.success(
+        //   "your account created successfully and will be verified in future 24h"
+        // );
+        setSuccess(true);
+      })
+      .catch((err) => toast.error(err));
   };
+
+  if (success)
+    return (
+      <div className={style.container}>
+        <Card className={style.form}>
+          <p>
+            اکانت شما ایجاد شد و تا 24 ساعت آینده تایید خواهد شد . بعد از
+            میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
+          </p>
+        </Card>
+      </div>
+    );
 
   return (
     <div className={style.container}>

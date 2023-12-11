@@ -16,4 +16,7 @@ export const StudentsApi = {
   updateStudent(id, body) {
     return myAxios.put(`/student/${id}`, body);
   },
+  activate(id) {
+    return myAxios.put(`/student/activate/${id}`);
+  },
 };

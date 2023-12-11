@@ -25,9 +25,9 @@ const Teachers = () => {
   function handleRemoveItem(teacherId) {
     TeachersApi.deleteTeacher(teacherId)
       .then((res) => {
-        // lösung 1
+        // approach 1
         // setTeachers(teachers.filter(item=>item._id!==teacherId))
-        // lösung 2
+        // approach 2
         getAllData();
         toast.success("teacher deleted");
       })

@@ -16,7 +16,7 @@ const ModalRegisterLink = ({ open, onClose, classId, className }) => {
       <div className={style.modal}>
         <div className={style.contentPrint} ref={container}>
           <h1>{className}</h1>
-          <p>please scan QR Code Create Account in Class A</p>
+          <p>please scan QR Code Create Account in {className}</p>
           <QrCode className={style.qrCode} value={link} />
           <pre>{link}</pre>
         </div>
