@@ -2,8 +2,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Navbar from "../../components/navbar/Navbar.jsx";
-import * as mockup from "../../components/mockUpData.js";
+import Navbar from "../feed/navbar.jsx";
+import * as mockup from "../../mockupData.js";
 import { useEffect, useState } from "react";
 
 const Kalendar = () => {
