@@ -24,12 +24,13 @@ const userSchema = new Schema({
   address: String,
   // teacher , parent
   school: { type: Schema.Types.ObjectId, ref: "school" },
+  active: { type: Boolean, default: true },
 });
 
-userSchema.methods.toJSON = function(){
-  const object = this.toObject()
+userSchema.methods.toJSON = function () {
+  const object = this.toObject();
   delete object.password;
   return object;
-}
+};
 
 export default model("user", userSchema);
