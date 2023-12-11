@@ -1,5 +1,5 @@
 import { Button, Card, CircularProgress, TextField } from "@mui/material";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import style from "./register.module.scss";
 import { AuthApi } from "../../api/authApi";
@@ -61,7 +61,7 @@ const Register = () => {
         <Card className={style.form}>
           <p>
             اکانت شما ایجاد شد و تا 24 ساعت آینده تایید خواهد شد . بعد از
-            میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
+            .میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
           </p>
         </Card>
       </div>
