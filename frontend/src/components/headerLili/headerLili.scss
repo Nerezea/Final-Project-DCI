@@ -1,0 +1,35 @@
+@import "../../assets/css/colors";
+@import "../../assets/css/fonts";
+
+.header-desktop {
+  background-color: $color-white;
+  // border-bottom: 2px solid $color-purple;
+  height: 11vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-self: center;
+  z-index: 50;
+
+  .logo {
+    height: 100%;
+
+    .blue-owl {
+      height: 120%;
+    }
+  }
+
+  .title-path {
+    color: #000000;
+    font-family: $AlteDin;
+    font-size: 10rem;
+    font-weight: 500;
+    letter-spacing: 0.9rem;
+    line-height: 100%;
+    text-align: right;
+  }
+}
