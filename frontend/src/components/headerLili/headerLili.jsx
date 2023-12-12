@@ -8,25 +8,22 @@ const HeaderL = () => {
 
   let title;
   switch (location.pathname) {
-    case "/newsfeed":
+    case "/parent/feed":
       title = "Newsfeed";
       break;
-    case "/forum":
-      title = "Forum";
-      break;
-    case "/krankmeldung":
-      title = "Krankmeldung";
-      break;
-    case "/lehrerchat":
-      title = "Lehrerchat";
-      break;
-    case "/wichtiges":
-      title = "Wichtiges";
-      break;
-    case "/kalendar":
+    case "/parent/calendar":
       title = "Kalendar";
       break;
-    case "/profil":
+    case "/parent/krankmeldung":
+      title = "Krankmeldung";
+      break;
+    // case "/lehrerchat":
+    //   title = "Lehrerchat";
+    //   break;
+    // case "/wichtiges":
+    //   title = "Wichtiges";
+    //   break;
+    case "/parent/profile":
       title = "Profil";
       break;
     case "/*":

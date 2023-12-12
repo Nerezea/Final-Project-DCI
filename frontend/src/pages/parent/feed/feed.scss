@@ -3,10 +3,12 @@
 
 .container-main {
   min-height: 100vh;
-  width: 99.7vw;
+  width: 100vw;
 
   .marquee-text-wrapper {
-    margin-top: 11vh; //maybe calc function ? minus header height?
+    margin: 0;
+    margin-top: 11vh;
+    //maybe calc function ? minus header height?
     background-color: $color-yellow;
     display: flex;
     justify-content: flex-start;

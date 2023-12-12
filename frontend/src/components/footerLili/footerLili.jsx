@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../css/scss/components/footerLili/footerLili.scss";
+import "./footerLili.scss";
 import { LuMapPin } from "react-icons/lu";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";

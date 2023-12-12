@@ -1,9 +1,9 @@
-@import "../../assets/css/colors";
-@import "../../assets/css/fonts";
+@import "../../assets/css/main.scss";
 
 .header-desktop {
-  background-color: $color-white;
-  // border-bottom: 2px solid $color-purple;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: $color-greengrey;
   height: 11vh;
   position: fixed;
   top: 0;
@@ -24,12 +24,14 @@
   }
 
   .title-path {
+    margin-top: 0;
+    padding-right: 1rem;
     color: #000000;
     font-family: $AlteDin;
-    font-size: 10rem;
+    font-size: 11rem;
     font-weight: 500;
     letter-spacing: 0.9rem;
-    line-height: 100%;
+    line-height: 11vh;
     text-align: right;
   }
 }

@@ -1,13 +1,16 @@
 import { GrUserSettings } from "react-icons/gr";
 import { CiLogin } from "react-icons/ci";
-import * as mockup from "../../mockupData.js";
+import * as mockup from "../../pages/mockupData.js";
 import "./navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar-top">
       <div className="loggedInAs">
-        <GrUserSettings />
+        <Link to="/parent/profile">
+          <GrUserSettings title="profile settings" />
+        </Link>
         <p className="person-textwrapper">Klasse 1B - Albin</p>
       </div>
       <ul>
@@ -18,7 +21,9 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="logOut">
-        <CiLogin className="loggOut-icon" />
+        <Link to="/">
+          <CiLogin title="log out" className="loggOut-icon" />
+        </Link>
       </div>
     </nav>
   );

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Layout from "./components/layout/layout";
+import AdminLayout from "./components/AdminLayout/adminLayout";
+import ParTeaLayout from "./components/ParTeaLayout/parTeaLayout";
 import Schools from "./pages/admin/schools/schools";
 import Landing from "./pages/landing/landing";
 import Login from "./pages/login/login";
@@ -55,7 +56,7 @@ const AppRoutes = () => {
         <Route
           path="/manager/*"
           element={
-            hasRole(Roles.MANAGER) ? <Layout /> : <Navigate to="/login" />
+            hasRole(Roles.MANAGER) ? <AdminLayout /> : <Navigate to="/login" />
           }
         >
           <Route path="teachers" element={<Teachers />}></Route>
@@ -80,7 +81,7 @@ const AppRoutes = () => {
         <Route
           path="/teacher/*"
           element={
-            hasRole(Roles.TEACHER) ? <Layout /> : <Navigate to="/login" />
+            hasRole(Roles.TEACHER) ? <AdminLayout /> : <Navigate to="/login" />
           }
         >
           <Route path="feed" element={<Feed />}></Route>
@@ -89,7 +90,7 @@ const AppRoutes = () => {
         <Route
           path="/parent/*"
           element={
-            hasRole(Roles.PARENT) ? <Layout /> : <Navigate to="/login" />
+            hasRole(Roles.PARENT) ? <ParTeaLayout /> : <Navigate to="/login" />
           }
         >
           <Route path="feed" element={<FeedParent />}></Route>

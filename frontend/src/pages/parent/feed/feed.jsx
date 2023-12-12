@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as mockup from "../../mockupData.js";
 import NewsfeedCards from "../feed/newsfeedCards.jsx";
-import Navbar from "../feed/navbar.jsx";
+import Navbar from "../../../components/navbarLili/navbar.jsx";
 import "./feed.scss";
 
 const feed = () => {
