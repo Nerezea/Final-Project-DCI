@@ -2,9 +2,24 @@ import { GrUserSettings } from "react-icons/gr";
 import { CiLogin } from "react-icons/ci";
 import * as mockup from "../../pages/mockupData.js";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useMemo, useState } from "react";
+import { Roles } from "../../store/slice/auth.slice";
 
 const Navbar = () => {
+  const role = useSelector((store) => store.auth.role);
+  // const [open, setOpen] = useState(true);
+
+  const menus = useMemo(() => {
+    switch (role) {
+      case Roles.TEACHER:
+        return mockup.menuTeachers;
+      case Roles.PARENT:
+        return mockup.menuParents;
+    }
+  }, [role]);
+
   return (
     <nav className="navbar-top">
       <div className="loggedInAs">
@@ -14,9 +29,17 @@ const Navbar = () => {
         <p className="person-textwrapper">Klasse 1B - Albin</p>
       </div>
       <ul>
-        {mockup.menuTeachers.map((item, index) => (
+        {menus.map((item, index) => (
           <li key={index}>
-            <a href="#">{item}</a>
+            <NavLink
+              className="navlink"
+              to={item.to}
+              style={({ isActive }) => ({
+                color: isActive ? "#4db5ff" : "gray",
+              })}
+            >
+              {item.label}
+            </NavLink>
           </li>
         ))}
       </ul>

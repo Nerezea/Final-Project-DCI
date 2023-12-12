@@ -1,9 +1,14 @@
 @import "../../assets/css/main.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 .header-desktop {
   margin: 0;
-  box-sizing: border-box;
-  background-color: $color-greengrey;
+  background-color: $color-white;
+  box-shadow: 0 0.4rem 0.88rem $color-grey;
+
   height: 11vh;
   position: fixed;
   top: 0;
@@ -17,16 +22,15 @@
 
   .logo {
     height: 100%;
-
-    .blue-owl {
+    overlay .blue-owl {
       height: 120%;
     }
   }
 
   .title-path {
-    margin-top: 0;
+    margin-top: -0.5rem;
     padding-right: 1rem;
-    color: #000000;
+    color: $color-purple;
     font-family: $AlteDin;
     font-size: 11rem;
     font-weight: 500;

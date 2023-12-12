@@ -21,28 +21,38 @@ export const mockupUser = {
   },
 };
 export const menuTeachers = [
-  "NEWSFEED",
-  "KALENDAR",
-  "ABWESENHEIT",
-  "EVENTS",
-  "KLASSENLISTE",
+  { label: "NEWSFEED", to: "/teacher/feed" },
+  { label: "KALENDAR", to: "/teacher/calendar" },
+  { label: "KRANKMELDUNG", to: "/teacher/abwesenheit" },
+  { label: "FORTBILDUNGEN", to: "/teacher/events" },
+  { label: "KLASSENLISTE", to: "/teacher/klassenliste" },
+  { label: "VERTRETUNGSPLÄNE", to: "/teacher/vertretungsplaene" },
 ];
 export const menuParents = [
-  "NEWSFEED",
-  "KALENDAR",
-  "ABWESENHEIT",
-  "EVENTS",
-  "KLASSENLISTE",
-  "VERTRETUNGSPLÄNE",
+  { label: "NEWSFEED", to: "/parent/feed" },
+  { label: "KALENDAR", to: "/parent/calendar" },
+  { label: "KRANKMELDUNG", to: "/parent/abwesenheit" },
+  { label: "KLASSENAUSFLÜGE", to: "/parent/events" },
+  { label: "KLASSENLISTE", to: "/parent/klassenliste" },
+  { label: "VERTRETUNGSPLÄNE", to: "/parent/vertretungsplaene" },
 ];
 
-export const teacherButtons = [
+export const teacherButtonsNewsfeed = [
   "❤ - POSTS",
   "POST ERSTELLEN",
   "POST BEARBEITEN",
   "POST LÖSCHEN",
 ];
 
+export const teacherButtonsCalendar = [
+  "EVENT ERSTELLEN",
+  "EVENT BEARBEITEN",
+  "EVENT LÖSCHEN",
+];
+
+export const parentButtonsNewsfeed = ["❤ - POSTS"];
+
+export const parentButtonsCalendar = ["❤ - EVENTS"];
 export const marqueeTxt = "Einschulung am 21.08.2024";
 
 export const events = [

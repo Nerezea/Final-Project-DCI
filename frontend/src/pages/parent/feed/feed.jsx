@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import * as mockup from "../../mockupData.js";
 import NewsfeedCards from "../feed/newsfeedCards.jsx";
-import Navbar from "../../../components/navbarLili/navbar.jsx";
 import "./feed.scss";
 
 const feed = () => {
@@ -24,7 +23,7 @@ const feed = () => {
   };
 
   return (
-    <main className="container-main">
+    <div className="container">
       <div className="marquee-text-wrapper">
         <p className="marquee-text">{mockup.marqueeTxt}</p>{" "}
         <p className="marquee-text">{mockup.marqueeTxt}</p>{" "}
@@ -34,12 +33,10 @@ const feed = () => {
         <p className="marquee-text">{mockup.marqueeTxt}</p>{" "}
       </div>
 
-      <Navbar />
-
       <div className="container-newsfeed">
         <aside className="button-menu">
           <ul>
-            {mockup.teacherButtons.map((item, index) => (
+            {mockup.parentButtonsNewsfeed.map((item, index) => (
               <li key={index}>
                 <a href="#">{item}</a>
               </li>
@@ -56,7 +53,7 @@ const feed = () => {
           <img src="/back-to-top.svg" alt="back to home button, arrow up" />
         </button>
       )}
-    </main>
+    </div>
   );
 };
 

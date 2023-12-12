@@ -17,12 +17,7 @@ const HeaderL = () => {
     case "/parent/krankmeldung":
       title = "Krankmeldung";
       break;
-    // case "/lehrerchat":
-    //   title = "Lehrerchat";
-    //   break;
-    // case "/wichtiges":
-    //   title = "Wichtiges";
-    //   break;
+
     case "/parent/profile":
       title = "Profil";
       break;
@@ -34,10 +29,12 @@ const HeaderL = () => {
   }
 
   return (
-    <div className="header-desktop">
-      <Logo />
-      <h1 className="title-path">{title}</h1>
-    </div>
+    <>
+      <header className="header-desktop">
+        <Logo />
+        <h1 className="title-path">{title}</h1>
+      </header>
+    </>
   );
 };
 

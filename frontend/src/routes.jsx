@@ -7,6 +7,7 @@ import Landing from "./pages/landing/landing";
 import Login from "./pages/login/login";
 import TeacherForm from "./pages/manager/teacherForm/teacherForm";
 import Teachers from "./pages/manager/teachers/teachers";
+
 import FeedParent from "./pages/parent/feed/feed";
 import Kalendar from "./pages/parent/calendar/calendar";
 
@@ -87,6 +88,7 @@ const AppRoutes = () => {
           <Route path="feed" element={<Feed />}></Route>
           <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
         </Route>
+
         <Route
           path="/parent/*"
           element={
@@ -97,7 +99,6 @@ const AppRoutes = () => {
           <Route path="preRegister" element={<p>register parent</p>}></Route>
           <Route path="" element={<Navigate to="/parent/feed" />}></Route>
           <Route path="calendar" element={<Kalendar />}></Route>
-          <Route path="" element={<Navigate to="/parent/calendar" />}></Route>
         </Route>
         <Route
           path="/admin/*"
