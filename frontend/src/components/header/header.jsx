@@ -11,7 +11,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slice/auth.slice";
 import style from "./header.module.scss";
-
+import { Logo } from "../logo/logo";
 import  animation  from "./logo.json"
 import Lottie from "lottie-react";
 

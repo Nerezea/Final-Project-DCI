@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  activate,
   createStudent,
   deleteStudent,
   getStudentById,
@@ -10,7 +11,10 @@ import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
 import { validate } from "../middleware/validate.middleware.js";
 import { Roles } from "../models/user.model.js";
-import { createStudentByManagerSchema, updateStudentByManagerSchema } from "../validation/student.schema.js";
+import {
+  createStudentByManagerSchema,
+  updateStudentByManagerSchema,
+} from "../validation/student.schema.js";
 
 const router = Router();
 
@@ -24,6 +28,13 @@ router.post(
   createStudent
 );
 router.delete("/:studentId", auth, hasRole(Roles.MANAGER), deleteStudent);
-router.put("/:studentId", auth, hasRole(Roles.MANAGER),validate(updateStudentByManagerSchema), updateStudent);
+router.put(
+  "/:studentId",
+  auth,
+  hasRole(Roles.MANAGER),
+  validate(updateStudentByManagerSchema),
+  updateStudent
+);
+router.put("/activate/:studentId", auth, hasRole(Roles.MANAGER), activate);
 
 export default router;

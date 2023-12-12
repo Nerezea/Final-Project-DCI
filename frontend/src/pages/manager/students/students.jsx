@@ -14,9 +14,9 @@ const Students = () => {
   const [searchParams] = useSearchParams();
   const [openModal, setOpenModal] = useState(false);
 
-  const classId = searchParams.get("classId")
+  const classId = searchParams.get("classId");
   const className = searchParams.get("className");
-  
+
   useEffect(() => {
     getAllData();
   }, [classId]);
@@ -41,6 +41,15 @@ const Students = () => {
       .catch((err) => toast.error(err));
   }
 
+  function handleActivateUser(id) {
+    StudentsApi.activate(id)
+      .then((res) => {
+        getAllData();
+        toast.success("student activated");
+      })
+      .catch((err) => toast.error(err));
+  }
+
   const columns = [
     {
       header: "Name",
@@ -59,7 +68,7 @@ const Students = () => {
     },
     { header: "Email", accessorKey: "email" },
     { header: "Class", accessorKey: "class.name" },
-    { header: "BirthDay", accessorKey: "birthDay" },
+    // { header: "BirthDay", accessorKey: "birthDay" },
     { header: "Phone", accessorKey: "phone" },
     {
       header: "Actions",
@@ -80,6 +89,20 @@ const Students = () => {
     },
   ];
 
+  if (data.find((item) => item.active === false))
+    columns.splice(3, 0, {
+      header: "Status",
+      accessorFn: (row) =>
+        row.active === false && (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => handleActivateUser(row._id)}
+          >
+            Activate
+          </Button>
+        ),
+    });
 
   return (
     <div className={style.page}>
@@ -100,9 +123,24 @@ const Students = () => {
         </Link>
       </header>
 
-      <DataTable data={data} columns={columns} />
-        <ModalRegisterLink open={openModal} onClose={() => setOpenModal(false)} classId={classId} className={className} />
-
+      <DataTable
+        data={data}
+        columns={columns}
+        muiTableBodyRowProps={({ row }) => {
+          console.log(row);
+          return {
+            sx: {
+              bgcolor: row.original.active === false && "#ff000022",
+            },
+          };
+        }}
+      />
+      <ModalRegisterLink
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        classId={classId}
+        className={className}
+      />
     </div>
   );
 };

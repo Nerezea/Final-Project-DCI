@@ -1,11 +1,14 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserModel from "../models/user.model.js";
+import { hashPassword } from "./hash.controller.js";
+import classModel from "../models/class.model.js";
+import userModel from "../models/user.model.js";
 
 export async function login(req, res) {
   const { email, password } = req.body;
-
-  const user = await UserModel.findOne({ email });
+  //  active !== false
+  const user = await UserModel.findOne({ email, active: { $ne: false } });
 
   if (!user) {
     return res.status(400).send({ message: "User does not exist" });
@@ -22,28 +25,25 @@ export async function login(req, res) {
   res.send({ token, role: user.role, fullName: user.fullName });
 }
 
-// export async function register(req, res) {
-//   const { username, password, fullName, email } = req.body;
-//   if (!username || !password || !fullName) {
-//     return res
-//       .status(400)
-//       .send({ message: "Missing username and/or password" });
-//   }
-//   const user = await UserModel.findOne({ $or: [{ username }, { email }] });
+export async function register(req, res) {
+  const { email, password, class: classId } = req.body;
 
-//   if (user) {
-//     return res.status(400).send({ message: "Username already exists" });
-//   }
-//   const hash = await bcrypt.hash(password, 10);
+  const user = await UserModel.findOne({ email });
 
-//   // oder : UserModel.create(body)
-//   await UserModel.create({
-//     username,
-//     email,
-//     fullName,
-//     password: hash,
-//   });
-//   res.send({ message: "User created" });
-// }
+  if (user) {
+    return res.status(400).send({ message: "email already exists" });
+  }
+  const classData = await classModel.findById(classId);
+  const hash = await hashPassword(password);
+
+  // oder : UserModel.create(body)
+  await UserModel.create({
+    ...req.body,
+    password: hash,
+    school: classData.school,
+    active: false,
+  });
+  res.send({ message: "User created" });
+}
 
 //test

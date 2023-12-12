@@ -1,3 +1,5 @@
+ 
+// Check if user has role
 
 export const hasRole = (role) => (req, res, next) => {
   try {
