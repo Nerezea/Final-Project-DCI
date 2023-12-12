@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
       ? "/api"
-      : "http://localhost:4040/api",
+      : "http://localhost:5000/api",
   headers: {
     token: localStorage.getItem("token"),
   },
