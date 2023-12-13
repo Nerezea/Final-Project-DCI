@@ -1,5 +1,5 @@
 import { Button, Modal } from "@mui/material";
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import style from "./modalRegisterLink.module.scss";
 // https://www.npmjs.com/package/react-qr-code
 import QrCode from "react-qr-code";
@@ -7,7 +7,7 @@ import QrCode from "react-qr-code";
 import ReactToPrint from "react-to-print";
 
 const ModalRegisterLink = ({ open, onClose, classId, className }) => {
-  const link = `http://localhost:5175/preRegister?class=${classId}`;
+  const link = `http://localhost:5173/preRegister?class=${classId}`;
 
   const container = useRef();
 

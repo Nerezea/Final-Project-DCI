@@ -1,0 +1,87 @@
+@import "../../assets/css/main.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar-top {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: self-start;
+  z-index: 20;
+  background-color: $color-greengrey;
+  padding: 0.3rem 0;
+  padding-top: 11.4vh;
+  // box-shadow: 0 0.4rem 0.88rem $color-yellow;
+
+  .loggedInAs {
+    background-color: $color-white;
+    padding: 0.6rem 4rem 0.6rem 2rem;
+    border: 1px solid $color-greengrey;
+    border-left: none;
+    border-radius: 0 25rem 25rem 0;
+    color: $color-greengrey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+    white-space: nowrap;
+    // box-shadow: 0 0.4rem 0.88rem $color-yellow;
+
+    .loggedIn-icon:hover {
+      cursor: pointer;
+    }
+  }
+  .logOut {
+    background-color: $color-white;
+    padding: 0.6rem 2rem;
+    border: 1px solid $color-greengrey;
+    border-right: none;
+    border-radius: 25rem 0 0 25rem;
+    font-size: 1.8rem;
+    color: $color-greengrey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    // box-shadow: 0 0.4rem 0.88rem $color-yellow;
+  }
+  & ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+  }
+
+  & li {
+    background-color: $color-white;
+    padding: 0.6rem;
+    text-align: center;
+    border: 1px solid $color-greengrey;
+    border-radius: 25rem;
+    transition: transform 0.3s ease;
+    flex-grow: 1;
+    // box-shadow: 0 0.4rem 0.88rem $color-yellow;
+
+    .navlink {
+      letter-spacing: 0.2rem;
+      font-size: 2rem;
+      color: $color-greengrey;
+    }
+    &:hover {
+      background-color: $color-greengrey;
+      color: $color-white;
+
+      .navlink {
+        color: $color-white;
+      }
+    }
+  }
+}

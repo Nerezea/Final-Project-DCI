@@ -5,6 +5,12 @@ npm run database - startet die connection zum mongodb server
 npm run start - startet die frontend anwendung
 npm run scss - aktualisiert die scss datei
 
+<<<<<<< HEAD
 Falls Konflikt mit package-lock-json
 1. rm -rf node_modules package-lock.json
 2. npm install
+=======
+-> Update package.json
+rm -rf node_modules package-lock.json
+npm install
+>>>>>>> newdev

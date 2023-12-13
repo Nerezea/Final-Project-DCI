@@ -7,8 +7,8 @@ import userModel from "../models/user.model.js";
 
 export async function login(req, res) {
   const { email, password } = req.body;
-
-  const user = await UserModel.findOne({ email });
+  //  active !== false
+  const user = await UserModel.findOne({ email, active: { $ne: false } });
 
   if (!user) {
     return res.status(400).send({ message: "User does not exist" });

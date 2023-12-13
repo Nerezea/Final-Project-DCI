@@ -1,5 +1,9 @@
 import { Button, Card, CircularProgress, TextField } from "@mui/material";
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import  { useState } from "react";
+>>>>>>> newdev
 import { useSearchParams } from "react-router-dom";
 import style from "./register.module.scss";
 import { AuthApi } from "../../api/authApi";
@@ -61,7 +65,11 @@ const Register = () => {
         <Card className={style.form}>
           <p>
             اکانت شما ایجاد شد و تا 24 ساعت آینده تایید خواهد شد . بعد از
+<<<<<<< HEAD
             میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
+=======
+            .میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
+>>>>>>> newdev
           </p>
         </Card>
       </div>
