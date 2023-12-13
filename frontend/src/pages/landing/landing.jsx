@@ -1,5 +1,6 @@
 import Header from "../../components/headerElena/headerElena.jsx";
 import Footer from "../../components/footerElena/footerElena.jsx";
+import ".././landing/landing.scss"
 const Landing = () => {
   return (
     <>
