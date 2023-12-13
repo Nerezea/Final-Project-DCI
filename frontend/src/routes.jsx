@@ -108,7 +108,7 @@ const AppRoutes = () => {
           path="/admin/*"
           element={
             hasRole(Roles.SUPER_ADMIN) ? (
-              <AdminLayoutLayout />
+              <AdminLayout />
             ) : (
               <Navigate to="/login" />
             )
