@@ -4,7 +4,7 @@ import "../loader/loader.scss";
 const Loader = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setTimeout(() => setLoading(true), 3500);
+    setTimeout(() => setLoading(true), 3000);
   }, []);
 
   const renderLetters = () => {
