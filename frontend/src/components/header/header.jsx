@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slice/auth.slice";
 import style from "./header.module.scss";
 import { Logo } from "../logo/logo";
-import  animation  from "./logo.json"
+import animation from "./logo.json";
 import Lottie from "lottie-react";
 
 export default function Header() {
@@ -49,13 +49,17 @@ export default function Header() {
           <MenuIcon />
         </IconButton> */}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        <Lottie
-  fill="#40C0E7"
-  
-  animationData={animation}
-  style={{ position:"relative", width: "10vw", height: "5vw", marginTop: "-15px", marginLeft: "-20px" }}
-/>
-
+          <Lottie
+            fill="#40C0E7"
+            animationData={animation}
+            style={{
+              position: "relative",
+              width: "10vw",
+              height: "5vw",
+              marginTop: "-15px",
+              marginLeft: "-20px",
+            }}
+          />
         </Typography>
         {/* <AccountCircle/> */}
         <Typography>
