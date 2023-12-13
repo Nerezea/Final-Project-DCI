@@ -23,7 +23,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       {renderLoader()}
       {!showLoader && <AppRoutes />}
     </div>
