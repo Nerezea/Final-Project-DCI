@@ -8,6 +8,6 @@ export const auth = (req, res, next) => {
     req.user = decode;
     next();
   } catch (error) {
-    res.status(401).send({ message: "access denied" });
+    res.status(401).send({ message: "access kharab" });
   }
 };
