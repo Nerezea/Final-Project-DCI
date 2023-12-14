@@ -1,5 +1,4 @@
 import event from "../models/event.model.js";
-import { getSchoolOfManagerById } from "./utils.controller.js";
 import classModel from "../models/class.model.js";
 import eventModel from "../models/event.model.js";
 import { Roles } from "../models/user.model.js";
