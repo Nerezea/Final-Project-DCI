@@ -1,27 +1,38 @@
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
+
+// Layouts
 import AdminLayout from "./components/AdminLayout/adminLayout";
 import ParTeaLayout from "./components/ParTeaLayout/parTeaLayout";
+
+// Schooladministration
 import Schools from "./pages/admin/schools/schools";
+
+// Routes for public
 import Landing from "./pages/landing/landing";
 import Login from "./pages/login/login";
+import Register from "./pages/register/register";
+
+// Routes for manager
 import TeacherForm from "./pages/manager/teacherForm/teacherForm";
 import Teachers from "./pages/manager/teachers/teachers";
-
-import FeedParent from "./pages/parent/feed/feed";
-import Kalendar from "./pages/parent/calendar/calendar";
-
-import Feed from "./pages/teacher/feed/feed";
-import Kalendar from "./pages/teacher/calendar/calendar";
-
-import { Roles } from "./store/slice/auth.slice";
 import Classes from "./pages/manager/classes/classes";
 import ClassForm from "./pages/manager/classForm/classForm";
 import Students from "./pages/manager/students/students";
 import StudentForm from "./pages/manager/studentForm/studentForm";
-import Register from "./pages/register/register";
 import NewsFeedForm from "./pages/manager/newsFeedForm/newsFeedForm";
 import Events from "./pages/manager/eventForm/events";
+
+// Routes for parents
+import FeedParent from "./pages/parent/feed/feed";
+// import KalendarParent from "./pages/parent/calendar/calendar";
+
+// Routes for teachers
+import FeedTeacher from "./pages/teacher/feed/feed";
+import KalendarTeacher from "./pages/teacher/calendar/calendar";
+
+// import Roles from redux slice
+import { Roles } from "./store/slice/auth.slice";
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -56,6 +67,7 @@ const AppRoutes = () => {
           }
         />
 
+        {/* manager */}
         <Route
           path="/manager/*"
           element={
@@ -81,17 +93,20 @@ const AppRoutes = () => {
           <Route path="events" element={<Events />}></Route>
           <Route path="feed" element={<NewsFeedForm />}></Route>
         </Route>
+
+        {/* teacher */}
         <Route
           path="/teacher/*"
           element={
             hasRole(Roles.TEACHER) ? <ParTeaLayout /> : <Navigate to="/login" />
           }
         >
-          <Route path="feed" element={<Feed />}></Route>
+          <Route path="feed" element={<FeedTeacher />}></Route>
           <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
-          <Route path="calendar" element={<Kalendar />}></Route>
+          <Route path="calendar" element={<KalendarTeacher />}></Route>
         </Route>
 
+        {/* parent */}
         <Route
           path="/parent/*"
           element={
@@ -101,9 +116,10 @@ const AppRoutes = () => {
           <Route path="feed" element={<FeedParent />}></Route>
           <Route path="preRegister" element={<p>register parent</p>}></Route>
           <Route path="" element={<Navigate to="/parent/feed" />}></Route>
-          <Route path="calendar" element={<Kalendar />}></Route>
+          <Route path="calendar" element={<KalendarTeacher />}></Route>
         </Route>
 
+        {/* admin */}
         <Route
           path="/admin/*"
           element={

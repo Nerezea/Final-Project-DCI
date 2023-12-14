@@ -4,12 +4,11 @@ import * as mockup from "../../pages/mockupData.js";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Roles } from "../../store/slice/auth.slice";
 
 const Navbar = () => {
   const role = useSelector((store) => store.auth.role);
-  // const [open, setOpen] = useState(true);
 
   const menus = useMemo(() => {
     switch (role) {
@@ -23,20 +22,19 @@ const Navbar = () => {
   return (
     <nav className="navbar-top">
       <div className="loggedInAs">
-        <Link to="/parent/profile">
+        <NavLink to="/parent/">
           <GrUserSettings title="profile settings" />
-        </Link>
+        </NavLink>
         <p className="person-textwrapper">Klasse 1B - Albin</p>
       </div>
       <ul>
         {menus.map((item, index) => (
           <li key={index}>
             <NavLink
-              className="navlink"
+              className={({ isActive }) =>
+                isActive ? "active-item" : "inactive-item"
+              }
               to={item.to}
-              style={({ isActive }) => ({
-                color: isActive ? "#4db5ff" : "gray",
-              })}
             >
               {item.label}
             </NavLink>

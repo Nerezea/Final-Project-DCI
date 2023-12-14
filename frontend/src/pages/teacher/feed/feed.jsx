@@ -1,27 +1,9 @@
-import { useEffect, useState } from "react";
 import * as mockup from "../../mockupData.js";
 import NewsfeedCards from "./newsfeedCards.jsx";
 import "./feed.scss";
+import ScrollToTop from "../../../components/scrollToTop.jsx";
 
 const feed = () => {
-  const [showButton, setShowButton] = useState(false);
-
-  useEffect(() => {
-    const handleScrollButtonVisibility = () => {
-      window.scrollY > 200 ? setShowButton(true) : setShowButton(false);
-    };
-
-    window.addEventListener("scroll", handleScrollButtonVisibility);
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollButtonVisibility);
-    };
-  });
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <div className="container">
       <div className="marquee-text-wrapper">
@@ -38,7 +20,7 @@ const feed = () => {
           <ul>
             {mockup.teacherButtonsNewsfeed.map((item, index) => (
               <li key={index}>
-                <a href="#">{item}</a>
+                <a href={item.to}>{item.label}</a>
               </li>
             ))}
           </ul>
@@ -48,11 +30,7 @@ const feed = () => {
         </div>
       </div>
 
-      {showButton && (
-        <button className="back-to-top" onClick={handleScrollToTop}>
-          <img src="/back-to-top.svg" alt="back to home button, arrow up" />
-        </button>
-      )}
+      <ScrollToTop />
     </div>
   );
 };
