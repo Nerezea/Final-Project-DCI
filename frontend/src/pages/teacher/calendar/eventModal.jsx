@@ -1,6 +1,4 @@
-import "./eventModal.scss";
-
-import React, { useState } from "react";
+import { useState } from "react";
 
 const EventModal = ({ isOpen, onClose, onSave }) => {
   const [eventData, setEventData] = useState({

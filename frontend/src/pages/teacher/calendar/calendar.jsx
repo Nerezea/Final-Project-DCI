@@ -5,7 +5,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 import * as mockup from "../../mockupData.js";
 import { useEffect, useState, useMemo } from "react";
 import { Roles } from "../../../store/slice/auth.slice.js";
-import "./calendar.scss";
 import { useSelector } from "react-redux";
 import { EventApi } from "../../../api/eventApi.js";
 import EventModal from "./eventModal.jsx";
@@ -72,44 +71,46 @@ const Kalendar = () => {
 
   return (
     <>
-      <div className="container-calendar">
-        <aside className="button-menu">
-          <ul>
-            {menus.map((item, index) => (
-              <li key={index}>
-                <a
-                  className="parent-buttons"
-                  onClick={() => handleMenuItemClick(item.action)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </aside>
+      <div className="container">
+        <div className="container-calendar">
+          <aside className="button-menu">
+            <ul>
+              {menus.map((item, index) => (
+                <li key={index}>
+                  <a
+                    className="parent-buttons"
+                    onClick={() => handleMenuItemClick(item.action)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
 
-        <div className="calendar-div">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              start: "title",
-              center: "dayGridMonth,timeGridWeek,timeGridDay",
-              end: "today prev,next",
-              height: "70vh",
-            }}
-            events={events}
-            eventClick={handleEventClick}
-            datesSet={({ start, end }) => fetchEvents(start, end)}
-          />
+          <div className="calendar-div">
+            <FullCalendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              headerToolbar={{
+                start: "title",
+                center: "dayGridMonth,timeGridWeek,timeGridDay",
+                end: "today prev,next",
+                height: "70vh",
+              }}
+              events={events}
+              eventClick={handleEventClick}
+              datesSet={({ start, end }) => fetchEvents(start, end)}
+            />
+          </div>
         </div>
+        <ScrollToTop />
+        <EventModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          event={selectedEvent}
+        />
       </div>
-      <ScrollToTop />
-      <EventModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        event={selectedEvent}
-      />
     </>
   );
 };
