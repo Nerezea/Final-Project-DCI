@@ -12,6 +12,8 @@ import FeedParent from "./pages/parent/feed/feed";
 import Kalendar from "./pages/parent/calendar/calendar";
 
 import Feed from "./pages/teacher/feed/feed";
+import Kalendar from "./pages/teacher/calendar/calendar";
+
 import { Roles } from "./store/slice/auth.slice";
 import Classes from "./pages/manager/classes/classes";
 import ClassForm from "./pages/manager/classForm/classForm";
@@ -82,11 +84,12 @@ const AppRoutes = () => {
         <Route
           path="/teacher/*"
           element={
-            hasRole(Roles.TEACHER) ? <AdminLayout /> : <Navigate to="/login" />
+            hasRole(Roles.TEACHER) ? <ParTeaLayout /> : <Navigate to="/login" />
           }
         >
           <Route path="feed" element={<Feed />}></Route>
           <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
+          <Route path="calendar" element={<Kalendar />}></Route>
         </Route>
 
         <Route
@@ -100,10 +103,15 @@ const AppRoutes = () => {
           <Route path="" element={<Navigate to="/parent/feed" />}></Route>
           <Route path="calendar" element={<Kalendar />}></Route>
         </Route>
+
         <Route
           path="/admin/*"
           element={
-            hasRole(Roles.SUPER_ADMIN) ? <Layout /> : <Navigate to="/login" />
+            hasRole(Roles.SUPER_ADMIN) ? (
+              <AdminLayout />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         >
           <Route path="schools" element={<Schools />}></Route>
