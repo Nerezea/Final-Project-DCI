@@ -11,21 +11,12 @@ import { EventApi } from "../../../api/eventApi.js";
 import EventModal from "./eventModal.jsx";
 import ScrollToTop from "../../../components/scrollToTop.jsx";
 
-const handleMenuItemClick = (action) => {
-  switch (action) {
-    case "createEvent":
-      // Open a form/modal to get event details, then call EventApi.createEvent
-      break;
-    case "updateEvent":
-      // Show a list of events to select which to edit, then call EventApi.updateEvent
-      break;
-    case "deleteEvent":
-      // Show a list of events to select which to delete, then call EventApi.deleteEvent
-      break;
-    // ... handle other actions
-  }
-};
 const Kalendar = () => {
+  // Events State
+  const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   // Which Userrole?
   const role = useSelector((store) => store.auth.role);
 
@@ -38,93 +29,86 @@ const Kalendar = () => {
     }
   }, [role]);
 
-  const formattedEvents = mockup.events.map((event, index) => {
-    return {
-      title: event.title,
-      start: event.date.split(".").reverse().join("-"),
-      url: event.link,
-      id: `event-${index}`,
-      end: event.endDate
-        ? event.endDate.split(".").reverse().join("-")
-        : undefined,
-      allDay: true,
-      color: "#721fdc",
-      textColor: "white",
-      className: "event-calendar",
-      editable: true,
-      newsfeedId: event.newsfeedId,
-    };
-  });
-
-  const handleEventClick = (clickinfo) => {};
-  const handleDateClick = (arg) => {
-    // Open a modal or form to create a new event
-    // arg.date will have the clicked date information
+  // Fetch events in certain time
+  const fetchEvents = (start, end) => {
+    EventApi.getEvents(start, end)
+      .then((res) => {
+        const formattedEvents = res.data.map((event, index) => {
+          return {
+            title: event.title,
+            start: event.date.split(".").reverse().join("-"),
+            description: event.description,
+            url: event.link,
+            // id: `event-${index}`,
+            end: event.endDate
+              ? event.endDate.split(".").reverse().join("-")
+              : undefined,
+            // allDay: true,
+            color: "#721fdc",
+            textColor: "white",
+            className: "event-calendar",
+            editable: true,
+            newsfeedId: event.newsfeedId,
+          };
+        });
+        setEvents(formattedEvents);
+      })
+      .catch((err) => console.error(err));
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalAction, setModalAction] = useState(null);
+  // Create newEvent
+  const handleCreateEvent = (eventData) => {
+    Event.Api.createEvent(eventData)
+      .then(() => {
+        fetchEvents();
+      })
+      .catch((err) => console.error(err));
+  };
 
-  const handleMenuItemClick = (action) => {
-    setModalAction(action);
+  const handleEventClick = (clickinfo) => {
+    setSelectedEvent(clickInfo.event);
     setIsModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    setModalAction(null);
-  };
-
-  const handleSaveEvent = async (eventData) => {
-    try {
-      // Depending on modalAction, call the appropriate API method
-      // Example: EventApi.createEvent(eventData)
-      handleModalClose();
-    } catch (error) {
-      console.error(error);
-    }
-  };
   return (
     <>
-      <div className="container">
-        <div className="container-calendar">
-          <aside className="button-menu">
-            <ul>
-              {menus.map((item, index) => (
-                <li key={index}>
-                  <a
-                    className="parent-buttons"
-                    onClick={() => handleMenuItemClick(item.action)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
+      <div className="container-calendar">
+        <aside className="button-menu">
+          <ul>
+            {menus.map((item, index) => (
+              <li key={index}>
+                <a
+                  className="parent-buttons"
+                  onClick={() => handleMenuItemClick(item.action)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-          <div className="calendar-div">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              headerToolbar={{
-                start: "title",
-                center: "dayGridMonth,timeGridWeek,timeGridDay",
-                end: "today prev,next",
-                height: "70vh",
-              }}
-              events={formattedEvents}
-              // eventClick={handleEventClick}
-              dateClick={handleDateClick}
-            />
-          </div>
+        <div className="calendar-div">
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              start: "title",
+              center: "dayGridMonth,timeGridWeek,timeGridDay",
+              end: "today prev,next",
+              height: "70vh",
+            }}
+            events={events}
+            eventClick={handleEventClick}
+            datesSet={({ start, end }) => fetchEvents(start, end)}
+          />
         </div>
-        <ScrollToTop />
       </div>
+      <ScrollToTop />
       <EventModal
         isOpen={isModalOpen}
-        onClose={handleModalClose}
-        onSave={handleSaveEvent}
+        onClose={() => setIsModalOpen(false)}
+        event={selectedEvent}
       />
     </>
   );
