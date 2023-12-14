@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "scss": "sass --watch ./src/css/scss/main.scss ./src/css/main.css --no-source-map"
+    "scss": "sass --watch ./src/assets/css/main.scss ./src/assets/css/main.css --no-source-map"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
