@@ -1,4 +1,3 @@
-
 import event from "../models/event.model.js";
 import { getSchoolOfManagerById } from "./utils.controller.js";
 
@@ -48,9 +47,14 @@ export const updateEvent = async (req, res) => {
 };
 
 export const deleteEvent = async (req, res) => {
-  const event = await getSchoolOfManagerById(req.user.id);
+  // const event = await getSchoolOfManagerById(req.user.id);
+  // ich glaube das muss school heißen, wie oben
+
+  const school = await getSchoolOfManagerById(req.user.id);
 
   const { eventId } = req.params;
   await event.findByIdAndDelete(eventId);
+  //vielleicht error handling wenn event nicht gefunden wird?
+
   res.status(200).json({ message: "event deleted successfully" });
 };
