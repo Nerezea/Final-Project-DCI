@@ -26,8 +26,8 @@ const Footer = () => {
             mb: 1,
           }}
         >
-          <Typography variant="caption" color="initial">
-            Copyright ©2024. [] Limited
+          <Typography variant="caption" color="initial" fontSize={"15px"}>
+            Copyright © Our website name 2024.
           </Typography>
         </Box>
       </Container>
