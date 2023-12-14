@@ -1,6 +1,10 @@
-
 import { Router } from "express";
-import { createEvent, deleteEvent, getEvents, updateEvent } from "../controller/event.controller.js";
+import {
+  createEvent,
+  deleteEvent,
+  getEvents,
+  updateEvent,
+} from "../controller/event.controller.js";
 import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
 import { validate } from "../middleware/validate.middleware.js";
@@ -9,12 +13,25 @@ import { createEventSchema } from "../validation/event.schema.js";
 
 const router = Router();
 
-
-
-router.get("/", auth, hasRole(Roles.MANAGER), getEvents);
-router.post("/", auth, hasRole(Roles.MANAGER), validate(createEventSchema), createEvent);
-router.delete("/:id", auth, hasRole(Roles.MANAGER), deleteEvent);
-router.put("/:id", auth, hasRole(Roles.MANAGER), updateEvent);
+router.get("/", auth, hasRole(Roles.MANAGER, Roles.TEACHER), getEvents);
+router.post(
+  "/",
+  auth,
+  hasRole(Roles.MANAGER, Roles.TEACHER),
+  validate(createEventSchema),
+  createEvent
+);
+router.delete(
+  "/:eventId",
+  auth,
+  hasRole(Roles.MANAGER, Roles.TEACHER),
+  deleteEvent
+);
+router.put(
+  "/:eventId",
+  auth,
+  hasRole(Roles.MANAGER, Roles.TEACHER),
+  updateEvent
+);
 
 export default router;
-
