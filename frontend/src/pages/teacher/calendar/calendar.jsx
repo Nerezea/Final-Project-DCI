@@ -3,85 +3,113 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import * as mockup from "../../mockupData.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { Roles } from "../../../store/slice/auth.slice.js";
 import "./calendar.scss";
+import { useSelector } from "react-redux";
+import { EventApi } from "../../../api/eventApi.js";
+import EventModal from "./eventModal.jsx";
+import ScrollToTop from "../../../components/scrollToTop.jsx";
 
 const Kalendar = () => {
-  const [showButton, setShowButton] = useState(false);
+  // Events State
+  const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  useEffect(() => {
-    const handleScrollButtonVisibility = () => {
-      window.scrollY > 200 ? setShowButton(true) : setShowButton(false);
-    };
+  // Which Userrole?
+  const role = useSelector((store) => store.auth.role);
 
-    window.addEventListener("scroll", handleScrollButtonVisibility);
+  const menus = useMemo(() => {
+    switch (role) {
+      case Roles.TEACHER:
+        return mockup.teacherButtonsCalendar;
+      case Roles.PARENT:
+        return mockup.parentButtonsCalendar;
+    }
+  }, [role]);
 
-    return () => {
-      window.removeEventListener("scroll", handleScrollButtonVisibility);
-    };
-  });
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  // Fetch events in certain time
+  const fetchEvents = (start, end) => {
+    EventApi.getEvents(start, end)
+      .then((res) => {
+        const formattedEvents = res.data.map((event, index) => {
+          return {
+            title: event.title,
+            start: event.date.split(".").reverse().join("-"),
+            description: event.description,
+            url: event.link,
+            // id: `event-${index}`,
+            end: event.endDate
+              ? event.endDate.split(".").reverse().join("-")
+              : undefined,
+            // allDay: true,
+            color: "#721fdc",
+            textColor: "white",
+            className: "event-calendar",
+            editable: true,
+            newsfeedId: event.newsfeedId,
+          };
+        });
+        setEvents(formattedEvents);
+      })
+      .catch((err) => console.error(err));
   };
 
-  const formattedEvents = mockup.events.map((event, index) => {
-    return {
-      title: event.title,
-      start: event.date.split(".").reverse().join("-"),
-      url: event.link,
-      id: `event-${index}`,
-      end: event.endDate
-        ? event.endDate.split(".").reverse().join("-")
-        : undefined,
-      allDay: true,
-      color: "#721fdc",
-      textColor: "white",
-      className: "event-calendar",
-      editable: true,
-      newsfeedId: event.newsfeedId,
-    };
-  });
+  // Create newEvent
+  const handleCreateEvent = (eventData) => {
+    Event.Api.createEvent(eventData)
+      .then(() => {
+        fetchEvents();
+      })
+      .catch((err) => console.error(err));
+  };
 
-  const handleEventClick = (clickinfo) => {};
+  const handleEventClick = (clickinfo) => {
+    setSelectedEvent(clickInfo.event);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
-      <div className="container">
-        <div className="container-calendar">
-          <aside className="button-menu">
-            <ul>
-              {mockup.teacherButtonsCalendar.map((item, index) => (
-                <li key={index}>
-                  <a className="parent-buttons" href="#">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
+      <div className="container-calendar">
+        <aside className="button-menu">
+          <ul>
+            {menus.map((item, index) => (
+              <li key={index}>
+                <a
+                  className="parent-buttons"
+                  onClick={() => handleMenuItemClick(item.action)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-          <div className="calendar-div">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              headerToolbar={{
-                start: "title",
-                center: "dayGridMonth,timeGridWeek,timeGridDay",
-                end: "today prev,next",
-                height: "70vh",
-              }}
-              events={formattedEvents}
-              // eventClick={handleEventClick}
-            />
-          </div>
+        <div className="calendar-div">
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              start: "title",
+              center: "dayGridMonth,timeGridWeek,timeGridDay",
+              end: "today prev,next",
+              height: "70vh",
+            }}
+            events={events}
+            eventClick={handleEventClick}
+            datesSet={({ start, end }) => fetchEvents(start, end)}
+          />
         </div>
-        {showButton && (
-          <button className="back-to-top" onClick={handleScrollToTop}>
-            <img src="/back-to-top.svg" alt="back to home button, arrow up" />
-          </button>
-        )}
       </div>
+      <ScrollToTop />
+      <EventModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        event={selectedEvent}
+      />
     </>
   );
 };

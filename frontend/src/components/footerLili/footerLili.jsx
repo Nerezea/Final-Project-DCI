@@ -1,4 +1,3 @@
-import React from "react";
 import "./footerLili.scss";
 import { LuMapPin } from "react-icons/lu";
 import { HiOutlineEnvelope } from "react-icons/hi2";

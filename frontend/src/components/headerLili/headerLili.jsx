@@ -11,14 +11,25 @@ const HeaderL = () => {
     case "/parent/feed":
       title = "Newsfeed";
       break;
+    case "/teacher/feed":
+      title = "Newsfeed";
+      break;
     case "/parent/calendar":
+      title = "Kalendar";
+      break;
+    case "/teacher/calendar":
       title = "Kalendar";
       break;
     case "/parent/krankmeldung":
       title = "Krankmeldung";
       break;
-
+    case "/teacher/krankmeldung":
+      title = "Krankmeldung";
+      break;
     case "/parent/profile":
+      title = "Profil";
+      break;
+    case "/teacher/profile":
       title = "Profil";
       break;
     case "/*":

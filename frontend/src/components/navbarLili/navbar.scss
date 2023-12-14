@@ -6,6 +6,7 @@
 
 .navbar-top {
   width: 100%;
+  height: 16rem;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -70,17 +71,24 @@
     flex-grow: 1;
     // box-shadow: 0 0.4rem 0.88rem $color-yellow;
 
-    .navlink {
+    .active-item {
+      letter-spacing: 0.2rem;
+      font-size: 2rem;
+      color: $color-purple;
+    }
+
+    .inactive-item {
       letter-spacing: 0.2rem;
       font-size: 2rem;
       color: $color-greengrey;
     }
+
     &:hover {
       background-color: $color-greengrey;
-      color: $color-white;
+      color: white;
 
-      .navlink {
-        color: $color-white;
+      .inactive-item {
+        color: white;
       }
     }
   }
