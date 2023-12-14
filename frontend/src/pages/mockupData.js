@@ -38,21 +38,22 @@ export const menuParents = [
 ];
 
 export const teacherButtonsNewsfeed = [
-  "❤ - POSTS",
-  "POST ERSTELLEN",
-  "POST BEARBEITEN",
-  "POST LÖSCHEN",
+  { label: "❤ - POSTS", to: "/newsfeed/posts" },
+  { label: "POST ERSTELLEN", to: "/newsfeed/create" },
+  { label: "POST BEARBEITEN", to: "/newsfeed/patch" },
+  { label: "POST LÖSCHEN", to: "/newsfeed/delete" },
 ];
 
 export const teacherButtonsCalendar = [
-  "EVENT ERSTELLEN",
-  "EVENT BEARBEITEN",
-  "EVENT LÖSCHEN",
+  { label: "EVENT ERSTELLEN", action: "createEvent" },
+  { label: "EVENT BEARBEITEN", action: "updateEvent" },
+  { label: "EVENT LÖSCHEN", action: "deleteEvent" },
 ];
 
 export const parentButtonsNewsfeed = ["❤ - POSTS"];
 
 export const parentButtonsCalendar = ["❤ - EVENTS"];
+
 export const marqueeTxt = "Einschulung am 21.08.2024";
 
 export const events = [

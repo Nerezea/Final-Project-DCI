@@ -1,0 +1,68 @@
+@import "../../../assets/css/main.scss";
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-purple3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  .modal-window {
+    border: 3px solid $color-purple;
+    min-height: 40vh;
+    background-color: $color-white;
+    box-shadow: 0 0.4rem 0.88rem $color-purple3;
+    border-radius: 0.6rem;
+    padding: 5rem;
+    position: relative;
+
+    .close {
+      font-family: $Almendra;
+      font-size: 3rem;
+      font-weight: 700;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      cursor: pointer;
+    }
+
+    .form-event {
+      display: flex;
+      flex-direction: column;
+      font-size: 2rem;
+      flex-direction: column;
+      align-items: stretch;
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+
+        label {
+          margin-bottom: 0.5rem;
+        }
+
+        input,
+        textarea {
+          padding: 0.6rem 1rem;
+          border: 1px solid $color-grey;
+          border-radius: 0.3rem;
+          border-radius: 4rem;
+        }
+      }
+
+      .submit-button {
+        background-color: $color-greengrey;
+        border-radius: 4rem;
+        outline: none;
+        border: none;
+        padding: 0.6rem 1rem;
+      }
+    }
+  }
+}

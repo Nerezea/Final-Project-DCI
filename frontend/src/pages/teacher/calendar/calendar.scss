@@ -11,6 +11,11 @@
     grid-template-columns: 1fr 5fr;
     gap: 20px;
 
+    .parent-buttons {
+      color: $color-purple;
+      text-decoration: none;
+      display: block;
+    }
     .calendar-div {
       padding: 2rem 10rem;
       box-shadow: 0 0.4rem 0.88rem $color-greengrey;
