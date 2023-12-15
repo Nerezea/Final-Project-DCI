@@ -5,6 +5,7 @@ import fileRoute from "./file.route.js";
 import studentRoute from "./student.route.js";
 import classRoute from "./class.route.js";
 import eventsRoute from "./event.route.js";
+import feedRoute from "./feed.route.js";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use("/class", classRoute);
 router.use("/student", studentRoute);
 router.use("/file", fileRoute);
 router.use("/events", eventsRoute)
+router.use("/feed", feedRoute)
 
 export default router;

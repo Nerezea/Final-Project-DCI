@@ -22,7 +22,7 @@ export async function login(req, res) {
     process.env.JWT_SECRET,
     { expiresIn: "1d" }
   );
-  res.send({ token, role: user.role, fullName: user.fullName });
+  res.send({ token, role: user.role, fullName: user.fullName,image : user.image });
 }
 
 export async function register(req, res) {

@@ -18,8 +18,8 @@ import {
 
 const router = Router();
 
-router.get("/", auth, hasRole(Roles.MANAGER), getStudents);
-router.get("/:id", auth, hasRole(Roles.MANAGER), getStudentById);
+router.get("/", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudents);
+router.get("/:id", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudentById);
 router.post(
   "/",
   auth,

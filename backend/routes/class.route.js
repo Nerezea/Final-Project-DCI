@@ -14,7 +14,7 @@ import { createClassSchema } from "../validation/class.schema.js";
 
 const router = Router();
 
-router.get("/", auth, hasRole(Roles.MANAGER), getClassList);
+router.get("/", auth, hasRole(Roles.MANAGER, Roles.TEACHER), getClassList);
 router.get("/:classId", auth, hasRole(Roles.MANAGER), getClassById);
 router.post(
   "/",

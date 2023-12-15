@@ -15,6 +15,7 @@ export const getClassList = async (req, res) => {
   res.send(classList);
 };
 
+
 export const getClassById = async (req, res) => {
   const { classId } = req.params;
   const school = await getSchoolOfManagerById(req.user.id);

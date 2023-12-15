@@ -3,6 +3,8 @@ import { Schema, model } from "mongoose";
 const schema = new Schema({
   title: String,
   description: String,
+  image : String,
+  date : Date,
   creator: {
     type: Schema.Types.ObjectId,
     ref: "user",

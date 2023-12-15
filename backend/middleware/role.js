@@ -1,11 +1,10 @@
- 
-// Check if user has role
-
-export const hasRole = (role) => (req, res, next) => {
-  try {
-    if (req.user.role !== role) throw new Error();
-    next();
-  } catch (error) {
-    res.status(403).send({ message: "access denid" });
-  }
-};
+export const hasRole =
+  (...roles) =>
+  (req, res, next) => {
+    try {
+      if (!roles.includes(req.user.role)) throw new Error();
+      next();
+    } catch (error) {
+      res.status(403).send({ message: "access denied" });
+    }
+  };
