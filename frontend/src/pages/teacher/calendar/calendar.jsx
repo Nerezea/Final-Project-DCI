@@ -5,7 +5,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 import * as mockup from "../../mockupData.js";
 import { useEffect, useState, useMemo } from "react";
 import { Roles } from "../../../store/slice/auth.slice.js";
-import "./calendar.scss";
 import { useSelector } from "react-redux";
 import { EventApi } from "../../../api/eventApi.js";
 import EventModal from "./eventModal.jsx";
@@ -29,87 +28,108 @@ const Kalendar = () => {
     }
   }, [role]);
 
+  // Using mockup Data (static like holidays etc)
+  const formattedMockupData = mockup.eventsC.map((event, index) => ({
+    title: event.title,
+    start: event.start.split(".").reverse().join("-"),
+    end: event.end ? event.end.split(".").reverse().join("-") : undefined,
+    description: event.description,
+    url: event.url,
+    id: `event-${index}`,
+    editable: event.editable,
+    color: event.color,
+    textColor: event.textColor,
+  }));
+
+  // hard-coded date for schoolyear
+  const startDate = `2023-08-01`;
+  const endDate = `2024-08-01`;
+
   // Fetch events in certain time
-  const fetchEvents = (start, end) => {
+  const fetchEventsSchoolYear = (start, end) => {
     EventApi.getEvents(start, end)
       .then((res) => {
         const formattedEvents = res.data.map((event, index) => {
           return {
             title: event.title,
-            start: event.date.split(".").reverse().join("-"),
-            description: event.description,
-            url: event.link,
-            // id: `event-${index}`,
-            end: event.endDate
-              ? event.endDate.split(".").reverse().join("-")
+            start: event.start.split(".").reverse().join("-"),
+            end: event.end
+              ? event.end.split(".").reverse().join("-")
               : undefined,
-            // allDay: true,
-            color: "#721fdc",
-            textColor: "white",
-            className: "event-calendar",
-            editable: true,
-            newsfeedId: event.newsfeedId,
+            description: event.description,
+            url: event.url,
+            id: `event-${index}`,
+            editable: event.editable,
+            color: event.color,
+            textColor: event.textColor,
           };
         });
-        setEvents(formattedEvents);
+        setEvents([...formattedMockupData, ...formattedEvents]);
       })
       .catch((err) => console.error(err));
   };
 
-  // Create newEvent
-  const handleCreateEvent = (eventData) => {
-    Event.Api.createEvent(eventData)
-      .then(() => {
-        fetchEvents();
-      })
-      .catch((err) => console.error(err));
-  };
+  useEffect(() => {
+    fetchEventsSchoolYear(startDate, endDate);
+  }, []);
 
   const handleEventClick = (clickinfo) => {
-    setSelectedEvent(clickInfo.event);
+    clickinfo.jsEvent.preventDefault();
+
+    setSelectedEvent(clickinfo.event);
+    setIsModalOpen(true);
+  };
+  const handleDateClick = ({ dateStr }) => {
+    setSelectedEvent({ date: dateStr });
+    setIsModalOpen(true);
+  };
+  const handleMenuItemClick = () => {
     setIsModalOpen(true);
   };
 
   return (
     <>
-      <div className="container-calendar">
-        <aside className="button-menu">
-          <ul>
-            {menus.map((item, index) => (
-              <li key={index}>
-                <a
-                  className="parent-buttons"
-                  onClick={() => handleMenuItemClick(item.action)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </aside>
+      <div className="container">
+        <div className="container-calendar">
+          <aside className="button-menu">
+            <ul>
+              {menus.map((item, index) => (
+                <li key={index}>
+                  <a
+                    className="parent-buttons"
+                    onClick={() => handleMenuItemClick(item.action)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
 
-        <div className="calendar-div">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              start: "title",
-              center: "dayGridMonth,timeGridWeek,timeGridDay",
-              end: "today prev,next",
-              height: "70vh",
-            }}
-            events={events}
-            eventClick={handleEventClick}
-            datesSet={({ start, end }) => fetchEvents(start, end)}
-          />
+          <div className="calendar-div">
+            <FullCalendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              headerToolbar={{
+                start: "title",
+                center: "dayGridMonth,timeGridWeek,timeGridDay",
+                end: "today prev,next",
+                height: "70vh",
+              }}
+              events={formattedMockupData}
+              eventClick={handleEventClick}
+              dateClick={handleDateClick}
+              // datesSet={({ start, end }) => fetchEvents(start, end)}
+            />
+          </div>
         </div>
+        <ScrollToTop />
+        <EventModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          event={selectedEvent}
+        />
       </div>
-      <ScrollToTop />
-      <EventModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        event={selectedEvent}
-      />
     </>
   );
 };

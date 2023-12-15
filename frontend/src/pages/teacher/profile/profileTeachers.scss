@@ -1,0 +1,14 @@
+.container-profile {
+  margin: 0;
+  width: 98%;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+
+  .parent-buttons {
+    color: $color-purple;
+    text-decoration: none;
+    display: block;
+  }
+}

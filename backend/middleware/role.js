@@ -6,6 +6,6 @@ export const hasRole = (role) => (req, res, next) => {
     if (req.user.role !== role) throw new Error();
     next();
   } catch (error) {
-    res.status(403).send({ message: "access denied" });
+    res.status(403).send({ message: "access dddddd" });
   }
 };

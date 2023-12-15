@@ -28,6 +28,11 @@ export const menuTeachers = [
   { label: "KLASSENLISTE", to: "/teacher/klassenliste" },
   { label: "VERTRETUNGSPLÄNE", to: "/teacher/vertretungsplaene" },
 ];
+
+export const logInTeacher = {
+  label: "Klasse 1B - Albin Maier",
+  to: "teacher/profile",
+};
 export const menuParents = [
   { label: "NEWSFEED", to: "/parent/feed" },
   { label: "KALENDAR", to: "/parent/calendar" },
@@ -54,7 +59,7 @@ export const parentButtonsNewsfeed = ["❤ - POSTS"];
 
 export const parentButtonsCalendar = ["❤ - EVENTS"];
 
-export const marqueeTxt = "Einschulung am 21.08.2024";
+export const marqueeTxt = "Einschulung am 21.08.2023";
 
 export const events = [
   {
@@ -158,6 +163,178 @@ export const events = [
     date: "28.07.2025",
     info: "Wir verabschieden unsere Viertklässler mit einer großen Abschlussfeier. Wir sind stolz auf euch und eure Leistungen!",
     link: "Mehr Infos...",
+    img: "/graduation-party.jpg",
+    newsfeedId: "event013",
+  },
+];
+
+export const eventsC = [
+  {
+    title: "Einschulung",
+    start: "21.08.2023",
+    end: "",
+    description:
+      "Endlich ist es soweit... Dieser Tag ist etwas ganz Besonderes. Begrüßt die Neuzugänge gemeinsam mit den Eltern und Lehrer bei dem Einschulungsfest am 21.08.2023.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event001",
+  },
+  {
+    title: "Einschulung",
+    start: "21.08.2023",
+    end: "",
+    description:
+      "Endlich ist es soweit... Dieser Tag ist etwas ganz Besonderes. Begrüßt die Neuzugänge gemeinsam mit den Eltern und Lehrer bei dem Einschulungsfest am 21.08.2023.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "",
+    newsfeedId: "event002",
+  },
+  {
+    title: "Einschulung",
+    start: "21.08.2023",
+    end: "",
+    description:
+      "Endlich ist es soweit... Dieser Tag ist etwas ganz Besonderes. Begrüßt die Neuzugänge gemeinsam mit den Eltern und Lehrer bei dem Einschulungsfest am 21.08.2023.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event003",
+  },
+  {
+    title: "Wissenschaftswettbewerb",
+    start: "15.09.2023",
+    end: "",
+    description:
+      "Unsere Schule richtet einen spannenden Wissenschaftswettbewerb für alle Klassen aus. Spannende Experimente und Projekte erwarten euch!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event004",
+  },
+  {
+    title: "Kunstausstellung der 4. Klassen",
+    start: "22.10.2023",
+    end: "",
+    description:
+      "Bewundert die kreativen Kunstwerke unserer Viertklässler bei der jährlichen Kunstausstellung in der Aula.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/art-exhibition.jpg",
+    newsfeedId: "event005",
+  },
+  {
+    title: "Herbstlauf",
+    start: "05.11.2023",
+    end: "",
+    description:
+      "Nehmt am Herbstlauf teil und helft uns dabei, Spenden für neue Spielgeräte zu sammeln. Jeder Kilometer zählt!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/autumn-run.jpg",
+    newsfeedId: "event006",
+  },
+  {
+    title: "Weihnachtskonzert",
+    start: "19.12.2023",
+    end: "",
+    description:
+      "Erlebt musikalische Darbietungen unserer Schüler beim Weihnachtskonzert. Ein festlicher Abend für die ganze Familie!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event007",
+  },
+  {
+    title: "Tag der offenen Tür",
+    start: "22.01.2025",
+    end: "",
+    description:
+      "Entdeckt, was unsere Schule zu bieten hat. Spiele, Führungen und Einblicke in den Schulalltag erwarten euch!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/open-day.jpg",
+    newsfeedId: "event008",
+  },
+  {
+    title: "Frühjahrsputz",
+    start: "14.03.2024",
+    end: "",
+    description:
+      "Helft uns, das Schulgelände im Frühling auf Vordermann zu bringen. Gemeinsam macht das Aufräumen noch mehr Spaß!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event009",
+  },
+  {
+    title: "Osterbasteln",
+    start: "04.04.2024",
+    end: "",
+    description:
+      "Seid kreativ beim Osterbasteln! Wir gestalten bunte Eier und lustige Frühlingsdekorationen.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event010",
+  },
+  {
+    title: "Sportfest",
+    start: "17.05.2024",
+    end: "",
+    description:
+      "Unser alljährliches Sportfest steht an! Freut euch auf einen Tag voller sportlicher Aktivitäten und Spiele.",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event011",
+  },
+  {
+    title: "Sommerkonzert",
+    start: "20.06.2024",
+    end: "",
+    descritption:
+      "Das Sommerkonzert bietet musikalische Darbietungen von Schülern aller Klassenstufen. Ein Highlight zum Schuljahresende!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
+    img: "/farm-animal.jpg",
+    newsfeedId: "event012",
+  },
+  {
+    title: "Abschlussfeier der 4. Klassen",
+    start: "28.07.2024",
+    end: "",
+    description:
+      "Wir verabschieden unsere Viertklässler mit einer großen Abschlussfeier. Wir sind stolz auf euch und eure Leistungen!",
+    url: "Mehr Infos...",
+    editable: true,
+    color: "#721fdc",
+    textColor: "white",
     img: "/graduation-party.jpg",
     newsfeedId: "event013",
   },

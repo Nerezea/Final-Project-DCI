@@ -30,6 +30,7 @@ import FeedParent from "./pages/parent/feed/feed";
 // Routes for teachers
 import FeedTeacher from "./pages/teacher/feed/feed";
 import KalendarTeacher from "./pages/teacher/calendar/calendar";
+import ProfileTeacher from "./pages/teacher/profile/profileTeachers";
 
 // import Roles from redux slice
 import { Roles } from "./store/slice/auth.slice";
@@ -104,6 +105,7 @@ const AppRoutes = () => {
           <Route path="feed" element={<FeedTeacher />}></Route>
           <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
           <Route path="calendar" element={<KalendarTeacher />}></Route>
+          <Route path="profile" element={<ProfileTeacher />}></Route>
         </Route>
 
         {/* parent */}

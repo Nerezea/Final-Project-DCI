@@ -22,10 +22,10 @@ const Navbar = () => {
   return (
     <nav className="navbar-top">
       <div className="loggedInAs">
-        <NavLink to="/parent/">
+        <NavLink to={mockup.logInTeacher.to}>
           <GrUserSettings title="profile settings" />
         </NavLink>
-        <p className="person-textwrapper">Klasse 1B - Albin</p>
+        <p className="person-textwrapper">{mockup.logInTeacher.label}</p>
       </div>
       <ul>
         {menus.map((item, index) => (
