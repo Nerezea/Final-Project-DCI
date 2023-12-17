@@ -1,5 +1,5 @@
 import { Button, Card, CircularProgress, TextField } from "@mui/material";
-import  { useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import style from "./register.module.scss";
 import { AuthApi } from "../../api/authApi";
@@ -58,10 +58,14 @@ const Register = () => {
   if (success)
     return (
       <div className={style.container}>
-        <Card className={style.form}>
+        <Card className={style.rijestertext}>
+          <div className={style.image2} />
           <p>
-            اکانت شما ایجاد شد و تا 24 ساعت آینده تایید خواهد شد . بعد از
-            .میتوانید از طریق همین سایت و با همین یوزر نیم پسورد لاگین کنید
+            Ihr Konto wurde erstellt und wird in den nächsten 24 Stunden
+            bestätigt. danach
+            <br />
+            Sie können sich über diese Website mit demselben Benutzernamen und
+            Passwort anmelden
           </p>
         </Card>
       </div>
@@ -113,6 +117,7 @@ const Register = () => {
           onChange={handleChangeForm}
           label="BirthDay"
           placeholder="BirthDay"
+          taype="date"
         ></TextField>
 
         <input type="file" onChange={handleChangeFile} />
@@ -122,6 +127,8 @@ const Register = () => {
           Submit
         </Button>
       </Card>
+
+      <div className={style.image} />
     </div>
   );
 };
