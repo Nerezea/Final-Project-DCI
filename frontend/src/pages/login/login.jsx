@@ -30,7 +30,7 @@ const Login = () => {
   }
 
   return (
-    <div className={style.login}>
+  /*   <div className={style.login}>
       <div className={style.login_form}>
         <h1>Login</h1>
         <input
@@ -47,8 +47,34 @@ const Login = () => {
         />
         <button onClick={handleLogin}>Login</button>
       </div>
-    </div>
-  );
+    </div> */
+  
+  
+    <div className={style.login_box}>
+    <img className={style.svg} src="../../../public/blueOwl.svg" alt="" />
+    <form className={style.form}>
+      <div className={style.user_box}>
+        <input type="text" name="" required=""  value={email}  onChange={(e) => setEmail(e.target.value)} />
+        <label>Username</label>
+      </div>
+      <div className={style.user_box}>
+        <input type="password" name="" required="" value={password}  onChange={(e) => setPassword(e.target.value)} />
+        <label>Password</label>
+      </div>
+      <section onClick={handleLogin}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </section>
+    </form>
+  </div>
+  
+  
+  
+  
+    );
 };
 
 export default Login;
