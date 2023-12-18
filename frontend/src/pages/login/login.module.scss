@@ -154,9 +154,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 500px;
   width: 400px;
-  padding: 70px;
+  padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
@@ -164,11 +163,20 @@ body {
   border-radius: 10px;
 }
 
-.login_box  {
+.login_box  .onclick {
   margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
+}
+
+iframe{
+  width: 40%;
+  margin:0 auto;
+  display: block;
+  width: 200px;
+  height: 200px;
+  
 }
 
 .login_box .user_box {
@@ -196,27 +204,16 @@ body {
   pointer-events: none;
   transition: .5s;
 }
-.form{
-  margin-top: 50px;
-
-}
-.svg{
-  width: 100px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  display: flex;
-}
 
 .login_box .user_box input:focus ~ label,
-.login-_box .user_box input:valid ~ label {
+.login_box .user_box input:valid ~ label {
   top: -20px;
   left: 0;
   color: #03e9f4;
   font-size: 12px;
 }
 
-.login_box  section {
+.login_box form .onclick {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -230,7 +227,7 @@ body {
   letter-spacing: 4px
 }
 
-.login_box section:hover {
+.login_box .onclick:hover {
   background: #03e9f4;
   color: #fff;
   border-radius: 5px;
@@ -238,15 +235,14 @@ body {
               0 0 25px #03e9f4,
               0 0 50px #03e9f4,
               0 0 100px #B3E5FC;
-              cursor: pointer;
 }
 
-.login_box section span {
+.login_box .onclick span {
   position: absolute;
   display: block;
 }
 
-.login_box section span:nth-child(1) {
+.login_box .onclick  span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -264,7 +260,7 @@ body {
   }
 }
 
-.login_box section span:nth-child(2) {
+.login_box .onclick  span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -283,7 +279,7 @@ body {
   }
 }
 
-.login_box section span:nth-child(3) {
+.login_box .onclick  span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -302,7 +298,7 @@ body {
   }
 }
 
-.login-box section span:nth-child(4) {
+.login_box .onclick  span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
@@ -320,3 +316,6 @@ body {
     bottom: 100%;
   }
 }
+
+
+

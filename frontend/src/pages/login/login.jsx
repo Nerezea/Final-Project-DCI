@@ -51,7 +51,10 @@ const Login = () => {
   
   
     <div className={style.login_box}>
-    <img className={style.svg} src="../../../public/blueOwl.svg" alt="" />
+  <iframe
+            
+            src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
+          ></iframe>
     <form className={style.form}>
       <div className={style.user_box}>
         <input type="text" name="" required=""  value={email}  onChange={(e) => setEmail(e.target.value)} />
@@ -61,13 +64,13 @@ const Login = () => {
         <input type="password" name="" required="" value={password}  onChange={(e) => setPassword(e.target.value)} />
         <label>Password</label>
       </div>
-      <section onClick={handleLogin}>
+      <div className={style.onclick} onClick={handleLogin}>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Submit
-      </section>
+      </div>
     </form>
   </div>
   
