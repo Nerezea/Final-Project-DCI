@@ -1,4 +1,5 @@
 :root {
+  
   height: 100vh;
   width: 100vw;
   font-size: 62.5%;
@@ -14,8 +15,14 @@
 }
 
 body {
+<<<<<<< HEAD:frontend/src/assets/css/roots.scss
   // font-family: $Ubuntu;
   font-family: $AlteDin;
   background-color: $color-white;
   overflow-x: hidden; 
+=======
+  font-family: $Ubuntu;
+  background-color: $color-white;
+  
+>>>>>>> dev:frontend/src/css/scss/components/root.scss
 }

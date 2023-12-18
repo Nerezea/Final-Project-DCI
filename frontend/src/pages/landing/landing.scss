@@ -1,98 +1,8 @@
-.landing-container {
-  background-image: linear-gradient(
-      195deg,
-      transparent 0%,
-      transparent 35%,
-      rgba(0, 0, 0, 0.02) 35%,
-      rgba(0, 0, 0, 0.02) 88%,
-      transparent 88%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 59% 11%,
-      rgba(0, 0, 0, 0.01) 0%,
-      rgba(0, 0, 0, 0.01) 2%,
-      transparent 2%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 80% 89%,
-      rgba(0, 0, 0, 0.01) 0%,
-      rgba(0, 0, 0, 0.01) 2%,
-      transparent 2%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 68% 7%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 2%,
-      transparent 2%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 2% 85%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 2%,
-      transparent 2%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 99% 21%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 8%,
-      transparent 8%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 7% 79%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 8%,
-      transparent 8%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 68% 39%,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.02) 8%,
-      transparent 8%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 63% 32%,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.02) 8%,
-      transparent 8%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 44% 24%,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.02) 8%,
-      transparent 8%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 79% 49%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 5%,
-      transparent 5%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 93% 55%,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.02) 5%,
-      transparent 5%,
-      transparent 100%
-    ),
-    radial-gradient(
-      circle at 66% 50%,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.03) 5%,
-      transparent 5%,
-      transparent 100%
-    ),
-    linear-gradient(90deg, rgb(189, 246, 180), rgb(45, 116, 240));
+.landing-container{
+  background-image: url(/photo4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 section {
   display: flex;
@@ -103,15 +13,15 @@ section {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 200px 15px;
-  transition: transform 0.6s;
+  padding: 90px;
 }
 .videoLanding {
   width: 100%;
+  border-radius: 10%;
 }
 .landing-iframe {
   width: 500px;
   height: 300px;
   background-color: aliceblue;
-  margin-bottom:50px;
+  margin: 50px 0 0 50px;
 }
