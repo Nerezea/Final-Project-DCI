@@ -12,7 +12,7 @@ const header = () => {
 
   return (
     <nav className="header-wrapper">
-      <iframe src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"></iframe>
+      <iframe className="lofoframe" src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"></iframe>
       App Name
       <div className="nav-wrapper">
         <div className="navigation">

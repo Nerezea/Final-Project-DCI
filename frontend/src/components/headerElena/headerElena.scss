@@ -18,11 +18,13 @@
   filter: brightness(1.6);
 }
 
-iframe {
+.lofoframe {
   width: 80px;
   height: 80px;
   border: none;
   color: white;
+  align-items: end;
+  margin-left: 10px;
 }
 
 .nav-wrapper {

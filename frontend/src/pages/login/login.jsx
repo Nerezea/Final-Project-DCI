@@ -51,7 +51,7 @@ const Login = () => {
   
   
     <div className={style.login_box}>
-  <iframe
+  <iframe className={style.frame}
             
             src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
           ></iframe>

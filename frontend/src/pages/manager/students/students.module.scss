@@ -1,9 +1,10 @@
 .page {
-
+height: 100vh;
   header {
     display: flex;
     align-items: center;
     gap : 1rem;
+    margin-top: 2.5rem;
 
     h1 {
       margin-right: auto;

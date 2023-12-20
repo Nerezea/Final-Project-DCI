@@ -72,7 +72,7 @@ const Classes = () => {
         </Link>
       </header>
 
-      <DataTable data={classes} columns={columns} />
+      <DataTable className={style.datatabl} data={classes} columns={columns} />
     </div>
   );
 };
