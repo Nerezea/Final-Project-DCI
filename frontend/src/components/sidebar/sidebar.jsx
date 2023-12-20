@@ -10,6 +10,8 @@ import {
   Menu,
   School,
   Sick,
+  Groups,
+  Person,
 } from "@mui/icons-material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Divider from "@mui/material/Divider";
@@ -86,19 +88,19 @@ const superAdminMenus = [
 
 const managerMenus = [
   {
-    label: "Teachers",
-    link: "/manager/teachers",
-    icon: <Menu />,
-  },
-  {
     label: "Class List",
     link: "/manager/classes",
     icon: <Class />,
   },
   {
+    label: "Teachers",
+    link: "/manager/teachers",
+    icon: <Person />,
+  },
+  {
     label: "Students",
     link: "/manager/students",
-    icon: <People />,
+    icon: <Groups />,
   },
   {
     label: "Events",
@@ -172,14 +174,14 @@ const parentMenus = [
     icon: <Chat />,
   },
   {
-    label: "Sick Rest",
-    link: "/parent/sick",
-    icon: <Sick />,
-  },
-  {
     label: "Events",
     link: "/parent/events",
     icon: <Event />,
+  },
+  {
+    label: "Sick Rest",
+    link: "/parent/sick",
+    icon: <Sick />,
   },
 ];
 

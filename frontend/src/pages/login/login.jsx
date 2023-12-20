@@ -48,7 +48,7 @@ const Login = () => {
         <button onClick={handleLogin}>Login</button>
       </div>
     </div> */
-  
+  <div className={style.logo_container}>
   
     <div className={style.login_box}>
   <iframe className={style.frame}
@@ -74,7 +74,7 @@ const Login = () => {
     </form>
   </div>
   
-  
+  </div>
   
   
     );
