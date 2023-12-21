@@ -1,6 +1,6 @@
 import classModel from "../models/class.model.js";
 import eventModel from "../models/event.model.js";
-import { Roles } from "../models/user.model.js";
+import userModel, { Roles } from "../models/user.model.js";
 import {
   getSchoolIdOfTeacherById,
   getSchoolOfManagerById,
@@ -24,7 +24,7 @@ export const createEvent = async (req, res) => {
     });
     res.status(201).json(newEvent);
   } else if (role === Roles.TEACHER) {
-    const schoolId =await  getSchoolIdOfTeacherById(id);
+    const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
     const { date, title, description, hasConsent } = req.body;
     const userId = req.user.id;
@@ -42,7 +42,7 @@ export const createEvent = async (req, res) => {
 };
 
 export const getEvents = async (req, res) => {
-  const {role,id} = req.user;
+  const { role, id } = req.user;
   if (role === Roles.MANAGER) {
     const school = await getSchoolOfManagerById(req.user.id);
     const { start, end } = req.query;
@@ -64,12 +64,31 @@ export const getEvents = async (req, res) => {
       creator: id,
     });
     res.status(200).json(events);
+  } else if (role === Roles.PARENT) {
+    const student = await userModel.findById(req.user.id);
+    const { start, end } = req.query;
+
+    const query = {
+      school: student.school,
+      $or: [
+        {
+          class: undefined,
+        },
+        {
+          class: student.class,
+        },
+      ],
+    };
+    if (start && end) query.date = { $gte: start, $lte: end };
+
+    const feeds = await eventModel.find();
+    res.status(200).json(feeds);
   }
 };
 
 export const updateEvent = async (req, res) => {
   const { eventId } = req.params;
-  const {role,id} = req.user;
+  const { role, id } = req.user;
 
   if (role === Roles.MANAGER) {
     const event = await eventModel.findByIdAndUpdate(eventId, req.body, {
@@ -93,7 +112,7 @@ export const updateEvent = async (req, res) => {
 };
 
 export const deleteEvent = async (req, res) => {
-  const {role,id} = req.user;
+  const { role, id } = req.user;
 
   const { eventId } = req.params;
   if (role === Roles.MANAGER) {

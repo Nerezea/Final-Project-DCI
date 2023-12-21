@@ -22,7 +22,13 @@ export async function login(req, res) {
     process.env.JWT_SECRET,
     { expiresIn: "1d" }
   );
-  res.send({ token, role: user.role, fullName: user.fullName,image : user.image });
+  res.send({
+    token,
+    role: user.role,
+    fullName: user.fullName,
+    image: user.image,
+    userId: user._id,
+  });
 }
 
 export async function register(req, res) {
@@ -46,4 +52,8 @@ export async function register(req, res) {
   res.send({ message: "User created" });
 }
 
-//test
+export const getUserDetail = async (req, res) => {
+  const { id } = req.params;
+  const user = await userModel.findById(id).select("fullName role image");
+  res.send(user);
+};

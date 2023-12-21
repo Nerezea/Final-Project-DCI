@@ -4,8 +4,9 @@ const schema = new Schema({
   title: String,
   description: String,
   image : String,
-  date : Date,
-  creator: {
+  from : Date,
+  to : Date,
+  user: {
     type: Schema.Types.ObjectId,
     ref: "user",
   },
@@ -19,4 +20,4 @@ const schema = new Schema({
   },
 });
 
-export default model("feed", schema);
+export default model("sickRest", schema);

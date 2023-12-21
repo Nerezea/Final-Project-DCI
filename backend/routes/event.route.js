@@ -13,7 +13,7 @@ import { createEventSchema } from "../validation/event.schema.js";
 
 const router = Router();
 
-router.get("/", auth, hasRole(Roles.MANAGER, Roles.TEACHER), getEvents);
+router.get("/", auth, hasRole(Roles.MANAGER, Roles.TEACHER,Roles.PARENT), getEvents);
 router.post(
   "/",
   auth,

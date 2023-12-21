@@ -4,6 +4,7 @@ import {
   deleteFeed,
   getFeeds,
   updateFeed,
+  getFeedById
 } from "../controller/feed.controller.js";
 import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
@@ -13,7 +14,8 @@ import { createFeedSchema } from "../validation/feed.schema.js";
 
 const router = Router();
 
-router.get("/", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getFeeds);
+router.get("/", auth, hasRole(Roles.MANAGER,Roles.TEACHER,Roles.PARENT), getFeeds);
+router.get("/:feedId", auth, hasRole(Roles.MANAGER,Roles.TEACHER,Roles.PARENT), getFeedById);
 router.post(
   "/",
   auth,

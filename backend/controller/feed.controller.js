@@ -1,6 +1,6 @@
 import feedModel from "../models/feed.model.js";
 import classModel from "../models/class.model.js";
-import { Roles } from "../models/user.model.js";
+import userModel, { Roles } from "../models/user.model.js";
 import {
   getSchoolIdOfTeacherById,
   getSchoolOfManagerById,
@@ -41,8 +41,13 @@ export const createFeed = async (req, res) => {
   }
 };
 
+export const getFeedById = async (req, res) => {
+  const { feedId } = req.params;
 
-
+  const feed = await feedModel.findById(feedId);
+  if (!feed) return res.status(400).send({ message: "feed not found" });
+  res.send(feed)
+};
 export const getFeeds = async (req, res) => {
   const role = req.user.role;
   if (role === Roles.MANAGER) {
@@ -60,6 +65,24 @@ export const getFeeds = async (req, res) => {
       date: { $gte: start, $lte: end },
       creator: req.user.id,
     });
+    res.status(200).json(feeds);
+  } else if (role === Roles.PARENT) {
+    const { start, end } = req.query;
+
+    const student = await userModel.findById(req.user.id);
+    const findQuery = {
+      school: student.school,
+      $or: [
+        {
+          class: undefined,
+        },
+        {
+          class: student.class,
+        },
+      ],
+    };
+    if (start && end) findQuery.date = { $gte: start, $lte: end };
+    const feeds = await feedModel.find(findQuery);
     res.status(200).json(feeds);
   }
 };

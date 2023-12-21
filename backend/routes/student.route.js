@@ -6,6 +6,7 @@ import {
   getStudentById,
   getStudents,
   updateStudent,
+  getMyTeacher
 } from "../controller/student.controller.js";
 import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
@@ -18,6 +19,7 @@ import {
 
 const router = Router();
 
+router.get("/getMyTeacher", auth, hasRole(Roles.PARENT), getMyTeacher);
 router.get("/", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudents);
 router.get("/:id", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getStudentById);
 router.post(
