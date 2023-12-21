@@ -4,7 +4,7 @@ import Loader from "./components/loader/loader.jsx";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
