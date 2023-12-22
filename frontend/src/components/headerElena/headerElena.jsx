@@ -1,14 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./headerElena.scss";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slice/auth.slice";
 
-const header = () => {
+const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  function handleContact() {
+    navigate("/FormContact");
+  }
 
   return (
     <nav className="header-wrapper">
@@ -22,10 +27,13 @@ const header = () => {
           <button onClick={handleLogout} className="logoutButton">
             Logout
           </button>
+          <button onClick={handleContact} className="logoutButton">
+            concant
+          </button>
         </div>
       </div>
     </nav>
   );
 };
 
-export default header;
+export default Header;

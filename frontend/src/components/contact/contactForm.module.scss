@@ -1,0 +1,185 @@
+@import url(https://fonts.googleapis.com/css?family=Sniglet|Raleway:900);
+
+.orange {
+  color: #ff7a01;
+}
+
+.divcontainer {
+  position: absolute;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-color: #001925;
+  color: #ff7a01;
+}
+.heading {
+  font-weight: normal;
+  font-size: 4em;
+  font-family: "Raleway", sans-serif;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 500px;
+  color: #f90;
+  text-align: center;
+}
+
+.form_container {
+  position: relative;
+  background-color: #00192545;
+
+  margin: 0 auto;
+  width: 600px;
+
+  margin-top: 300px;
+  padding: 30px;
+  border-left: 5px solid #ff7a01;
+  border-bottom: 5px solid #ff7a01;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+  -webkit-animation: slide-in-blurred-left 0.6s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+  animation: slide-in-blurred-left 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/*  .heading {
+    display: block;
+    color: rgb(212, 6, 6);
+    font-size: 1.5rem;
+    font-weight: 500;
+   
+  } */
+
+.form_container .form .input {
+  color: #000305;
+  width: 100%;
+  background-color: #00273341;
+
+  outline: none;
+  padding: 10px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  border-left: 1px solid transparent;
+}
+
+.form_container .form .input:focus {
+  border-left: 5px solid #ff7a01;
+}
+
+.form_container .form .textarea {
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: #01374739;
+  color: #ff7a01;
+  font-weight: bold;
+  resize: none;
+  max-height: 150px;
+  margin-bottom: 20px;
+  border-left: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.form_container .form .textarea:focus {
+  border-left: 5px solid #ff7a01;
+}
+
+.form_container .form .button_container {
+  display: flex;
+  gap: 10px;
+}
+
+.form_container .form .button_container .send_button {
+  flex-basis: 70%;
+  background: #ff7a01;
+  padding: 10px;
+  color: #001925;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.form_container .form .button_container .send_button:hover {
+  background: transparent;
+  border: 1px solid #ff7a01;
+  color: #ff7a01;
+}
+
+.form_container .form .button_container .reset_button_container {
+  filter: drop-shadow(1px 1px 0px #ff7a01);
+  flex-basis: 30%;
+}
+
+.form_container .form .button_container .reset_button_container .reset_button {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  color: #ff7a01;
+  font-weight: bold;
+  background: #00192509;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+  transition: all 0.2s ease-in-out;
+}
+
+.form_container
+  .form
+  .button_container
+  .reset_button_container
+  .reset_button:hover {
+  background: #ff7a01;
+  color: #001925;
+}
+
+@-webkit-keyframes slide-in-blurred-left {
+  0% {
+    -webkit-transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+    transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+    transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-blurred-left {
+  0% {
+    -webkit-transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+    transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+    transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}

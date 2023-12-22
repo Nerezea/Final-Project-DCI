@@ -20,6 +20,7 @@ import StudentForm from "./pages/manager/studentForm/studentForm";
 import Register from "./pages/register/register";
 import NewsFeedForm from "./pages/manager/newsFeedForm/newsFeedForm";
 import Events from "./pages/manager/eventForm/events";
+import FormContact from "./components/contact/contactform";
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -108,7 +109,10 @@ const AppRoutes = () => {
         >
           <Route path="schools" element={<Schools />}></Route>
           <Route path="" element={<Navigate to="/admin/schools" />}></Route>
+
         </Route>
+          <Route path="*" element={<p>404</p>  }></Route>
+          <Route path="/FormContact" element={<FormContact/>  }></Route>
       </Routes>
     </>
   );

@@ -5,6 +5,7 @@ import { hashPassword } from "./hash.controller.js";
 import classModel from "../models/class.model.js";
 import userModel from "../models/user.model.js";
 
+
 export async function login(req, res) {
   const { email, password } = req.body;
   //  active !== false
