@@ -7,10 +7,8 @@ import Landing from "./pages/landing/landing";
 import Login from "./pages/login/login";
 import TeacherForm from "./pages/manager/teacherForm/teacherForm";
 import Teachers from "./pages/manager/teachers/teachers";
-
 import FeedParent from "./pages/parent/feed/feed";
 import Kalendar from "./pages/parent/calendar/calendar";
-
 import Feed from "./pages/teacher/feed/feed";
 import { Roles } from "./store/slice/auth.slice";
 import Classes from "./pages/manager/classes/classes";
@@ -20,6 +18,7 @@ import StudentForm from "./pages/manager/studentForm/studentForm";
 import Register from "./pages/register/register";
 import NewsFeedForm from "./pages/manager/newsFeedForm/newsFeedForm";
 import Events from "./pages/manager/eventForm/events";
+import PageNotFound from "./pages/pageNot Found/pageNotFound";
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -45,7 +44,8 @@ const AppRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing />} />
+        <Route path="/pageNotFound" element={<PageNotFound/>}/>
         <Route path="/preRegister" element={<Register />} />
         <Route
           path="/login"
