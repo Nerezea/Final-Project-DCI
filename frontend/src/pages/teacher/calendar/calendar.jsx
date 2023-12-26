@@ -52,10 +52,8 @@ const Kalendar = () => {
         const formattedEvents = res.data.map((event, index) => {
           return {
             title: event.title,
-            start: event.start.split(".").reverse().join("-"),
-            end: event.end
-              ? event.end.split(".").reverse().join("-")
-              : undefined,
+            start: event.date.toISOString().split("T")[0],
+            end: event.end ? event.end.toISOString().split("T")[0] : undefined,
             description: event.description,
             url: event.url,
             id: `event-${index}`,
