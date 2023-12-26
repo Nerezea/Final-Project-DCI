@@ -53,7 +53,6 @@ body {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 20 \2502    font-family: $AlteDin;\a    \2502                         ^\a    \2575 \a   src/assets/css/roots.scss 20:24  @import\a   src/assets/css/main.scss 4:9     root stylesheet';
 }
 
 @font-face {
