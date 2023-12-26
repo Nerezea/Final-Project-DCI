@@ -15,7 +15,6 @@ export const getTeachers = async (req, res) => {
   res.send(teachers);
 };
 
-<<<<<<< HEAD
 // manager request one teacher by id
 export const getTeacherById = async (req, res) => {
   try {
@@ -112,7 +111,6 @@ export const updateTeacher = async (req, res) => {
   // await user.save();
 
   res.sendStatus(200);
-=======
 export const createTeacher = async (req, res) => {
   // id of manager
   const userId = req.user.id;
@@ -130,7 +128,6 @@ export const createTeacher = async (req, res) => {
     profile: { school: school._id },
   });
   res.send(user);
->>>>>>> dev
 };
 
 export const deleteTeacher = async (req, res) => {
