@@ -1,18 +1,474 @@
-/* Error: expected "{".
- *    ,
- * 20 |   font-family: $AlteDin;
- *    |                        ^
- *    '
- *   src/assets/css/roots.scss 20:24  @import
- *   src/assets/css/main.scss 4:9     root stylesheet */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  height: 100vh;
+  width: 100vw;
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style-type: none;
+  font-size: 2.5rem;
+}
+
+body {
+  font-family: "AlteDin", sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.container .container-calendar {
+  margin: 0;
+  width: 98%;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container .container-calendar .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
   display: block;
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 20 \2502    font-family: $AlteDin;\a    \2502                         ^\a    \2575 \a   src/assets/css/roots.scss 20:24  @import\a   src/assets/css/main.scss 4:9     root stylesheet';
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container .marquee-text-wrapper {
+  margin: 0;
+  background-color: #f3f611;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.container .marquee-text {
+  padding: 0.1rem 6rem;
+  color: #000000;
+  font-family: "AlteDin", sans-serif, Helvetica;
+  font-size: 2.2rem;
+  white-space: nowrap;
+  letter-spacing: 1.2rem;
+  animation: move-rtl 10s linear infinite;
+}
+@keyframes move-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.container .container-newsfeed {
+  width: 98%;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container .button-menu {
+  background-color: #d1d9d1;
+  padding: 3rem;
+}
+.container .button-menu ul {
+  list-style: none;
+  padding: 0;
+}
+.container .button-menu li {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #d1d9d1;
+  border-radius: 25rem;
+  color: #d1d9d1;
+  cursor: pointer;
+}
+.container .button-menu li a {
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+  color: #711fdc;
+}
+.container .button-menu li .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
+  display: block;
+}
+.container .button-menu li:hover {
+  background-color: #d1d9d1;
+  color: white;
+}
+.container .button-menu li:hover a {
+  color: white;
+}
+.container .newsfeed-grid {
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  border-radius: 0.6rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem;
+  gap: 4rem;
+}
+.container .back-to-top {
+  position: fixed;
+  bottom: 18vh;
+  right: 2vh;
+  cursor: pointer;
+  z-index: 20;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.newsfeed-grid-item {
+  display: flex;
+  min-height: 10rem;
+  background-color: white;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.newsfeed-grid-item .eye-icon,
+.newsfeed-grid-item .heart-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #711fdc;
+  z-index: 20;
+  font-size: 2rem;
+}
+.newsfeed-grid-item .heart-icon {
+  right: 4rem;
+  cursor: pointer;
+}
+.newsfeed-grid-item:hover .overlay {
+  opacity: 0;
+}
+.newsfeed-grid-item:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0.6rem 1.3rem #c0ccc0;
+}
+
+.newsfeed-grid-item .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 3rem;
+  gap: 2rem;
+  letter-spacing: 0.2;
+}
+.newsfeed-grid-item .content p {
+  font-size: 1.6rem;
+}
+.newsfeed-grid-item .content h3 {
+  font-size: 2.8rem;
+  font-weight: 300;
+}
+.newsfeed-grid-item .content a {
+  font-size: 1.2rem;
+  cursor: url(pointer.png) 30 3, auto;
+}
+
+.even-item .content {
+  text-align: right;
+}
+
+.odd-item .content {
+  text-align: left;
+}
+
+.even-item {
+  flex-direction: row;
+}
+
+.odd-item {
+  flex-direction: row-reverse;
+}
+
+.newsfeed-card-img {
+  position: relative;
+  width: 50%;
+  background-position: center;
+}
+.newsfeed-card-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(192, 204, 192, 0.5411764706);
+  transition: opacity 0.3s ease;
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container .marquee-text-wrapper {
+  margin: 0;
+  background-color: #f3f611;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.container .marquee-text {
+  padding: 0.1rem 6rem;
+  color: #000000;
+  font-family: "AlteDin", sans-serif, Helvetica;
+  font-size: 2.2rem;
+  white-space: nowrap;
+  letter-spacing: 1.2rem;
+  animation: move-rtl 10s linear infinite;
+}
+@keyframes move-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.container .container-newsfeed {
+  width: 98%;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container .button-menu {
+  background-color: #d1d9d1;
+  padding: 3rem;
+}
+.container .button-menu ul {
+  list-style: none;
+  padding: 0;
+}
+.container .button-menu li {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #d1d9d1;
+  border-radius: 25rem;
+  color: #d1d9d1;
+  cursor: pointer;
+}
+.container .button-menu li a {
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+  color: #711fdc;
+}
+.container .button-menu li .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
+  display: block;
+}
+.container .button-menu li:hover {
+  background-color: #d1d9d1;
+  color: white;
+}
+.container .button-menu li:hover a {
+  color: white;
+}
+.container .newsfeed-grid {
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  border-radius: 0.6rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem;
+  gap: 4rem;
+}
+.container .back-to-top {
+  position: fixed;
+  bottom: 18vh;
+  right: 2vh;
+  cursor: pointer;
+  z-index: 20;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.newsfeed-grid-item {
+  display: flex;
+  min-height: 10rem;
+  background-color: white;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.newsfeed-grid-item .eye-icon,
+.newsfeed-grid-item .heart-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #711fdc;
+  z-index: 20;
+  font-size: 2rem;
+}
+.newsfeed-grid-item .heart-icon {
+  right: 4rem;
+  cursor: pointer;
+}
+.newsfeed-grid-item:hover .overlay {
+  opacity: 0;
+}
+.newsfeed-grid-item:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0.6rem 1.3rem #c0ccc0;
+}
+
+.newsfeed-grid-item .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 3rem;
+  gap: 2rem;
+  letter-spacing: 0.2;
+}
+.newsfeed-grid-item .content p {
+  font-size: 1.6rem;
+}
+.newsfeed-grid-item .content h3 {
+  font-size: 2.8rem;
+  font-weight: 300;
+}
+.newsfeed-grid-item .content a {
+  font-size: 1.2rem;
+  cursor: url(pointer.png) 30 3, auto;
+}
+
+.even-item .content {
+  text-align: right;
+}
+
+.odd-item .content {
+  text-align: left;
+}
+
+.even-item {
+  flex-direction: row;
+}
+
+.odd-item {
+  flex-direction: row-reverse;
+}
+
+.newsfeed-card-img {
+  position: relative;
+  width: 50%;
+  background-position: center;
+}
+.newsfeed-card-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(192, 204, 192, 0.5411764706);
+  transition: opacity 0.3s ease;
 }
