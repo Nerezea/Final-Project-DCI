@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.newsfeed-grid-item {
+  display: flex;
+  min-height: 10rem;
+  background-color: white;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.newsfeed-grid-item .eye-icon,
+.newsfeed-grid-item .heart-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #711fdc;
+  z-index: 20;
+  font-size: 2rem;
+}
+.newsfeed-grid-item .heart-icon {
+  right: 4rem;
+  cursor: pointer;
+}
+.newsfeed-grid-item:hover .overlay {
+  opacity: 0;
+}
+.newsfeed-grid-item:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0.6rem 1.3rem #c0ccc0;
+}
+
+.newsfeed-grid-item .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 3rem;
+  gap: 2rem;
+  letter-spacing: 0.2;
+}
+.newsfeed-grid-item .content p {
+  font-size: 1.6rem;
+}
+.newsfeed-grid-item .content h3 {
+  font-size: 2.8rem;
+  font-weight: 300;
+}
+.newsfeed-grid-item .content a {
+  font-size: 1.2rem;
+  cursor: url(pointer.png) 30 3, auto;
+}
+
+.even-item .content {
+  text-align: right;
+}
+
+.odd-item .content {
+  text-align: left;
+}
+
+.even-item {
+  flex-direction: row;
+}
+
+.odd-item {
+  flex-direction: row-reverse;
+}
+
+.newsfeed-card-img {
+  position: relative;
+  width: 50%;
+  background-position: center;
+}
+.newsfeed-card-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(192, 204, 192, 0.5411764706);
+  transition: opacity 0.3s ease;
+}/*# sourceMappingURL=newsfeed-cards.css.map */

@@ -1,0 +1,21 @@
+.page header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.page header h1 {
+  margin-right: auto;
+}
+.page .avatar {
+  width: 2rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  font-size: 4rem;
+}
+.page .nameContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}/*# sourceMappingURL=students.module.css.map */

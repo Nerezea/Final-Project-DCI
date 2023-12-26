@@ -1,0 +1,10 @@
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: max-content 1fr;
+}
+.layout > main {
+  padding: 1rem;
+  background-color: #ebebeb;
+}/*# sourceMappingURL=adminLayout.module.css.map */

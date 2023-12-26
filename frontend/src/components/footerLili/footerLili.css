@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.footer-desk {
+  border-top: 0.2rem solid #721fdc;
+  background-color: white;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  width: 100vw;
+  height: 22vh;
+  z-index: 10;
+  color: #711fdc;
+}
+.footer-desk > * {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.2rem;
+  height: 100%;
+}
+.footer-desk > * .contact-title {
+  text-align: left;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.4rem;
+  word-wrap: break-word;
+}
+.footer-desk > * .copyright {
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.2rem;
+  text-decoration: none;
+}
+.footer-desk > * .imprint,
+.footer-desk > * .data,
+.footer-desk > * .contact-address {
+  padding-left: 1.2rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.2rem;
+}
+.footer-desk > * .imprint .number,
+.footer-desk > * .imprint .mailaddress,
+.footer-desk > * .data .number,
+.footer-desk > * .data .mailaddress,
+.footer-desk > * .contact-address .number,
+.footer-desk > * .contact-address .mailaddress {
+  display: block;
+  color: #711fdc;
+}
+.footer-desk > * .imprint .number:hover,
+.footer-desk > * .imprint .mailaddress:hover,
+.footer-desk > * .data .number:hover,
+.footer-desk > * .data .mailaddress:hover,
+.footer-desk > * .contact-address .number:hover,
+.footer-desk > * .contact-address .mailaddress:hover {
+  font-style: italic;
+}
+.footer-desk > * .imprint .number:hover .hover-arrow,
+.footer-desk > * .imprint .mailaddress:hover .hover-arrow,
+.footer-desk > * .data .number:hover .hover-arrow,
+.footer-desk > * .data .mailaddress:hover .hover-arrow,
+.footer-desk > * .contact-address .number:hover .hover-arrow,
+.footer-desk > * .contact-address .mailaddress:hover .hover-arrow {
+  color: #f3f611;
+}
+.footer-desk > * .imprint,
+.footer-desk > * .data {
+  text-decoration: underline;
+}
+.footer-desk > * .imprint:hover,
+.footer-desk > * .data:hover {
+  font-style: italic;
+  cursor: pointer;
+  text-decoration-color: #f3f611;
+}
+.footer-desk .contact-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  display: flex;
+}
+.footer-desk .contact-icons .map,
+.footer-desk .contact-icons .mail,
+.footer-desk .contact-icons .facebook,
+.footer-desk .contact-icons .instagram {
+  color: #faff15;
+  font-size: 13rem;
+}
+.footer-desk .contact-icons .map:hover,
+.footer-desk .contact-icons .mail:hover,
+.footer-desk .contact-icons .facebook:hover,
+.footer-desk .contact-icons .instagram:hover {
+  color: #711fdc;
+  cursor: pointer;
+  text-decoration-color: #f3f611;
+}/*# sourceMappingURL=footerLili.css.map */
