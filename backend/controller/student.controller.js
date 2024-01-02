@@ -24,6 +24,17 @@ export const getStudents = async (req, res) => {
   res.send(teachers);
 };
 
+export const getStudentById = async (req, res) => {
+  const school = await getSchoolOfManagerById(req.user.id);
+
+  const students = await userModel.findOne({
+    role: Roles.PARENT,
+    school: school._id,
+    _id: req.params.id,
+  });
+  res.send(students);
+};
+
 export const createStudent = async (req, res) => {
   // id of manager
   const userId = req.user.id;
@@ -60,7 +71,7 @@ export const deleteStudent = async (req, res) => {
   res.sendStatus(200);
 };
 
-export const updateStudents = async (req, res) => {
+export const updateStudent = async (req, res) => {
   // id of manager
   const userId = req.user.id;
   // find school of manager
@@ -82,3 +93,19 @@ export const updateStudents = async (req, res) => {
 
   res.sendStatus(200);
 };
+
+export async function activate(req, res) {
+  const { studentId } = req.params;
+  const school = await getSchoolOfManagerById(req.user.id);
+
+  const user = await userModel.findOneAndUpdate(
+    { _id: studentId, school: school._id },
+    {
+      $set: {
+        active: true,
+      },
+    }
+  );
+  if (!user) return res.status(400).send({ message: "user not found" });
+  res.sendStatus(200);
+}

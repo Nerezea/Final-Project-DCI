@@ -1,10 +1,10 @@
-import event from "../models/event.model.js";
 import classModel from "../models/class.model.js";
 import eventModel from "../models/event.model.js";
 import { Roles } from "../models/user.model.js";
 import {
   getSchoolIdOfTeacherById,
   getSchoolOfManagerById,
+  getSchoolIdOfParentById,
 } from "./utils.controller.js";
 
 export const createEvent = async (req, res) => {
@@ -12,10 +12,18 @@ export const createEvent = async (req, res) => {
   if (role === Roles.MANAGER) {
     const school = await getSchoolOfManagerById(req.user.id);
 
-    const { date, title, description, class: classId, hasConsent } = req.body;
+    const {
+      start,
+      end,
+      title,
+      description,
+      class: classId,
+      hasConsent,
+    } = req.body;
     const userId = req.user.id;
     const newEvent = await eventModel.create({
-      date,
+      start,
+      end,
       title,
       description,
       hasConsent,
@@ -27,10 +35,11 @@ export const createEvent = async (req, res) => {
   } else if (role === Roles.TEACHER) {
     const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
-    const { date, title, description, hasConsent } = req.body;
+    const { start, end, title, description, hasConsent } = req.body;
     const userId = req.user.id;
     const newEvent = await eventModel.create({
-      date,
+      start,
+      end,
       title,
       description,
       hasConsent,
@@ -44,27 +53,57 @@ export const createEvent = async (req, res) => {
 
 export const getEvents = async (req, res) => {
   const { role, id } = req.user;
-  if (role === Roles.MANAGER) {
-    const school = await getSchoolOfManagerById(req.user.id);
-    const { start, end } = req.query;
-    // $gt : >
-    // $gte : >=
-    // $lt : <
-    // $lte : <=
-    // $eq : ===
-    // $ne : !==
-    const events = await eventModel.find({
-      date: { $gte: start, $lte: end },
-      school: school._id,
-    });
-    res.status(200).json(events);
-  } else if (role === Roles.TEACHER) {
-    const { start, end } = req.query;
-    const events = await eventModel.find({
-      date: { $gte: start, $lte: end },
-      creator: id,
-    });
-    res.status(200).json(events);
+  const { startDate, endDate } = req.query;
+
+  if (!startDate || !endDate) {
+    return res
+      .status(400)
+      .json({ message: "startDate and endDate are required" });
+  }
+
+  console.log("converted start date:", new Date(startDate));
+  console.log("Converted end date:", new Date(endDate));
+
+  try {
+    let schoolId;
+
+    if (role === Roles.MANAGER) {
+      console.log("fetching event as Manager");
+      const schoolId = await getSchoolOfManagerById(req.user.id);
+      // $gt : >
+      // $gte : >=
+      // $lt : <
+      // $lte : <=
+      // $eq : ===
+      // $ne : !==
+      const events = await eventModel.find({
+        start: { $gte: new Date(startDate), $lte: new Date(endDate) },
+        school: schoolId,
+      });
+
+      res.status(200).json(events);
+    } else if (role === Roles.TEACHER) {
+      console.log("fetching event as Teacher");
+      const schoolId = await getSchoolIdOfTeacherById(req.user.id);
+      const events = await eventModel.find({
+        start: { $gte: new Date(startDate), $lte: new Date(endDate) },
+        school: schoolId,
+      });
+      res.status(200).json(events);
+    } else if (role === Roles.PARENT) {
+      console.log("fetching event as Parent");
+      const schoolId = await getSchoolIdOfParentById(req.user.id);
+      const events = await eventModel.find({
+        start: { $gte: new Date(startDate), $lte: new Date(endDate) },
+        school: schoolId,
+      });
+      res.status(200).json(events);
+    }
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
   }
 };
 

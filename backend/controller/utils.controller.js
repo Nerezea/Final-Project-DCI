@@ -12,3 +12,9 @@ export const getSchoolIdOfTeacherById = async (teacherId) => {
   const teacher = await userModel.findById(teacherId);
   return teacher.school;
 };
+
+// find school of parent
+export const getSchoolIdOfParentById = async (parentId) => {
+  const parent = await userModel.findById(parentId);
+  return parent.school;
+};
