@@ -1,0 +1,41 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  outline: unset;
+  gap: 1rem;
+  width: 30%;
+  border-radius: 1rem;
+  // align-items: ;
+}
+.contentPrint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  & > * {
+    margin: 0;
+  }
+  p {
+    color: #777;
+    font-size: 0.7rem;
+  }
+  pre {
+    background-color: lightgray;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    font-size: 0.85rem;
+    font-family: monospace;
+  }
+}
+
+.qrCode {
+  width: 100px;
+  height: 100px;
+}

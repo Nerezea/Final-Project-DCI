@@ -1,0 +1,62 @@
+.message {
+  display: flex;
+  gap: 0.5rem;
+
+  &:hover .delete {
+    display: inline !important;
+  }
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.5rem 0.5rem;
+  background-color: #f8e896;
+  border-radius: 0.5rem;
+  min-width: 12rem;
+  max-width: 80%;
+}
+.sender {
+  font-size: 0.6rem;
+  color: rgb(65, 65, 237);
+  font-weight: bold;
+  position: absolute;
+  top: 0.2rem;
+  // left: ;
+}
+.text {
+  font-size: 0.85rem;
+  color: #444;
+}
+.date {
+  font-size: 0.6rem;
+  color: #777;
+  position: absolute;
+  right: 0.2rem;
+  bottom: 0.2rem;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.fileIcon {
+  background-color: #ebebeb;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+.fileName {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+
+.delete {
+  color : lightgray;
+  font-size: 1rem !important;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  display: none !important;
+}

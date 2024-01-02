@@ -79,6 +79,8 @@ const AppRoutes = () => {
           <Route path="" element={<Navigate to="/manager/teachers" />}></Route>
           <Route path="events" element={<Events />}></Route>
           <Route path="feed" element={<NewsFeedForm />}></Route>
+          <Route path="sickRest" element={<SickRestManager />}></Route>
+
         </Route>
         <Route
           path="/teacher/*"
@@ -100,6 +102,8 @@ const AppRoutes = () => {
           <Route path="preRegister" element={<p>register parent</p>}></Route>
           <Route path="" element={<Navigate to="/parent/feed" />}></Route>
           <Route path="calendar" element={<Kalendar />}></Route>
+          <Route path="sickRest" element={<SickRest />}></Route>
+
         </Route>
         <Route
           path="/admin/*"
