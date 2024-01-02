@@ -10,7 +10,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-<<<<<<< HEAD
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.10",
     "@fullcalendar/react": "^6.1.10",
@@ -28,17 +27,12 @@
     "material-react-table": "^2.0.4",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-=======
-    "@mui/material": "^5.14.18",
-    "@reduxjs/toolkit": "^1.9.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
->>>>>>> dev
     "react-icons": "^4.12.0",
     "react-qr-code": "^2.0.12",
     "react-redux": "^8.1.3",
     "react-router-dom": "^6.20.0",
-<<<<<<< HEAD
     "react-to-print": "^2.14.15",
     "react-toastify": "^9.1.3",
     "redux": "^4.2.1",
@@ -47,12 +41,10 @@
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
-=======
+    "react-dom": "^17.0.0 || ^18.0.0",
     "redux": "^4.2.1",
     "sass": "^1.69.5",
     "styled-components": "^6.1.1"
->>>>>>> dev
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

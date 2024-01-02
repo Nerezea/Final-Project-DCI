@@ -1,0 +1,415 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  height: 100vh;
+  width: 100vw;
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+body {
+  font-family: "AlteDin", sans-serif;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.container .container-calendar {
+  margin: 0;
+  width: 98%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container .container-calendar .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
+  display: block;
+}
+.container .container-calendar .calendar-div {
+  padding: 2rem 10rem;
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  margin: 2% 0;
+  border-radius: 0.6rem;
+  background-color: white;
+}
+.container .container-calendar .calendar-div .event-calendar {
+  font-size: 1.4rem;
+}
+.container .container-calendar .calendar-div .fc-header-toolbar {
+  font-family: "AlteDin", sans-serif;
+  color: #c0ccc0;
+  letter-spacing: 0.2rem;
+}
+.container .container-calendar .calendar-div .fc-header-toolbar .fc-button-group button {
+  background-color: #c0ccc0;
+  border: none;
+  color: black;
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+}
+.container .container-calendar .calendar-div .fc-header-toolbar .fc-today-button {
+  background-color: transparent;
+  color: #711fdc;
+  border: none;
+  font-size: 1.6rem;
+}
+.container .back-to-top {
+  position: fixed;
+  bottom: 18vh;
+  right: 2vh;
+  cursor: pointer;
+  z-index: 20;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(113, 31, 220, 0.137254902);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.background-overlay .modal-window {
+  border: 3px solid #711fdc;
+  min-height: 40vh;
+  background-color: white;
+  box-shadow: 0 0.4rem 0.88rem rgba(113, 31, 220, 0.137254902);
+  border-radius: 0.6rem;
+  padding: 5rem;
+  position: relative;
+}
+.background-overlay .modal-window .close {
+  font-family: "Almendra", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  cursor: pointer;
+}
+.background-overlay .modal-window .form-event {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  flex-direction: column;
+  align-items: stretch;
+}
+.background-overlay .modal-window .form-event .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.background-overlay .modal-window .form-event .input-group label {
+  margin-bottom: 0.5rem;
+}
+.background-overlay .modal-window .form-event .input-group input,
+.background-overlay .modal-window .form-event .input-group textarea {
+  padding: 0.6rem 1rem;
+  border: 1px solid #848a84;
+  border-radius: 0.3rem;
+  border-radius: 4rem;
+}
+.background-overlay .modal-window .form-event .submit-button {
+  background-color: #c0ccc0;
+  border-radius: 4rem;
+  outline: none;
+  border: none;
+  padding: 0.6rem 1rem;
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container .marquee-text-wrapper {
+  margin: 0;
+  background-color: #f3f611;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.container .marquee-text {
+  padding: 0.1rem 6rem;
+  color: #000000;
+  font-family: "AlteDin", sans-serif, Helvetica;
+  font-size: 2.2rem;
+  white-space: nowrap;
+  letter-spacing: 1.2rem;
+  animation: move-rtl 10s linear infinite;
+}
+@keyframes move-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.container .container-newsfeed {
+  width: 98%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container .button-menu {
+  background-color: #d1d9d1;
+  padding: 3rem;
+}
+.container .button-menu ul {
+  list-style: none;
+  padding: 0;
+}
+.container .button-menu li {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid #d1d9d1;
+  border-radius: 25rem;
+  color: #d1d9d1;
+  cursor: pointer;
+}
+.container .button-menu li a {
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+  color: #711fdc;
+}
+.container .button-menu li .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
+  display: block;
+}
+.container .button-menu li:hover {
+  background-color: #d1d9d1;
+  color: white;
+}
+.container .button-menu li:hover a {
+  color: white;
+}
+.container .newsfeed-grid {
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  border-radius: 0.6rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4rem;
+  gap: 4rem;
+}
+.container .back-to-top {
+  position: fixed;
+  bottom: 18vh;
+  right: 2vh;
+  cursor: pointer;
+  z-index: 20;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+@font-face {
+  font-family: "Almendra";
+  src: url("/fonts/AlmendraDisplay-Regular.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Suetterlin";
+  src: url("/fonts/Suetterlin-HJZ-Italic_1911.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AlteDin";
+  src: url("/fonts/din1451alt.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.newsfeed-grid-item {
+  display: flex;
+  min-height: 10rem;
+  background-color: white;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: 0 0.4rem 0.88rem #c0ccc0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.newsfeed-grid-item .eye-icon,
+.newsfeed-grid-item .heart-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #711fdc;
+  z-index: 20;
+  font-size: 2rem;
+}
+.newsfeed-grid-item .heart-icon {
+  right: 4rem;
+  cursor: pointer;
+}
+.newsfeed-grid-item:hover .overlay {
+  opacity: 0;
+}
+.newsfeed-grid-item:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0.6rem 1.3rem #c0ccc0;
+}
+
+.newsfeed-grid-item .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 3rem;
+  gap: 2rem;
+  letter-spacing: 0.2;
+}
+.newsfeed-grid-item .content p {
+  font-size: 1.6rem;
+}
+.newsfeed-grid-item .content h3 {
+  font-size: 2.8rem;
+  font-weight: 300;
+}
+.newsfeed-grid-item .content a {
+  font-size: 1.2rem;
+  cursor: url(pointer.png) 30 3, auto;
+}
+
+.even-item .content {
+  text-align: right;
+}
+
+.odd-item .content {
+  text-align: left;
+}
+
+.even-item {
+  flex-direction: row;
+}
+
+.odd-item {
+  flex-direction: row-reverse;
+}
+
+.newsfeed-card-img {
+  position: relative;
+  width: 50%;
+  background-position: center;
+}
+.newsfeed-card-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(192, 204, 192, 0.5411764706);
+  transition: opacity 0.3s ease;
+}
+
+.container-profile {
+  margin: 0;
+  width: 98%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 20px;
+}
+.container-profile .parent-buttons {
+  color: #711fdc;
+  text-decoration: none;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header-desktop {
+  margin: 0;
+  background-color: white;
+  box-shadow: 0 0.4rem 0.88rem #848a84;
+  height: 10.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-self: center;
+  z-index: 50;
+}
+.header-desktop .logo {
+  height: 120%;
+}
+.header-desktop .logo .blue-owl {
+  height: 100%;
+}
+.header-desktop .title-path {
+  margin-top: -0.5rem;
+  padding-right: 1rem;
+  color: #711fdc;
+  font-family: "AlteDin", sans-serif;
+  font-size: 11rem;
+  font-weight: 500;
+  letter-spacing: 0.9rem;
+  line-height: 11vh;
+  text-align: right;
+}/*# sourceMappingURL=headerLili.css.map */

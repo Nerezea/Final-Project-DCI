@@ -8,13 +8,26 @@ import { Roles } from "../../../store/slice/auth.slice.js";
 import { useSelector } from "react-redux";
 import { EventApi } from "../../../api/eventApi.js";
 import EventModal from "./eventModal.jsx";
+import EventsDetails from "./eventsDetails.jsx";
 import ScrollToTop from "../../../components/scrollToTop.jsx";
 
 const Kalendar = () => {
   // Events State
+  const [eventData, setEventData] = useState({
+    title: "",
+    description: "",
+    start: "",
+    end: "",
+    class: "",
+    hasConsent: false,
+  });
+
+  // Events State
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const [showEventDetails, setShowEventDetails] = useState(false);
 
   // Which Userrole?
   const role = useSelector((store) => store.auth.role);
@@ -35,7 +48,7 @@ const Kalendar = () => {
     end: event.end ? event.end.split(".").reverse().join("-") : undefined,
     description: event.description,
     url: event.url,
-    id: `event-${index}`,
+    // id: `event-${index}`,
     editable: event.editable,
     color: event.color,
     textColor: event.textColor,
@@ -45,6 +58,10 @@ const Kalendar = () => {
   const startDate = `2023-08-01`;
   const endDate = `2024-08-01`;
 
+  const formatDate = (dateString) => {
+    return new Date(dateString).toISOString().split("T")[0];
+  };
+
   // Fetch events in certain time
   const fetchEventsSchoolYear = (start, end) => {
     EventApi.getEvents(start, end)
@@ -52,8 +69,8 @@ const Kalendar = () => {
         const formattedEvents = res.data.map((event, index) => {
           return {
             title: event.title,
-            start: event.date.toISOString().split("T")[0],
-            end: event.end ? event.end.toISOString().split("T")[0] : undefined,
+            start: formatDate(event.start),
+            end: event.end ? formatDate(event.end) : undefined,
             description: event.description,
             url: event.url,
             id: `event-${index}`,
@@ -64,23 +81,45 @@ const Kalendar = () => {
         });
         setEvents([...formattedMockupData, ...formattedEvents]);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("error", err));
+    // Set mockup data even if there is an error
+    setEvents([...formattedMockupData]);
   };
 
   useEffect(() => {
     fetchEventsSchoolYear(startDate, endDate);
-  }, []);
+  }, [startDate, endDate]);
 
   const handleEventClick = (clickinfo) => {
     clickinfo.jsEvent.preventDefault();
 
-    setSelectedEvent(clickinfo.event);
+    // Populate eventData for editing
+    setEventData({
+      title: clickinfo.event.title,
+      description: clickinfo.event.extendedProps.description,
+      start: clickinfo.event.start.toISOString().split("T")[0],
+      end: clickinfo.event.end
+        ? clickinfo.event.end.toISOString().split("T")[0]
+        : "",
+      class: clickinfo.event.extendedProps.classId,
+      hasConsent: clickinfo.event.extendedProps.hasConsent,
+    });
+    setShowEventDetails(true);
     setIsModalOpen(true);
   };
+
   const handleDateClick = ({ dateStr }) => {
-    setSelectedEvent({ date: dateStr });
+    setEventData({
+      title: "",
+      description: "",
+      start: dateStr,
+      end: dateStr,
+      class: "",
+      hasConsent: false,
+    });
     setIsModalOpen(true);
   };
+
   const handleMenuItemClick = () => {
     setIsModalOpen(true);
   };
@@ -114,22 +153,28 @@ const Kalendar = () => {
                 end: "today prev,next",
                 height: "70vh",
               }}
-              events={formattedMockupData}
+              events={events}
               eventClick={handleEventClick}
               dateClick={handleDateClick}
-              // datesSet={({ start, end }) => fetchEvents(start, end)}
+              // datesSet={({ start, end }) =>  {  fetchEventsSchoolYear(start.toISOString(), end.toISOString());}}
             />
           </div>
         </div>
         <ScrollToTop />
+        <EventsDetails
+          isOpen={showEventDetails}
+          onClose={() => setShowEventDetails(false)}
+          eventData={eventData}
+          role={role}
+        />
         <EventModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          event={selectedEvent}
+          eventData={eventData}
+          setEventData={setEventData}
         />
       </div>
     </>
   );
 };
-
 export default Kalendar;

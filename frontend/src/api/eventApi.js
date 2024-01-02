@@ -1,8 +1,8 @@
 import myAxios from "./api";
 
 export const EventApi = {
-  getEvents(start, end) {
-    return myAxios.get("/events", { params: { start, end } });
+  getEvents(startDate, endDate) {
+    return myAxios.get("/events", { params: { startDate, endDate } });
   },
   getEvent(id) {
     return myAxios.get(`/events/${id}`);

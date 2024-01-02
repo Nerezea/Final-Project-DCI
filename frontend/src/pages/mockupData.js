@@ -33,6 +33,7 @@ export const logInTeacher = {
   label: "Klasse 1B - Albin Maier",
   to: "teacher/profile",
 };
+
 export const menuParents = [
   { label: "NEWSFEED", to: "/parent/feed" },
   { label: "KALENDAR", to: "/parent/calendar" },
@@ -169,6 +170,72 @@ export const events = [
 ];
 
 export const eventsC = [
+  {
+    title: "Winterferien",
+    start: "05.02.2024",
+    end: "10.02.2024",
+    description: "Winterferien",
+    color: "#fef9c3",
+    textColor: "black",
+    url: "",
+    img: "",
+  },
+
+  {
+    title: "Osterferien",
+    start: "25.03.2024",
+    end: "05.04.2024",
+    description: "Osterferien",
+    color: "#fef9c3",
+    textColor: "black",
+
+    url: "",
+    img: "",
+  },
+  {
+    title: "Pfingsten",
+    start: "10.05.2024",
+    end: "",
+    description: "Pfingsten",
+    color: "#fef9c3",
+    textColor: "black",
+
+    url: "",
+    img: "",
+  },
+  {
+    title: "Sommerferien",
+    start: "18.07.2024",
+    end: "30.08.2024",
+    description: "Sommerferien",
+    color: "#fef9c3",
+    textColor: "black",
+
+    url: "",
+    img: "",
+  },
+  {
+    title: "Herbstferien",
+    start: "21.10.2024",
+    end: "02.11.2024",
+    description: "Herbstferien",
+    color: "#fef9c3",
+    textColor: "black",
+
+    url: "",
+    img: "",
+  },
+  {
+    title: "Weihnachtsferien",
+    start: "23.12.2024",
+    end: "31.12.2024",
+    description: "Weihnachtsferien",
+    color: "#fef9c3",
+    textColor: "black",
+
+    url: "",
+    img: "",
+  },
   {
     title: "Einschulung",
     start: "21.08.2023",

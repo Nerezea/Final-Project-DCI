@@ -1,13 +1,7 @@
-import { useState } from "react";
+import { EventApi } from "../../../api/eventApi.js";
 
-const EventModal = ({ isOpen, onClose, onSave }) => {
-  const [eventData, setEventData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    class: "",
-    hasConsent: false,
-  });
+const EventModal = ({ isOpen, onClose, eventData, setEventData }) => {
+  if (!isOpen) return null;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -19,7 +13,26 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(eventData);
+    const dataToSend = { ...eventData };
+    if (!dataToSend.class) {
+      delete dataToSend.class;
+    }
+    EventApi.createEvent(eventData)
+      .then((response) => {
+        console.log("Event created:", response.data);
+        setEventData({
+          title: "",
+          description: "",
+          start: "",
+          end: "",
+          class: "",
+          hasConsent: false,
+        });
+        onClose();
+      })
+      .catch((error) => {
+        console.log("Error creating event:", error);
+      });
   };
 
   return (
@@ -48,11 +61,20 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
               />
             </div>
             <div className="input-group">
-              <label>Date:</label>
+              <label>Start Date:</label>
               <input
                 type="date"
-                name="date"
-                value={eventData.date}
+                name="start"
+                value={eventData.start}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>End Date:</label>
+              <input
+                type="date"
+                name="end"
+                value={eventData.end}
                 onChange={handleChange}
               />
             </div>
