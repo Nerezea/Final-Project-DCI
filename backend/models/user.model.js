@@ -22,9 +22,10 @@ const userSchema = new Schema({
   class: { type: Schema.Types.ObjectId, ref: "class" },
   birthDay: String,
   address: String,
+  active: { type: Boolean, default: true },
+
   // teacher , parent
   school: { type: Schema.Types.ObjectId, ref: "school" },
-  active: { type: Boolean, default: true },
 });
 
 userSchema.methods.toJSON = function () {

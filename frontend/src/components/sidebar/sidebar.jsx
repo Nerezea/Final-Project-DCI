@@ -10,8 +10,6 @@ import {
   Menu,
   School,
   Sick,
-  Groups,
-  Person,
 } from "@mui/icons-material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Divider from "@mui/material/Divider";
@@ -23,11 +21,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { styled } from "@mui/material/styles";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { Roles } from "../../store/slice/auth.slice";
 import style from "./sidebar.module.scss";
+import { Card } from "@mui/material";
+import { StudentsApi } from "../../api/studentApi";
+import { toast } from "react-toastify";
 
 const drawerWidth = 240;
 
@@ -88,19 +89,19 @@ const superAdminMenus = [
 
 const managerMenus = [
   {
+    label: "Teachers",
+    link: "/manager/teachers",
+    icon: <Menu />,
+  },
+  {
     label: "Class List",
     link: "/manager/classes",
     icon: <Class />,
   },
   {
-    label: "Teachers",
-    link: "/manager/teachers",
-    icon: <Person />,
-  },
-  {
     label: "Students",
     link: "/manager/students",
-    icon: <Groups />,
+    icon: <People />,
   },
   {
     label: "Events",
@@ -136,8 +137,8 @@ const teacherMenus = [
     icon: <Forum />,
   },
   {
-    label: "Parents",
-    link: "/teacher/parents",
+    label: "Students",
+    link: "/teacher/students",
     icon: <Forum />,
   },
   {
@@ -152,43 +153,54 @@ const teacherMenus = [
   },
 ];
 
-const parentMenus = [
-  {
-    label: "News Feed",
-    link: "/parent/feed",
-    icon: <Feed />,
-  },
-  {
-    label: "Forum",
-    link: "/parent/parent",
-    icon: <Forum />,
-  },
-  {
-    label: "Calendar",
-    link: "/parent/calendar",
-    icon: <CalendarMonth />,
-  },
-  {
-    label: "Teacher PV",
-    link: "/parent/teacherPV",
-    icon: <Chat />,
-  },
-  {
-    label: "Events",
-    link: "/parent/events",
-    icon: <Event />,
-  },
-  {
-    label: "Sick Rest",
-    link: "/parent/sick",
-    icon: <Sick />,
-  },
-];
-
 const Sidebar = () => {
   const theme = useTheme();
   const role = useSelector((store) => store.auth.role);
   const [open, setOpen] = React.useState(true);
+  const [myTeacher, setMyTeacher] = useState();
+
+  useEffect(() => {
+    if (role === Roles.PARENT) {
+      StudentsApi.getMyTeacher()
+        .then((res) => {
+          setMyTeacher(res.data);
+        })
+        .catch((err) => toast.error(err));
+    }
+  }, []);
+
+  const parentMenus =useMemo(()=>[
+    {
+      label: "News Feed",
+      link: "/parent/feed",
+      icon: <Feed />,
+    },
+    {
+      label: "Forum",
+      link: "/parent/forum",
+      icon: <Forum />,
+    },
+    {
+      label: "Calendar",
+      link: "/parent/calendar",
+      icon: <CalendarMonth />,
+    },
+    {
+      label: "Teacher PV",
+      link: `/pv/${myTeacher?._id}`,
+      icon: <Chat />,
+    },
+    {
+      label: "Sick Rest",
+      link: "/parent/sickRest",
+      icon: <Sick />,
+    },
+    {
+      label: "Events",
+      link: "/parent/events",
+      icon: <Event />,
+    },
+  ],[myTeacher]);
 
   const menus = useMemo(() => {
     switch (role) {
@@ -201,7 +213,7 @@ const Sidebar = () => {
       case Roles.PARENT:
         return parentMenus;
     }
-  }, [role]);
+  }, [role,parentMenus]);
 
   const handleDrawerToggle = () => {
     setOpen((open) => !open);
@@ -251,6 +263,7 @@ const Sidebar = () => {
           </NavLink>
         ))}
       </List>
+      <Card></Card>
     </Drawer>
   );
 };

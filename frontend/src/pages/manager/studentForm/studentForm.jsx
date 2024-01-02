@@ -15,6 +15,8 @@ import { StudentsApi } from "../../../api/studentApi";
 import { UploadApi } from "../../../api/uploadApi";
 import style from "./style.module.scss";
 import { ClassesApi } from "../../../api/classesApi";
+import InputImage from "../../../components/inputImage/inputImage";
+import dayjs from "dayjs";
 
 const StudentForm = () => {
   const [classList, setClassList] = useState([]);
@@ -30,7 +32,6 @@ const StudentForm = () => {
   });
 
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   // read more : https://reactrouter.com/en/main/hooks/use-params
   const { studentId } = useParams();
@@ -38,7 +39,7 @@ const StudentForm = () => {
   useEffect(() => {
     if (studentId)
       StudentsApi.getStudentById(studentId).then((res) => {
-        setForm({...form,...res.data});
+        setForm({ ...form, ...res.data });
       });
     ClassesApi.getClasses()
       .then((res) => {
@@ -49,6 +50,9 @@ const StudentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const age = Math.abs(dayjs(form.birthDay).diff(dayjs(),"year"))
+    if(age<5)
+    return toast.warn("birthDay is incorrect")
     if (studentId) {
       StudentsApi.updateStudent(studentId, form)
         .then(() => {
@@ -66,20 +70,9 @@ const StudentForm = () => {
     }
   };
 
-  const handleChangeFile = (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    setLoading(true);
-    UploadApi.upload(formData)
-      .then((res) => {
-        form.image = res.data.link;
-        setForm({ ...form });
-      })
-      .catch((err) => toast.error(err))
-      .finally(() => {
-        setLoading(false);
-      });
+  const handleChangeImage = (image) => {
+    form.image = image;
+    setForm({ ...form });
   };
 
   const handleChangeForm = (e) => {
@@ -136,6 +129,7 @@ const StudentForm = () => {
           name="birthDay"
           onChange={handleChangeForm}
           label="BirthDay"
+          type="date"
           placeholder="BirthDay"
         ></TextField>
 
@@ -152,9 +146,7 @@ const StudentForm = () => {
             ))}
           </Select>
         </FormControl>
-        <input type="file" onChange={handleChangeFile} />
-        {loading && <CircularProgress></CircularProgress>}
-        {form.image && <img src={form.image} width={100} />}
+        <InputImage value={form.image} setValue={handleChangeImage} />
         <Button onClick={handleSubmit} type="submit" variant="contained">
           Submit
         </Button>

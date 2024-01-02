@@ -10,4 +10,7 @@ export const AuthApi = {
   studentRegister(body) {
     return api.post("/auth/studentRegister", body);
   },
+  getUserDetail(id) {
+    return api.post("/auth/getUserDetail/" + id);
+  },
 };

@@ -22,6 +22,3 @@ api.interceptors.response.use(undefined, (error) => {
 });
 
 export default api;
-
-
-

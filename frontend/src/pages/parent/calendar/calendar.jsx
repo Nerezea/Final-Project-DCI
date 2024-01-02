@@ -1,90 +1,68 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import Navbar from "../../../components/navbarLili/navbar.jsx";
-import * as mockup from "../../mockupData.js";
+import { Card } from "@mui/material";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import "./calendar.scss";
+import { toast } from "react-toastify";
+import { FeedApi } from "../../../api/feeApi";
+import Calendar from "../../../components/calendar/calendar";
+import style from "./calendar.module.scss";
+import { EventApi } from "../../../api/eventApi";
 
-const Kalendar = () => {
-  const [showButton, setShowButton] = useState(false);
+function ParentCalendar() {
+  const [month, setMonth] = useState(dayjs().month());
+  const [feeds, setFeeds] = useState([]);
+  const [events, setEvents] = useState([]);
+
+  // function handleSelectFeed(feed) {
+  //   setOpenModalFeed(true);
+  //   setSelectedFeed(feed);
+  // }
 
   useEffect(() => {
-    const handleScrollButtonVisibility = () => {
-      window.scrollY > 200 ? setShowButton(true) : setShowButton(false);
-    };
+    updateFeeds();
+    updateEvents();
+  }, [month]);
 
-    window.addEventListener("scroll", handleScrollButtonVisibility);
+  function updateFeeds() {
+    const start = dayjs().set("month", month).startOf("month").toISOString();
+    const end = dayjs().set("month", month).endOf("month").toISOString();
+    FeedApi.getFeeds(start, end)
+      .then((res) => {
+        setFeeds(res.data.map((item) => ({ ...item, type: "feed" })));
+      })
+      .catch((err) => toast.error(err));
+  }
 
-    return () => {
-      window.removeEventListener("scroll", handleScrollButtonVisibility);
-    };
-  });
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  function updateEvents() {
+    const start = dayjs().set("month", month).startOf("month").toISOString();
+    const end = dayjs().set("month", month).endOf("month").toISOString();
+    EventApi.getEvents(start, end)
+      .then((res) => {
+        setEvents(res.data.map((item) => ({ ...item, type: "event" })));
+      })
+      .catch((err) => toast.error(err));
+  }
+  const renderItem = (item) => {
+    return (
+      <Card //onClick={() => handleSelectFeed(feed)}
+        className={style.item}
+      >
+        <img className={style.image} src={item.image} />
+        <span className={style.title}>{item.type==="feed" ? "Feed":"Event"} - {item.title}</span>
+        <span>{item.description}</span>
+      </Card>
+    );
   };
-
-  const formattedEvents = mockup.events.map((event, index) => {
-    return {
-      title: event.title,
-      start: event.date.split(".").reverse().join("-"),
-      url: event.link,
-      id: `event-${index}`,
-      end: event.endDate
-        ? event.endDate.split(".").reverse().join("-")
-        : undefined,
-      allDay: true,
-      color: "#721fdc",
-      textColor: "white",
-      className: "event-calendar",
-      editable: true,
-      newsfeedId: event.newsfeedId,
-    };
-  });
-
-  const handleEventClick = (clickinfo) => {};
-
   return (
-    <>
-      <div className="container">
-        <div className="container-calendar">
-          <aside className="button-menu">
-            <ul>
-              {mockup.teacherButtonsCalendar.map((item, index) => (
-                <li key={index}>
-                  <a className="parent-buttons" href="#">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
-
-          <div className="calendar-div">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              headerToolbar={{
-                start: "title",
-                center: "dayGridMonth,timeGridWeek,timeGridDay",
-                end: "today prev,next",
-                height: "70vh",
-              }}
-              events={formattedEvents}
-              // eventClick={handleEventClick}
-            />
-          </div>
-        </div>
-        {showButton && (
-          <button className="back-to-top" onClick={handleScrollToTop}>
-            <img src="/back-to-top.svg" alt="back to home button, arrow up" />
-          </button>
-        )}
-      </div>
-    </>
+    <div>
+      <Calendar
+        title="Calendar"
+        month={month}
+        data={[...feeds, ...events]}
+        renderEvent={renderItem}
+        setMonth={setMonth}
+      ></Calendar>
+    </div>
   );
-};
+}
 
-export default Kalendar;
+export default ParentCalendar;

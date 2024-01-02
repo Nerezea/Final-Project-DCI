@@ -1,0 +1,24 @@
+.image {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: contain;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.container {
+  padding : 1rem
+}

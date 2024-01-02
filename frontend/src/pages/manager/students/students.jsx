@@ -127,7 +127,6 @@ const Students = () => {
         data={data}
         columns={columns}
         muiTableBodyRowProps={({ row }) => {
-          console.log(row);
           return {
             sx: {
               bgcolor: row.original.active === false && "#ff000022",

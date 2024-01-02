@@ -16,3 +16,4 @@ export const updateTeacherSchema = Joi.object({
   phone: Joi.string(),
   image: Joi.string(),
 });
+

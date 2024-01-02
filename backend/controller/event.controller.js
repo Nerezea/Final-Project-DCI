@@ -81,8 +81,47 @@ export const getEvents = async (req, res) => {
     };
     if (start && end) query.date = { $gte: start, $lte: end };
 
-    const feeds = await eventModel.find();
+    const feeds = await eventModel.find(query);
     res.status(200).json(feeds);
+  }
+};
+
+export const getEventById = async (req, res) => {
+  const { role, id } = req.user;
+  const { eventId } = req.params;
+  if (role === Roles.MANAGER) {
+    const school = await getSchoolOfManagerById(req.user.id);
+    const event = await eventModel.findOne({
+      school: school._id,
+      _id: eventId,
+    });
+    if (!event) return res.status(400).send({ message: "event not found" });
+
+    res.status(200).json(event);
+  } else if (role === Roles.TEACHER) {
+    const event = await eventModel.findOne({
+      creator: id,
+      _id: eventId,
+    });
+    if (!event) return res.status(400).send({ message: "event not found" });
+
+    res.status(200).json(event);
+  } else if (role === Roles.PARENT) {
+    const student = await userModel.findById(req.user.id);
+    const event = await eventModel.findOne({
+      school: student.school,
+      $or: [
+        {
+          class: undefined,
+        },
+        {
+          class: student.class,
+        },
+      ],
+      _id: eventId,
+    });
+    if (!event) return res.status(400).send({ message: "event not found" });
+    res.status(200).json(event);
   }
 };
 

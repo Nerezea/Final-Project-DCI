@@ -4,6 +4,7 @@ import {
   deleteEvent,
   getEvents,
   updateEvent,
+  getEventById
 } from "../controller/event.controller.js";
 import { auth } from "../middleware/auth.js";
 import { hasRole } from "../middleware/role.js";
@@ -14,6 +15,7 @@ import { createEventSchema } from "../validation/event.schema.js";
 const router = Router();
 
 router.get("/", auth, hasRole(Roles.MANAGER, Roles.TEACHER,Roles.PARENT), getEvents);
+router.get("/:eventId", auth, hasRole(Roles.MANAGER, Roles.TEACHER,Roles.PARENT), getEventById);
 router.post(
   "/",
   auth,

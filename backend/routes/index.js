@@ -9,6 +9,7 @@ import feedRoute from "./feed.route.js";
 import forumRoute from "./forum.route.js";
 import pvRoute from "./pv.route.js";
 import sickRoute from "./sick.route.js";
+import eventAgreementRoute from "./eventAgreement.route.js";
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use("/feed", feedRoute);
 router.use("/forum", forumRoute);
 router.use("/pv", pvRoute);
 router.use("/sickRest", sickRoute);
+router.use("/eventAgreement", eventAgreementRoute);
 
 export default router;

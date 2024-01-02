@@ -1,5 +1,5 @@
 import { Button, Card, Divider, TextField } from "@mui/material";
-import  { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputImage from "../../../components/inputImage/inputImage";
 import style from "./sickRest.module.scss";
 import { SickRestApi } from "../../../api/sickApi";

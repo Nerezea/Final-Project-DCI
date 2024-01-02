@@ -1,0 +1,22 @@
+
+.event {
+  padding: 0.5rem;
+  font-size: 0.8rem !important;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  span:last-child {
+    font-size: 0.6rem;
+    color: #aaa;
+  }
+}
+
+
+
+.deleteBtn {
+  position: absolute !important;
+  right : 0.2rem !important;
+  bottom : 0.2rem !important;
+}

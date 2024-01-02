@@ -1,7 +1,10 @@
 import myAxios from "./api";
 
 export const StudentsApi = {
-  getStudents(classId) {
+  getMyTeacher() {
+    return myAxios.get("/student/getMyTeacher");
+  },
+   getStudents(classId) {
     return myAxios.get("/student", { params: { class: classId } });
   },
   getStudentById(id) {
