@@ -131,7 +131,7 @@ const ModalEvent = ({ open, onClose, date, updateEvents, event }) => {
           </FormControl>
         )}
         <FormControlLabel
-          label="Has Consent"
+          label="requires approval"
           control={
             <Checkbox
               name="hasConsent"
