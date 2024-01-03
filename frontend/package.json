@@ -19,6 +19,7 @@
     "@react-three/fiber": "^8.15.12",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "framer-motion-3d": "^10.16.14",
     "fullcalendar": "^6.1.10",
     "joi": "^17.11.0",
