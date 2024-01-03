@@ -67,14 +67,23 @@ body {
   color: #c0ccc0;
   letter-spacing: 0.2rem;
 }
-.container .container-calendar .calendar-div .fc-header-toolbar .fc-button-group button {
+.container
+  .container-calendar
+  .calendar-div
+  .fc-header-toolbar
+  .fc-button-group
+  button {
   background-color: #c0ccc0;
   border: none;
   color: black;
   font-size: 1.6rem;
   letter-spacing: 0.2rem;
 }
-.container .container-calendar .calendar-div .fc-header-toolbar .fc-today-button {
+.container
+  .container-calendar
+  .calendar-div
+  .fc-header-toolbar
+  .fc-today-button {
   background-color: transparent;
   color: #711fdc;
   border: none;

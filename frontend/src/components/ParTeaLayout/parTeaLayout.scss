@@ -1,5 +1,9 @@
 @import "../../assets/css/main.scss";
 
+$header-height: 10.5rem;
+$navbar-height: 15.5rem;
+$total-top-height: $header-height + $navbar-height;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +18,7 @@
 }
 
 .container-main {
-  margin-top: 16rem;
+  margin-top: $navbar-height;
   flex-grow: 1;
   overflow-y: auto;
 }

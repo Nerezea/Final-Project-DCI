@@ -1,13 +1,17 @@
 @import "../../assets/css/main.scss";
 
+$header-height-margin: 11.2rem;
+$navbar-height: 15.5rem;
+
 * {
   box-sizing: border-box;
 }
 
 .navbar-top {
   width: 100%;
-  height: 16rem;
+  height: $navbar-height;
   position: fixed;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,7 +19,7 @@
   z-index: 20;
   background-color: $color-greengrey;
   padding: 0.3rem 0;
-  padding-top: 11.4vh;
+  padding-top: $header-height-margin;
   // box-shadow: 0 0.4rem 0.88rem $color-yellow;
 
   .loggedInAs {

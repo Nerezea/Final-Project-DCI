@@ -1,6 +1,8 @@
 @import "../../../assets/css/colors";
 @import "../../../assets/css/fonts";
 
+$navbar-height: 15.5rem;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +10,6 @@
 
 .container {
   .marquee-text-wrapper {
-    margin: 0;
     //maybe calc function ? minus header height?
     background-color: $color-yellow;
     display: flex;

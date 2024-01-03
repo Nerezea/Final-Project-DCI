@@ -108,6 +108,11 @@ const Kalendar = () => {
     setIsModalOpen(true);
   };
 
+  const handleEditEvent = () => {
+    setShowEventDetails(false); // Close details modal
+    setIsModalOpen(true); // Open editing modal
+  };
+
   const handleDateClick = ({ dateStr }) => {
     setEventData({
       title: "",

@@ -1,5 +1,7 @@
 @import "../../assets/css/main.scss";
 
+$header-height: 10.5rem;
+
 * {
   box-sizing: border-box;
 }
@@ -9,7 +11,7 @@
   background-color: $color-white;
   box-shadow: 0 0.4rem 0.88rem $color-grey;
 
-  height: 10.5rem;
+  height: $header-height;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,12 +24,15 @@
 
   .logo {
     height: 120%;
-     .blue-owl {
+    .blue-owl {
       height: 100%;
     }
   }
 
   .title-path {
+    position: relative;
+    top: 0;
+    left: 0;
     margin-top: -0.5rem;
     padding-right: 1rem;
     color: $color-purple;
@@ -35,7 +40,7 @@
     font-size: 11rem;
     font-weight: 500;
     letter-spacing: 0.9rem;
-    line-height: 11vh;
+    line-height: 10.5rem;
     text-align: right;
   }
 }
