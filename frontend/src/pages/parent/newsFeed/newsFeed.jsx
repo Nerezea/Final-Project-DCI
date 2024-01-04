@@ -18,13 +18,15 @@ const NewsFeed = () => {
       .catch((err) => toast.error(err));
   }, []);
 
+  console.log(schoolFeeds);
+  console.log(classFeeds);
   return (
     <div>
       <div>
         <h3>School Feed</h3>
         <div className={style.cards}>
-          {/* {schoolFeeds.map((item) => ( */}
-          {/* <NewsFeedItem feed={item} /> */}
+          {/* {schoolFeeds.map((item, index) => ( */}
+          {/* // <NewsFeedItem feed={item} /> */}
           <NewsfeedCards feed={schoolFeeds} />
           {/* ))} */}
         </div>
@@ -32,8 +34,8 @@ const NewsFeed = () => {
       <div>
         <h3>Class Feed</h3>
         <div className={style.cards}>
-          {/* {classFeeds.map((item) => ( */}
-          {/* <NewsFeedItem feed={item} /> */}
+          {/* {classFeeds.map((item, index) => ( */}
+          {/* // <NewsFeedItem feed={item} /> */}
           <NewsfeedCards feed={classFeeds} />
           {/* ))} */}
         </div>

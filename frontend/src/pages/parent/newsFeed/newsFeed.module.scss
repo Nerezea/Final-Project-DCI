@@ -1,8 +1,10 @@
 .cards {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   overflow-x: auto;
   width: 100%;
+  border: 2px solid red;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
@@ -11,5 +13,5 @@
 }
 
 .card {
-  width: 300px;
+  width: 3000px;
 }
