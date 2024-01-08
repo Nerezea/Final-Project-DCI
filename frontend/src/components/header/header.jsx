@@ -15,17 +15,24 @@ import { Logo } from "../logo/logo";
 import  animation  from "./logo.json"
 import Lottie from "lottie-react";
 import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { image, role, fullName } = useSelector(
     (store) => store.auth
   );
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
+    handleClose();
+  };
+
+  const handleEditProfile = () => {
+    navigate(`/${role}/editProfile`)
     handleClose();
   };
 
@@ -87,7 +94,7 @@ export default function Header() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+          <MenuItem onClick={handleEditProfile}>Profile</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </Toolbar>

@@ -6,9 +6,12 @@ import { toast } from "react-toastify";
 import dayjs from "dayjs";
 import DataTable from "../../../../components/datatable/datatable";
 import { AccountCircle } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import { Roles } from "../../../../store/slice/auth.slice";
 
 const ModalAgreement = ({ open, onClose, eventId }) => {
   const [agreements, setAgreements] = useState([]);
+  const { role } = useSelector((store) => store.auth);
 
   useEffect(() => {
     if (eventId) {
@@ -30,6 +33,7 @@ const ModalAgreement = ({ open, onClose, eventId }) => {
           <AccountCircle className={style.avatar}></AccountCircle>
         );
       },
+      width : 100
     },
     {
       header: "User",
@@ -44,6 +48,8 @@ const ModalAgreement = ({ open, onClose, eventId }) => {
       accessorFn: (row) => dayjs(row.createdAt).format("D MMM"),
     },
   ];
+
+  if (role === Roles.TEACHER) columns.splice(2, 1);
 
   return (
     <Modal open={open} onClose={onClose}>
