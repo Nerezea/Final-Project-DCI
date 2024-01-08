@@ -1,12 +1,12 @@
 $m-01: #fb8a8a;
 $m-02: #ffedc0;
 
-$bg-01: #695681;
+$bg-01: #55268f;
 $bg-02: #36184f;
 $bg-03: #32243e;
 
 $g-01: linear-gradient(90deg, #ffedc0 0%, #ff9d87 100%);
-$g-02: linear-gradient(90deg, #8077ea 13.7%, #eb73ff 94.65%);
+$g-02: linear-gradient(90deg, #5649e3 13.7%, #cd5be2 94.65%);
 
 $cubic: cubic-bezier(0.4, 0.35, 0, 1.53);
 $cubic2: cubic-bezier(0.18, 0.89, 0.32, 1.15);
@@ -151,9 +151,9 @@ $circleShadow: inset 5px 20px 40px rgba($bg-02, 0.25),
 
       p {
         color: white;
-        font-size: 26px;
+        font-size: 35px;
         letter-spacing: 0.6px;
-        margin-bottom: 40px;
+        margin-bottom: 300px;
         text-shadow: 6px 6px 10px $bg-03;
       }
 
@@ -183,10 +183,11 @@ $circleShadow: inset 5px 20px 40px rgba($bg-02, 0.25),
 
   // The 404 Number
   .p404 {
-    font-size: 200px;
+    font-size: 150px;
     font-weight: 700;
     letter-spacing: 4px;
     color: white;
+    margin: 0 auto;
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -220,7 +221,7 @@ $circleShadow: inset 5px 20px 40px rgba($bg-02, 0.25),
       position: absolute;
       width: 800px;
       height: 800px;
-      background-color: rgba($bg-02, 0.2);
+      background-color: rgba($bg-02, 0.6);
       border-radius: 100%;
       top: 50%;
       left: 50%;
@@ -246,7 +247,7 @@ $circleShadow: inset 5px 20px 40px rgba($bg-02, 0.25),
         position: absolute;
         width: 600px;
         height: 600px;
-        background-color: rgba($bg-02, 0.3);
+        background-color: rgba($bg-02, 0.5);
         border-radius: 100%;
         box-shadow: $circleShadow;
         animation: circle 0.8s 0.4s cubic-bezier(1, 0.06, 0.25, 1) backwards;
