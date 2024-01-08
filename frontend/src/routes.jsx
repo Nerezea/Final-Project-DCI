@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/layout";
@@ -27,6 +27,8 @@ import NewsFeedDetail from "./pages/parent/newsFeed/newsFeedDetail/newsFeedDetai
 import ParentEvent from "./pages/parent/newsFeed copy/events";
 import EventDetail from "./pages/parent/newsFeed copy/eventDetail/eventDetail";
 import FormContact from "./components/contact/contactform";
+import EditProfile from "./pages/editProfile/editProfile";
+import ErrorPage from "./components/404/404";
 
 
 const AppRoutes = () => {
@@ -91,6 +93,7 @@ const AppRoutes = () => {
             <Route path="events" element={<Events />}></Route>
             <Route path="feed" element={<NewsFeed />}></Route>
             <Route path="forum" element={<Forum />}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="sickRest" element={<SickRestManager />}></Route>
 
             <Route
@@ -108,6 +111,7 @@ const AppRoutes = () => {
             <Route path="events" element={<Events />}></Route>
             <Route path="students" element={<TeacherStudents />}></Route>
             <Route path="forum" element={<Forum />}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
           </Route>
           <Route
@@ -123,7 +127,7 @@ const AppRoutes = () => {
             <Route path="sickRest" element={<SickRest />}></Route>
             <Route path="events" element={<ParentEvent />}></Route>
             <Route path="events/:id" element={<EventDetail />}></Route>
-            <Route path="preRegister" element={<p>register parent</p>}></Route>
+            <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="" element={<Navigate to="/parent/feed" />}></Route>
           </Route>
           <Route
@@ -141,7 +145,7 @@ const AppRoutes = () => {
           >
             <Route path=":id" element={<PV />}></Route>
           </Route>
-          <Route path="*" element={<p>404</p>  }></Route>
+          <Route path="*" element={<ErrorPage/> }></Route>
           <Route path="/FormContact" element={<FormContact/>  }></Route>
         </Routes>
       )}

@@ -23,6 +23,8 @@ const Login = () => {
             token: res.data.token,
             role: res.data.role,
             fullName: res.data.fullName,
+            userId: res.data.userId,
+            image: res.data.image,
           })
         );
       })

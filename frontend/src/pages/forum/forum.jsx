@@ -132,6 +132,7 @@ const Forum = () => {
       </header>
       <main className={style.messages} ref={container}>
         {messages.map((message, index) => {
+          console.log(message.user._id, userId, message.user._id === userId);
           const isSender = message.user._id === userId;
           return (
             <Message
@@ -174,7 +175,7 @@ const Forum = () => {
               onClick={() => inputFile.current.click()}
             >
               {loading ? (
-                <CircularProgress ></CircularProgress>
+                <CircularProgress></CircularProgress>
               ) : (
                 <AttachFile></AttachFile>
               )}
