@@ -132,9 +132,9 @@ const teacherMenus = [
     icon: <Feed />,
   },
   {
-    label: "Forum",
-    link: "/teacher/forum",
-    icon: <Forum />,
+    label: "Events",
+    link: "/teacher/events",
+    icon: <Event />,
   },
   {
     label: "Students",
@@ -142,14 +142,14 @@ const teacherMenus = [
     icon: <Forum />,
   },
   {
+    label: "Forum",
+    link: "/teacher/forum",
+    icon: <Forum />,
+  },
+  {
     label: "Sick Rest",
     link: "/teacher/sick",
     icon: <Sick />,
-  },
-  {
-    label: "Events",
-    link: "/teacher/events",
-    icon: <Event />,
   },
 ];
 
@@ -169,38 +169,41 @@ const Sidebar = () => {
     }
   }, []);
 
-  const parentMenus =useMemo(()=>[
-    {
-      label: "News Feed",
-      link: "/parent/feed",
-      icon: <Feed />,
-    },
-    {
-      label: "Forum",
-      link: "/parent/forum",
-      icon: <Forum />,
-    },
-    {
-      label: "Calendar",
-      link: "/parent/calendar",
-      icon: <CalendarMonth />,
-    },
-    {
-      label: "Teacher PV",
-      link: `/pv/${myTeacher?._id}`,
-      icon: <Chat />,
-    },
-    {
-      label: "Sick Rest",
-      link: "/parent/sickRest",
-      icon: <Sick />,
-    },
-    {
-      label: "Events",
-      link: "/parent/events",
-      icon: <Event />,
-    },
-  ],[myTeacher]);
+  const parentMenus = useMemo(
+    () => [
+      {
+        label: "News Feed",
+        link: "/parent/feed",
+        icon: <Feed />,
+      },
+      {
+        label: "Events",
+        link: "/parent/events",
+        icon: <Event />,
+      },
+      {
+        label: "Calendar",
+        link: "/parent/calendar",
+        icon: <CalendarMonth />,
+      },
+      {
+        label: "Forum",
+        link: "/parent/forum",
+        icon: <Forum />,
+      },
+      {
+        label: "Private Message",
+        link: `/pv/${myTeacher?._id}`,
+        icon: <Chat />,
+      },
+      {
+        label: "Sick Rest",
+        link: "/parent/sickRest",
+        icon: <Sick />,
+      },
+    ],
+    [myTeacher]
+  );
 
   const menus = useMemo(() => {
     switch (role) {
@@ -213,7 +216,7 @@ const Sidebar = () => {
       case Roles.PARENT:
         return parentMenus;
     }
-  }, [role,parentMenus]);
+  }, [role, parentMenus]);
 
   const handleDrawerToggle = () => {
     setOpen((open) => !open);

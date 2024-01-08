@@ -47,7 +47,6 @@ const EventDetail = () => {
         setIsAgree(res.data.agree);
       })
       .catch((err) => toast.error(err));
-      
   }, [id]);
 
   if (!event) return <LinearProgress />;
@@ -69,7 +68,7 @@ const EventDetail = () => {
                 onChange={handleChangeAgree}
               ></Checkbox>
             }
-            label="I'm Agree!"
+            label="I accept the invitation"
           ></FormControlLabel>
         </div>
       )}
