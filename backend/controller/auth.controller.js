@@ -57,3 +57,44 @@ export const getUserDetail = async (req, res) => {
   const user = await userModel.findById(id).select("fullName role image");
   res.send(user);
 };
+
+export const editProfile = async (req, res) => {
+  const body = req.body;
+  const userId = req.user.id;
+
+  const user = await userModel.findByIdAndUpdate(
+    userId,
+    { $set: body },
+    { new: true }
+  );
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  res.send(user);
+};
+
+export const changePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch)
+    return res.status(400).send({ message: "old password is incorrect" });
+
+  const newPasswordHashed = await bcrypt.hash(newPassword, 10);
+  user.password = newPasswordHashed;
+  await user.save();
+
+  res.sendStatus(200);
+};
+
+export const getProfile = async (req, res) => {
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+  if (!user) return res.status(400).send({ message: "user not found" });
+
+  res.send(user);
+};

@@ -13,4 +13,13 @@ export const AuthApi = {
   getUserDetail(id) {
     return api.post("/auth/getUserDetail/" + id);
   },
+  editProfile(body) {
+    return api.put("/auth/editProfile", body);
+  },
+  getProfile() {
+    return api.get("/auth/profile")
+  },
+  changePassword(oldPassword,newPassword) {
+    return api.put("/auth/changePassword",{oldPassword,newPassword})
+  }
 };

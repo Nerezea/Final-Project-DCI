@@ -37,9 +37,15 @@ const slice = createSlice({
       state.userId = undefined;
       localStorage.clear()
     },
+    editProfileStore : (state,action)=>{
+      state.fullName = action.payload.fullName;
+      state.image = action.payload.image;
+      localStorage.setItem("fullName", action.payload.fullName);
+      localStorage.setItem("image", action.payload.image);
+    }
   },
 });
 
-export const { login, logout } = slice.actions;
+export const { login, logout,editProfileStore } = slice.actions;
 
 export default slice.reducer;
