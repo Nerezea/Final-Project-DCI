@@ -1,30 +1,59 @@
-import React from 'react';
-
-import './404.scss';
+import "./404.scss"
+import { Link } from "react-router-dom"
 
 const ErrorPage = () => {
   return (
-    <section className="page_404">
-      <div className="container">
-        <div className="row">
-          <div className="shahab">
-            <div className="shahab1">
-              <div className="four_zero_four_bg">
-                <h1 className="text-center">404</h1>
-              </div>
-
-              <div className="contant_box_404">
-                <h3 className="h2">Looks like you're lost</h3>
-                <p>The page you are looking for is not available!</p>
-                <a href="/" className="link_404">Go to Home</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     
-  );
-};
+      
+    <div className="container">
+      <section className="wrapper">
 
-export default ErrorPage;
+        <div id="scene" className="scene" data-hover-only="false">
+
+
+            <div className="circle" data-depth="1.2"></div>
+
+            <div className="one" data-depth="0.9">
+                <div className="content">
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                </div>
+            </div>
+
+            <div className="two" data-depth="0.60">
+                <div className="content">
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                </div>
+            </div>
+
+            <div className="three" data-depth="0.40">
+                <div className="content">
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                    <span className="piece"></span>
+                </div>
+            </div>
+
+            <p className="p404" data-depth="0.50">404</p>
+            <p className="p404" data-depth="0.10">404</p>
+
+        </div>
+
+        <div className="text">
+        <article>
+          <p>Oops! Page not found.</p>
+          <Link to="/">
+            <button>Go to Home</button>
+          </Link>
+        </article>
+        </div>
+
+</section>
+    </div>
+  )
+}
+
+export default ErrorPage
