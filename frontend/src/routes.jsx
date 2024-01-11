@@ -52,7 +52,7 @@ const AppRoutes = () => {
         return "/";
     }
   }
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   return (
     <>
