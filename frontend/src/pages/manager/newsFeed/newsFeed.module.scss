@@ -1,3 +1,5 @@
+@import '../../../assets/css/mixin.scss';
+
 .feed {
   padding: 0.5rem;
   font-size: 0.8rem !important;
@@ -5,7 +7,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-padding-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
   span:last-child {
     font-size: 0.6rem;
     color: #aaa;
@@ -14,17 +16,18 @@ padding-bottom: 1.5rem;
 
 .image {
   margin-bottom: 1rem;
-  width : 100%;
+  width: 100%;
 }
 
 .title {
-  font-weight: bold ;
+  font-weight: bold;
   margin-bottom: 1rem;
-}
 
+
+}
 
 .deleteBtn {
   position: absolute !important;
-  right : 0.2rem !important;
-  bottom : 0.2rem !important;
+  right: 0.2rem !important;
+  bottom: 0.2rem !important;
 }

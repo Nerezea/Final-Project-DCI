@@ -1,3 +1,4 @@
+@import '../../../assets/css/mixin.scss';
 .form {
   display: flex;
   flex-direction: column;
@@ -9,6 +10,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+
+  @include respond(phone){
+    grid-template-columns: 1fr;
+  }
 }
 
 .history {

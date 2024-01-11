@@ -1,3 +1,5 @@
+@import '../../../../assets/css/mixin.scss';
+
 .modal {
   position: fixed;
   top: 50%;
@@ -10,7 +12,6 @@
   align-items: center;
   outline: unset;
   gap: 1rem;
-
 }
 .contentPrint {
   display: flex;
@@ -25,11 +26,17 @@
     font-size: 0.7rem;
   }
   pre {
-      background-color: lightgray;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.2rem;
-      font-size: 0.85rem;
+    background-color: lightgray;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+    font-size: 0.85rem;
     font-family: monospace;
+
+    @include respond(phone){
+      font-size: 0.5rem;
+    }
+
+
   }
 }
 

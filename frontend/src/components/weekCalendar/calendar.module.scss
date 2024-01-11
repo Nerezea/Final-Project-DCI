@@ -1,0 +1,94 @@
+@import "../../assets/css/mixin.scss";
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @include respond(phone) {
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    margin-right: auto;
+
+    @include respond(phone) {
+      font-size: 1rem;
+    }
+  }
+}
+.header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: rgb(210, 206, 206);
+  gap: 0.1rem;
+
+  .headerDay {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    background-color: #1976d2;
+    color: white;
+    // &:not(:last-child) {
+    //   border-right: 1px solid rgba(0, 0, 0, 0.1);
+    // }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: rgb(210, 206, 206);
+  gap: 0.1rem;
+}
+
+.day {
+  // aspect-ratio: 1.8;
+  background-color: rgb(246, 244, 244);
+  transition: 0.2s background-color ease-in;
+  padding: 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-height: 100px;
+  transition: height 0.2s ease;
+  position: relative;
+}
+
+.grayDay {
+  aspect-ratio: 1.8;
+  background-color: rgb(210, 206, 206);
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(210, 206, 206);
+  gap: 0.1rem;
+}
+
+.add {
+  position: absolute !important;
+  right: 0.5rem;
+  width: max-content;
+  top: 0.5rem;
+}
+
+.event {
+  padding: 0.5rem;
+  font-size: 0.8rem !important;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+
+  span:last-child {
+    font-size: 0.6rem;
+    color: #aaa;
+  }
+}

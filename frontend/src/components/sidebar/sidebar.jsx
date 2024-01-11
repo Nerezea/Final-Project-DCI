@@ -10,6 +10,8 @@ import {
   Menu,
   School,
   Sick,
+  Draw,
+  SchoolTwoTone,
 } from "@mui/icons-material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Divider from "@mui/material/Divider";
@@ -26,9 +28,11 @@ import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { Roles } from "../../store/slice/auth.slice";
 import style from "./sidebar.module.scss";
-import { Card } from "@mui/material";
+import { Card, useMediaQuery } from "@mui/material";
 import { StudentsApi } from "../../api/studentApi";
 import { toast } from "react-toastify";
+import { AuthApi } from "../../api/authApi";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 
 const drawerWidth = 240;
 
@@ -91,7 +95,7 @@ const managerMenus = [
   {
     label: "Teachers",
     link: "/manager/teachers",
-    icon: <Menu />,
+    icon: <HistoryEduIcon />,
   },
   {
     label: "Class List",
@@ -132,9 +136,9 @@ const teacherMenus = [
     icon: <Feed />,
   },
   {
-    label: "Events",
-    link: "/teacher/events",
-    icon: <Event />,
+    label: "Forum",
+    link: "/teacher/forum",
+    icon: <Forum />,
   },
   {
     label: "Students",
@@ -142,22 +146,23 @@ const teacherMenus = [
     icon: <Forum />,
   },
   {
-    label: "Forum",
-    link: "/teacher/forum",
-    icon: <Forum />,
-  },
-  {
     label: "Sick Rest",
     link: "/teacher/sick",
     icon: <Sick />,
+  },
+  {
+    label: "Events",
+    link: "/teacher/events",
+    icon: <Event />,
   },
 ];
 
 const Sidebar = () => {
   const theme = useTheme();
   const role = useSelector((store) => store.auth.role);
-  const [open, setOpen] = React.useState(true);
   const [myTeacher, setMyTeacher] = useState();
+  const [isFreeTeacher, setIsFreeTeacher] = useState(false);
+  const desktopSize = useMediaQuery("(min-width:900px)");
 
   useEffect(() => {
     if (role === Roles.PARENT) {
@@ -166,9 +171,78 @@ const Sidebar = () => {
           setMyTeacher(res.data);
         })
         .catch((err) => toast.error(err));
+    } else if (role === Roles.TEACHER) {
+      AuthApi.getProfile().then((res) => {
+        if (res.data.freeTeacher) {
+          setIsFreeTeacher(true);
+        } else setIsFreeTeacher(false);
+      });
     }
   }, []);
 
+  const parentMenus = useMemo(
+    () => [
+      {
+        label: "News Feed",
+        link: "/parent/feed",
+        icon: <Feed />,
+      },
+      {
+        label: "Forum",
+        link: "/parent/forum",
+        icon: <Forum />,
+      },
+      {
+        label: "Calendar",
+        link: "/parent/calendar",
+        icon: <CalendarMonth />,
+      },
+      {
+        label: "Teacher PV",
+        link: `/pv/${myTeacher?._id}`,
+        icon: <Chat />,
+      },
+      {
+        label: "Sick Rest",
+        link: "/parent/sickRest",
+        icon: <Sick />,
+      },
+      {
+        label: "Events",
+        link: "/parent/events",
+        icon: <Event />,
+      },
+    ],
+    [myTeacher]
+  );
+
+  const teacherMenus = [
+    {
+      label: "News Feed",
+      link: "/teacher/feed",
+      icon: <Feed />,
+    },
+    {
+      label: "Forum",
+      link: "/teacher/forum",
+      icon: <Forum />,
+    },
+    {
+      label: "Students",
+      link: "/teacher/students",
+      icon: <Forum />,
+    },
+    {
+      label: "Events",
+      link: "/teacher/events",
+      icon: <Event />,
+    },
+    {
+      label: "Sick Rest",
+      link: "/teacher/sick",
+      icon: <Sick />,
+    },
+  ];
   const parentMenus = useMemo(
     () => [
       {
@@ -212,7 +286,8 @@ const Sidebar = () => {
       case Roles.MANAGER:
         return managerMenus;
       case Roles.TEACHER:
-        return teacherMenus;
+        if (!isFreeTeacher) return teacherMenus;
+        else return teacherMenus.slice(0, teacherMenus.length - 1);
       case Roles.PARENT:
         return parentMenus;
     }
@@ -222,52 +297,80 @@ const Sidebar = () => {
     setOpen((open) => !open);
   };
 
-  return (
-    <Drawer style={{ zIndex: 1 }} variant="permanent" open={open}>
-      <DrawerHeader>
-        <IconButton onClick={handleDrawerToggle}>
-          <ChevronRightIcon />
-        </IconButton>
-      </DrawerHeader>
-      <Divider />
-      <List>
-        {menus.map((menu, index) => (
-          <NavLink
-            className={style.link}
-            style={({ isActive }) => ({
-              color: isActive ? "#4db5ff" : "gray",
-            })}
-            key={menu.link}
-            to={menu.link}
-          >
-            <ListItem key={menu} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+  const handleMenuClick = () => {
+    if (!desktopSize) setOpen(false);
+  };
+
+  const renderSidebarContent = () => {
+    return (
+      <>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerToggle}>
+            <ChevronRightIcon />
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          {menus.map((menu, index) => (
+            <NavLink
+              className={style.link}
+              style={({ isActive }) => ({
+                color: isActive ? "#4db5ff" : "gray",
+              })}
+              key={menu.link}
+              to={menu.link}
+              onClick={handleMenuClick}
+            >
+              <ListItem key={menu} disablePadding sx={{ display: "block" }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {menu.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={menu.label}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </NavLink>
-        ))}
-      </List>
-      <Card></Card>
-    </Drawer>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {menu.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={menu.label}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </NavLink>
+          ))}
+        </List>
+        <Card></Card>
+      </>
+    );
+  };
+
+  if (desktopSize)
+    return (
+      <Drawer variant="permanent" style={{ zIndex: 1 }} open={open}>
+        {renderSidebarContent()}
+      </Drawer>
+    );
+
+  return (
+    <div>
+      <MuiDrawer
+        style={{ zIndex: 1 }}
+        anchor="left"
+        variant={"temporary"}
+        onClose={() => setOpen(false)}
+        open={open}
+      >
+        {renderSidebarContent()}
+      </MuiDrawer>
+    </div>
   );
 };
 

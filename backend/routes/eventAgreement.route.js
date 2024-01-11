@@ -9,8 +9,9 @@ import {
   getAgreements
 } from "../controller/eventAgreement.controller.js";
 
+
 const router = Router();
-router.get("/admin/:eventId", auth, hasRole(Roles.MANAGER), getAgreements);
+router.get("/admin/:eventId", auth, hasRole(Roles.MANAGER,Roles.TEACHER), getAgreements);
 router.get("/:eventId", auth, hasRole(Roles.PARENT), getAgreementStatus);
 
 // I'm Agree

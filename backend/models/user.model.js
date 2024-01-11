@@ -26,6 +26,9 @@ const userSchema = new Schema({
 
   // teacher , parent
   school: { type: Schema.Types.ObjectId, ref: "school" },
+
+  // teacher
+  freeTeacher: Boolean,
 });
 
 userSchema.methods.toJSON = function () {

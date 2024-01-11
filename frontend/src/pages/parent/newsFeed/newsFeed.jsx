@@ -31,6 +31,7 @@ const NewsFeed = () => {
       <div>
         <h3>School Feed</h3>
         <div className={style.cards}>
+          {schoolFeeds.length === 0 && <span className={style.noData}>No School Feed 📪</span>}
           {schoolFeeds.map((item) => (
             <NewsFeedItem feed={item} />
           ))}
@@ -39,6 +40,7 @@ const NewsFeed = () => {
       <div>
         <h3>Class Feed</h3>
         <div className={style.cards}>
+          {classFeeds.length === 0 && <span className={style.noData}>No Class Feed 📪</span>}
           {classFeeds.map((item) => (
             <NewsFeedItem feed={item} />
           ))}

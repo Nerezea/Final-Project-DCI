@@ -22,6 +22,9 @@ const Events = () => {
       <div>
         <h3>School Event</h3>
         <div className={style.cards}>
+          {schoolEvents.length === 0 && (
+            <span className={style.noData}>No School Event 📪</span>
+          )}
           {schoolEvents.map((item) => (
             <EventItem event={item} />
           ))}
@@ -30,6 +33,9 @@ const Events = () => {
       <div>
         <h3>Class Event</h3>
         <div className={style.cards}>
+          {classEvents.length === 0 && (
+            <span className={style.noData}>No Class Event 📪</span>
+          )}
           {classEvents.map((item) => (
             <EventItem event={item} />
           ))}

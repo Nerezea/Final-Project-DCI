@@ -1,9 +1,10 @@
-import { Avatar, ButtonBase, IconButton } from "@mui/material";
-import React from "react";
-import dayjs from "dayjs";
-import style from "./message.module.scss";
 import { AttachFile, Delete } from "@mui/icons-material";
+import { Avatar, ButtonBase } from "@mui/material";
+import dayjs from "dayjs";
+import React from "react";
 import { Link } from "react-router-dom";
+import { summarizeFileName } from "../../../utils/string.util";
+import style from "./message.module.scss";
 
 const Message = ({
   text,
@@ -35,7 +36,7 @@ const Message = ({
             {username}
           </span>
         </Link>
-        {type === "file" ? (
+        {type === "file"  ? (
           <a
             target={"_blank"}
             href={text}
@@ -44,7 +45,7 @@ const Message = ({
             <ButtonBase className={style.file}>
               <AttachFile className={style.fileIcon}></AttachFile>
               <span className={style.fileName}>
-                {text.substring(text.lastIndexOf("/") + 1)}
+                {summarizeFileName(text.substring(text.lastIndexOf("/") + 1),10)}
               </span>
             </ButtonBase>
           </a>
