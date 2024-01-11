@@ -17,13 +17,14 @@ import { toast } from "react-toastify";
 import { Roles } from "../../../../store/slice/auth.slice";
 import { useSelector } from "react-redux";
 
-const ModalEvent = ({ open, onClose, date, updateEvents, event }) => {
-  const [form, setForm] = useState({
-    title: "",
+const initial = {
+  title: "",
     description: "",
     hasConsent: false,
     class: "all",
-  });
+}
+const ModalEvent = ({ open, onClose, date, updateEvents, event }) => {
+  const [form, setForm] = useState(initial);
   const [classes, setClasses] = useState([]);
   // get role from redux
   const { role } = useSelector((store) => store.auth);
@@ -31,6 +32,8 @@ const ModalEvent = ({ open, onClose, date, updateEvents, event }) => {
   useEffect(() => {
     // get class list data only for manager
     if (open && role === Roles.MANAGER) getAllData();
+    if(!open)
+      setForm(initial)
   }, [open]);
 
   useEffect(() => {

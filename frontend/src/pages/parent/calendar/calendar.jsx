@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import { Card, useMediaQuery } from "@mui/material";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -6,11 +6,14 @@ import { FeedApi } from "../../../api/feeApi";
 import Calendar from "../../../components/calendar/calendar";
 import style from "./calendar.module.scss";
 import { EventApi } from "../../../api/eventApi";
+import WeekCalendar from "../../../components/weekCalendar/weekCalendar";
 
 function ParentCalendar() {
   const [month, setMonth] = useState(dayjs().month());
   const [feeds, setFeeds] = useState([]);
   const [events, setEvents] = useState([]);
+  const mobileSize = useMediaQuery("(max-width:600px)");
+  const [date, setDate] = useState(dayjs());
 
   // function handleSelectFeed(feed) {
   //   setOpenModalFeed(true);
@@ -47,20 +50,33 @@ function ParentCalendar() {
         className={style.item}
       >
         <img className={style.image} src={item.image} />
-        <span className={style.title}>{item.type==="feed" ? "Feed":"Event"} - {item.title}</span>
+        <span className={style.title}>
+          {item.type === "feed" ? "Feed" : "Event"} - {item.title}
+        </span>
         <span>{item.description}</span>
+        <span className={style.creatorRole}>{item.creator.role}</span>
       </Card>
     );
   };
   return (
     <div>
-      <Calendar
-        title="Calendar"
-        month={month}
-        data={[...feeds, ...events]}
-        renderEvent={renderItem}
-        setMonth={setMonth}
-      ></Calendar>
+      {mobileSize ? (
+        <WeekCalendar
+          data={[...feeds, ...events]}
+          date={date}
+          setDate={setDate}
+          renderEvent={renderItem}
+          title="Calendar"
+        ></WeekCalendar>
+      ) : (
+        <Calendar
+          title="Calendar"
+          month={month}
+          data={[...feeds, ...events]}
+          renderEvent={renderItem}
+          setMonth={setMonth}
+        ></Calendar>
+      )}
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import Jwt from "jsonwebtoken";
 
+
+
 export const auth = (req, res, next) => {
   try {
     const token = req.headers.token;
@@ -8,6 +10,10 @@ export const auth = (req, res, next) => {
     req.user = decode;
     next();
   } catch (error) {
+    console.log(error);
     res.status(401).send({ message: "access denied" });
   }
 };
+
+
+

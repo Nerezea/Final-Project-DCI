@@ -9,20 +9,19 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/slice/auth.slice";
+import { Roles, logout } from "../../store/slice/auth.slice";
 import style from "./header.module.scss";
 import { Logo } from "../logo/logo";
-import  animation  from "./logo.json"
+import animation from "./logo.json";
 import Lottie from "lottie-react";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 
-export default function Header() {
-  const { image, role, fullName } = useSelector(
-    (store) => store.auth
-  );
+export default function Header({ handleToggleMenu }) {
+  const { image, role, fullName } = useSelector((store) => store.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -32,7 +31,7 @@ export default function Header() {
   };
 
   const handleEditProfile = () => {
-    navigate(`/${role}/editProfile`)
+    navigate(`/${role}/editProfile`);
     handleClose();
   };
 
@@ -44,29 +43,49 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  const headerColor = useMemo(() => {
+    switch (role) {
+      case Roles.MANAGER:
+        return "Pink";
+      case Roles.PARENT:
+        return "Orange";
+      case Roles.TEACHER:
+        return "Blue";
+    }
+  }, [role]);
+
   return (
-    <AppBar className={style.header} position="static">
+    <AppBar
+      className={style.header}
+      style={{ backgroundColor: headerColor }}
+      position="static"
+    >
       <Toolbar>
-        {/* <IconButton
+        <IconButton
           size="large"
           edge="start"
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
+          onClick={handleToggleMenu}
         >
           <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        <Lottie
-  fill="#40C0E7"
-  
-  animationData={animation}
-  style={{ position:"relative", width: "10vw", height: "5vw", marginTop: "-15px", marginLeft: "-20px" }}
-/>
-
-        </Typography>
+        </IconButton>
+        <div variant="h6" component="div" style={{ flexGrow: 1 }}>
+          <Lottie
+            fill="#40C0E7"
+            animationData={animation}
+            style={{
+              position: "relative",
+              width: "60px",
+              // height: "5vw",
+              // marginTop: "-15px",
+              // marginLeft: "-20px",
+            }}
+          />
+        </div>
         {/* <AccountCircle/> */}
-        <Typography>
+        <Typography className={style.username}>
           {fullName} - {role}
         </Typography>
         <IconButton

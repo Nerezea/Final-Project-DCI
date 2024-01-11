@@ -24,10 +24,23 @@ export const getMessages = async (req, res) => {
   } else if (role === Roles.TEACHER) {
     const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
+    const teacher = await userModel.findById(id);
 
-    const messages = await messageModel
-      .find({ school: schoolId, class: classObj._id })
-      .populate("user");
+    let messages;
+    if (teacher.freeTeacher)
+      messages = await messageModel
+        .find({ school: schoolId, class: undefined })
+        // nested populate
+        .populate({
+          path: "user",
+          populate: {
+            path: "class",
+          },
+        });
+    else
+      messages = await messageModel
+        .find({ school: schoolId, class: classObj._id })
+        .populate("user");
 
     res.send(messages);
   } else if (role === Roles.PARENT) {
@@ -67,14 +80,25 @@ export const createMessage = async (req, res) => {
   } else if (role === Roles.TEACHER) {
     const schoolId = await getSchoolIdOfTeacherById(id);
     const classObj = await classModel.findOne({ teacher: id });
+    const teacher = await userModel.findById(id);
 
-    let message = await messageModel.create({
-      text,
-      type: messageType,
-      user: id,
-      school: schoolId,
-      class: classObj._id,
-    });
+    let message;
+    if (teacher.freeTeacher) {
+      message = await messageModel.create({
+        text,
+        type: messageType,
+        user: id,
+        school: schoolId,
+      });
+    } else {
+      message = await messageModel.create({
+        text,
+        type: messageType,
+        user: id,
+        school: schoolId,
+        class: classObj._id,
+      });
+    }
     message = await message.populate("user");
     res.send(message);
   } else if (role === Roles.PARENT) {

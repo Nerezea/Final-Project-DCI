@@ -1,5 +1,12 @@
-import { AccountCircle, Delete, Edit } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import {
+  AccountCircle,
+  Add,
+  AddLink,
+  Delete,
+  Edit,
+  LinkRounded,
+} from "@mui/icons-material";
+import { Button, IconButton, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,11 +15,13 @@ import DataTable from "../../../components/datatable/datatable";
 import style from "./students.module.scss";
 import { StudentsApi } from "../../../api/studentApi";
 import ModalRegisterLink from "./components/modalRegisterLink";
+import ResponsiveButton from "../../../components/responsiveButton/responsiveButton";
 
 const Students = () => {
   const [data, setData] = useState([]);
   const [searchParams] = useSearchParams();
   const [openModal, setOpenModal] = useState(false);
+  const mobileSize = useMediaQuery("(max-width:600px)");
 
   const classId = searchParams.get("classId");
   const className = searchParams.get("className");
@@ -110,16 +119,24 @@ const Students = () => {
         <h1>Students {className && `- ${className}`}</h1>
 
         {classId && (
-          <Button
+          <ResponsiveButton
             variant="outlined"
             color="info"
+            icon={<AddLink />}
             onClick={() => setOpenModal(true)}
           >
             Generate Register Link
-          </Button>
+          </ResponsiveButton>
         )}
         <Link to="/manager/students/add">
-          <Button variant="contained">Add</Button>
+          <ResponsiveButton
+            variant="outlined"
+            color="info"
+            icon={<Add />}
+            onClick={() => setOpenModal(true)}
+          >
+            Add
+          </ResponsiveButton>
         </Link>
       </header>
 

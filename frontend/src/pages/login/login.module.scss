@@ -162,10 +162,13 @@
 }
 
 .login_box  .onclick {
+  all : unset;
+  cursor: pointer;
   margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
+
 }
 
 .frame{

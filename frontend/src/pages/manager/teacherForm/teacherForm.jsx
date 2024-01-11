@@ -1,4 +1,11 @@
-import { Button, Card, CircularProgress, TextField } from "@mui/material";
+import {
+  Button,
+  Card,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+  TextField,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { TeachersApi } from "../../../api/teachersApi";
 import { toast } from "react-toastify";
@@ -12,6 +19,7 @@ const TeacherForm = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState();
+  const [freeTeacher, setFreeTeacher] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -25,6 +33,7 @@ const TeacherForm = () => {
         setFullName(res.data.fullName);
         setPhone(res.data.phone);
         setImage(res.data.image);
+        setFreeTeacher(res.data.freeTeacher);
       });
   }, []);
 
@@ -36,6 +45,7 @@ const TeacherForm = () => {
         fullName,
         image,
         phone,
+        freeTeacher,
       };
       if (password) body.password = password;
       TeachersApi.updateTeacher(teacherId, body)
@@ -51,6 +61,7 @@ const TeacherForm = () => {
         fullName,
         image,
         phone,
+        freeTeacher,
       })
         .then(() => {
           toast.success("teacher added");
@@ -93,7 +104,7 @@ const TeacherForm = () => {
           label="FullName"
           placeholder="fullName"
         ></TextField>
-          <TextField
+        <TextField
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           label="Phone"
@@ -106,6 +117,15 @@ const TeacherForm = () => {
           type="password"
           placeholder="password"
         ></TextField>
+        <FormControlLabel
+          label="Free Teacher"
+          control={
+            <Checkbox
+              checked={freeTeacher}
+              onChange={(e) => setFreeTeacher(e.target.checked)}
+            ></Checkbox>
+          }
+        ></FormControlLabel>
 
         <input type="file" onChange={handleChangeFile} />
         {loading && <CircularProgress></CircularProgress>}

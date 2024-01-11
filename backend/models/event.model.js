@@ -20,4 +20,3 @@ const schema = new Schema({
 });
 
 export default model("event", schema);
-

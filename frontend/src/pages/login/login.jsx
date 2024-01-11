@@ -12,7 +12,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  function handleLogin() {
+  function handleLogin(e) {
+    e.preventDefault()
     const { error } = loginSchema.validate({ username: email, password });
     if (error) return toast.warn(error.message);
     AuthApi.login(email, password)
@@ -66,13 +67,13 @@ const Login = () => {
         <input type="password" name="" required="" value={password}  onChange={(e) => setPassword(e.target.value)} />
         <label>Password</label>
       </div>
-      <div className={style.onclick} onClick={handleLogin}>
+      <button className={style.onclick} onClick={handleLogin}>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Submit
-      </div>
+      </button>
     </form>
   </div>
   

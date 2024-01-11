@@ -13,7 +13,7 @@ import { createSickRestSchema } from "../validation/sick.schema.js";
 const router = Router();
 
 
-router.get("/", auth, hasRole(Roles.MANAGER, Roles.PARENT), getSickRests);
+router.get("/", auth, hasRole(Roles.MANAGER, Roles.PARENT,Roles.TEACHER), getSickRests);
 router.post(
   "/",
   auth,

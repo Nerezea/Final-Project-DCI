@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/layout";
@@ -111,6 +111,7 @@ const AppRoutes = () => {
             <Route path="events" element={<Events />}></Route>
             <Route path="students" element={<TeacherStudents />}></Route>
             <Route path="forum" element={<Forum />}></Route>
+            <Route path="sick" element={<SickRestManager />}></Route>
             <Route path="editProfile" element={<EditProfile />}></Route>
             <Route path="" element={<Navigate to="/teacher/feed" />}></Route>
           </Route>
@@ -145,7 +146,7 @@ const AppRoutes = () => {
           >
             <Route path=":id" element={<PV />}></Route>
           </Route>
-          <Route path="*" element={<ErrorPage/> }></Route>
+          <Route path="*" element={<ErrorPage/>  }></Route>
           <Route path="/FormContact" element={<FormContact/>  }></Route>
         </Routes>
       )}
