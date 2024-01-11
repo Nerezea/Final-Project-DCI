@@ -47,7 +47,7 @@ const Landing = () => {
       <div className="div-section">
       <Section>
         <div>
-          <h2>Comunity</h2>
+          <h2>Community</h2>
           <iframe
             className="landing-iframe"
             src="https://lottie.host/embed/2aa8f473-b04c-42a4-986a-537cf8086e3b/9OOAQMSn9o.json"
