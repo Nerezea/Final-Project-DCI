@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/layout";
 import Schools from "./pages/admin/schools/schools";
 import Landing from "./pages/landing/landing";
-import Loader from "./pages/loader/loader";
+import Loader from "./components/loader/loader";
 import Login from "./pages/login/login";
 import ClassForm from "./pages/manager/classForm/classForm";
 import Classes from "./pages/manager/classes/classes";
@@ -29,7 +29,6 @@ import EventDetail from "./pages/parent/newsFeed copy/eventDetail/eventDetail";
 import FormContact from "./components/contact/contactform";
 import EditProfile from "./pages/editProfile/editProfile";
 import ErrorPage from "./components/404/404";
-
 
 const AppRoutes = () => {
   const { isAuthenticated, role } = useSelector((store) => store.auth);
@@ -121,8 +120,8 @@ const AppRoutes = () => {
               hasRole(Roles.PARENT) ? <Layout /> : <Navigate to="/login" />
             }
           >
-            <Route path="feed" element={<ParentFeed/>}></Route>
-            <Route path="feed/:id" element={<NewsFeedDetail/>}></Route>
+            <Route path="feed" element={<ParentFeed />}></Route>
+            <Route path="feed/:id" element={<NewsFeedDetail />}></Route>
             <Route path="forum" element={<Forum />}></Route>
             <Route path="calendar" element={<ParentCalendar />}></Route>
             <Route path="sickRest" element={<SickRest />}></Route>
@@ -146,8 +145,8 @@ const AppRoutes = () => {
           >
             <Route path=":id" element={<PV />}></Route>
           </Route>
-          <Route path="*" element={<ErrorPage/>  }></Route>
-          <Route path="/FormContact" element={<FormContact/>  }></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+          <Route path="/FormContact" element={<FormContact />}></Route>
         </Routes>
       )}
     </>

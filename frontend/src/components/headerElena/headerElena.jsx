@@ -1,15 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./headerElena.scss";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slice/auth.slice";
 
-const header = () => {
-  const dispatch = useDispatch();
 
+const header = () => {
+
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const handleLogout = () => {
     dispatch(logout());
   };
 
+  const handleContact = () => {
+    navigate("/FormContact");
+
+  };
   return (
     <nav className="header-wrapper">
       <iframe src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"></iframe>
@@ -22,10 +30,12 @@ const header = () => {
           <button onClick={handleLogout} className="logoutButton">
             Logout
           </button>
+          <button onClick={handleContact} className="logoutButton">
+            contact
+          </button>
         </div>
       </div>
     </nav>
   );
-};
-
+  }
 export default header;
