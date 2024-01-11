@@ -46,8 +46,8 @@ const Landing = () => {
       </div>
       <div className="div-section">
       <Section>
-        Animate
         <div>
+          <h2>Comunity</h2>
           <iframe
             className="landing-iframe"
             src="https://lottie.host/embed/2aa8f473-b04c-42a4-986a-537cf8086e3b/9OOAQMSn9o.json"
@@ -55,8 +55,9 @@ const Landing = () => {
         </div>
       </Section>
       <Section>
-        when
+      
         <div>
+        <h2>Calendar/Events</h2>
           <iframe
             className="landing-iframe"
             src="https://lottie.host/embed/63171e11-c350-4204-9c28-c2869be12022/v0qaapMcrA.json"
@@ -64,16 +65,24 @@ const Landing = () => {
         </div>
       </Section>
       <Section>
+        <div>
+        <h2>News</h2>
         <iframe
           className="landing-iframe"
           src="https://lottie.host/embed/1db40ced-002a-4658-b958-9a22e1ba855d/sfM9T8HIQy.json"
         ></iframe>
+        </div>
+        
       </Section>
       <Section>
+        <div>
+        <h2>Sickness time register</h2>
         <iframe
           className="landing-iframe"
           src="https://lottie.host/embed/186232cc-4dad-4012-a454-3374a589bed0/UKiQ5VRrUd.json"
         ></iframe>
+        </div>
+        
       </Section>
       </div>
       <Footer />
