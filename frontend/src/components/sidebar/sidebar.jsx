@@ -129,35 +129,7 @@ const managerMenus = [
   },
 ];
 
-const teacherMenus = [
-  {
-    label: "News Feed",
-    link: "/teacher/feed",
-    icon: <Feed />,
-  },
-  {
-    label: "Events",
-    link: "/teacher/events",
-    icon: <Event />,
-  },
-  {
-    label: "Students",
-    link: "/teacher/students",
-    icon: <Forum />,
-  },
-  {
-    label: "Forum",
-    link: "/teacher/forum",
-    icon: <Forum />,
-  },
-  {
-    label: "Sick Rest",
-    link: "/teacher/sick",
-    icon: <Sick />,
-  },
-];
-
-const Sidebar = () => {
+const Sidebar = ({ open, setOpen }) => {
   const theme = useTheme();
   const role = useSelector((store) => store.auth.role);
   const [myTeacher, setMyTeacher] = useState();
@@ -216,6 +188,34 @@ const Sidebar = () => {
     [myTeacher]
   );
 
+  const teacherMenus = [
+    {
+      label: "News Feed",
+      link: "/teacher/feed",
+      icon: <Feed />,
+    },
+    {
+      label: "Events",
+      link: "/teacher/events",
+      icon: <Event />,
+    },
+    {
+      label: "Students",
+      link: "/teacher/students",
+      icon: <Forum />,
+    },
+    {
+      label: "Forum",
+      link: "/teacher/forum",
+      icon: <Forum />,
+    },
+    {
+      label: "Sick Rest",
+      link: "/teacher/sick",
+      icon: <Sick />,
+    },
+  ];
+
   const menus = useMemo(() => {
     switch (role) {
       case Roles.SUPER_ADMIN:
@@ -228,7 +228,7 @@ const Sidebar = () => {
       case Roles.PARENT:
         return parentMenus;
     }
-  }, [role, parentMenus]);
+  }, [role, parentMenus, isFreeTeacher]);
 
   const handleDrawerToggle = () => {
     setOpen((open) => !open);
