@@ -1,5 +1,5 @@
-//import Header from "../../components/headerElena/headerElena.jsx";
-//import Footer from "../../components/";
+import Header from "../../components/headerElena/headerElena.jsx";
+import Footer from "../../components/footerElena/footerElena.jsx";
 import "./landing.module.scss";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
