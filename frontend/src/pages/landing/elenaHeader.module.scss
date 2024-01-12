@@ -1,0 +1,83 @@
+.header-wrapper {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3px;
+  font-size: 1.8rem;
+  background-color: rgb(38, 2, 58);
+  box-shadow: 0 2px 2px rgba(black, 0.6);
+  color: white;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  z-index: 9999;
+  font-size: 2.8rem;
+  opacity: 0.8;
+}
+
+iframe {
+  width: 90px;
+  height: 90px;
+  border: none;
+  color: white;
+}
+
+.nav-wrapper {
+  .navigation,
+  .navigation a,
+  .navigation a:hover,
+  .navigation a:focus {
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+}
+
+.activeClass {
+  margin-top: 15px;
+  --border-width: 4px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 40px;
+  text-transform: uppercase;
+  color: white;
+  background: #222;
+  border-radius: var(--border-width);
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(
+      60deg,
+      hsl(224, 100%, 49%),
+      hsl(269, 100%, 32%),
+      hsl(314, 93%, 53%),
+      hsl(359, 83%, 50%),
+      hsl(47, 68%, 57%),
+      hsl(89, 89%, 50%),
+      hsl(134, 95%, 32%),
+      hsl(179, 90%, 28%)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 2s alternate infinite;
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}

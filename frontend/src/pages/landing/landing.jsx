@@ -12,8 +12,8 @@ const Landing = () => {
   function handleContact() {
     navigate("/FormContact");
   }
-  return (import Header from "../../components/headerElena/headerElena.jsx";
-  import Footer from "../../components/footerElena/footerElena.jsx";
+  return (import Header from "./elenaHeader.jsx";
+  import Footer from "./elenaFooter.jsx";
   import ".././landing/landing.scss";
   import { useRef } from "react";
   import { useInView } from "framer-motion";
