@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./headerElena.scss";
+import "./elenaHeader.scss";
 
 const header = () => {
   return (
