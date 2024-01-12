@@ -30,7 +30,7 @@ const Footer = () => {
           }}
         >
           <Typography variant="caption" color="initial" fontSize={"15px"}>
-            Copyright © Our website name 2024.
+            Copyright © HiSchool 2024.
           </Typography>
         </Box>
       </Container>
