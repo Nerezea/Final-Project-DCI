@@ -4,7 +4,15 @@ import dayjs from "dayjs";
 import style from "./message.module.scss";
 import { AttachFile, Delete } from "@mui/icons-material";
 
-const Message = ({ text, username, userImage, isSender, date, type ,handleDelete}) => {
+const Message = ({
+  text,
+  username,
+  userImage,
+  isSender,
+  date,
+  type,
+  handleDelete,
+}) => {
   return (
     <div
       className={style.message}
@@ -13,7 +21,7 @@ const Message = ({ text, username, userImage, isSender, date, type ,handleDelete
       <Avatar src={userImage}></Avatar>
       <div
         className={style.bubble}
-        style={{ background: isSender ? "#f8e896" : "#96c7f888" }}
+        style={{ background: isSender ? "#fbf98c90" : "#dee8f452" }}
       >
         <span
           className={style.sender}
@@ -22,7 +30,11 @@ const Message = ({ text, username, userImage, isSender, date, type ,handleDelete
           {username}
         </span>
         {type === "file" ? (
-          <a target={"_blank"} href={text} download={text.substring(text.lastIndexOf("/") + 1)} >
+          <a
+            target={"_blank"}
+            href={text}
+            download={text.substring(text.lastIndexOf("/") + 1)}
+          >
             <ButtonBase className={style.file}>
               <AttachFile className={style.fileIcon}></AttachFile>
               <span className={style.fileName}>
@@ -44,7 +56,9 @@ const Message = ({ text, username, userImage, isSender, date, type ,handleDelete
           {dayjs(date).format("MMM D , HH:mm")}
         </span>
       </div>
-      {handleDelete && <Delete onClick={handleDelete} className={style.delete}></Delete>}
+      {handleDelete && (
+        <Delete onClick={handleDelete} className={style.delete}></Delete>
+      )}
     </div>
   );
 };

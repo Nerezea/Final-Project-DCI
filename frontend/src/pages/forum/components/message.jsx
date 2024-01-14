@@ -26,7 +26,7 @@ const Message = ({
       </Link>
       <div
         className={style.bubble}
-        style={{ background: isSender ? "#e1ffc7" : "#fff" }}
+        style={{ background: isSender ? "#fbf98c90" : "#dee8f452" }}
       >
         <Link to={`/pv/${userId}`}>
           <span
@@ -36,7 +36,7 @@ const Message = ({
             {username}
           </span>
         </Link>
-        {type === "file"  ? (
+        {type === "file" ? (
           <a
             target={"_blank"}
             href={text}
@@ -45,7 +45,10 @@ const Message = ({
             <ButtonBase className={style.file}>
               <AttachFile className={style.fileIcon}></AttachFile>
               <span className={style.fileName}>
-                {summarizeFileName(text.substring(text.lastIndexOf("/") + 1),10)}
+                {summarizeFileName(
+                  text.substring(text.lastIndexOf("/") + 1),
+                  10
+                )}
               </span>
             </ButtonBase>
           </a>

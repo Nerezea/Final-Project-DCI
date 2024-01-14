@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Roles, logout } from "../../store/slice/auth.slice";
 import style from "./header.module.scss";
 import { Logo } from "../logo/logo";
-import animation from "./logo.json";
+import animation from "./logo_HiSchool.json";
 import Lottie from "lottie-react";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -46,11 +46,11 @@ export default function Header({ handleToggleMenu }) {
   const headerColor = useMemo(() => {
     switch (role) {
       case Roles.MANAGER:
-        return "Pink";
+        return "#581c87";
       case Roles.PARENT:
-        return "Orange";
+        return "#0d72ac";
       case Roles.TEACHER:
-        return "Blue";
+        return "#0c4a6e";
     }
   }, [role]);
 
@@ -73,11 +73,10 @@ export default function Header({ handleToggleMenu }) {
         </IconButton>
         <div variant="h6" component="div" style={{ flexGrow: 1 }}>
           <Lottie
-            fill="#40C0E7"
             animationData={animation}
             style={{
               position: "relative",
-              width: "60px",
+              width: "50px",
               // height: "5vw",
               // marginTop: "-15px",
               // marginLeft: "-20px",

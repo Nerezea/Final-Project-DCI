@@ -160,7 +160,7 @@ const PV = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           minRows={3}
-          placeholder="enter message here..."
+          placeholder="Type a message 🖊"
           onKeyDown={handleKeyDown}
         ></TextField>
         <div className={style.btns}>

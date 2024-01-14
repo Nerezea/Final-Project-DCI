@@ -6,6 +6,8 @@
   position: relative;
   position: fixed;
 
+  .frame {
+  }
   .username {
     @include respond(phone) {
       font-size: 0.8rem;

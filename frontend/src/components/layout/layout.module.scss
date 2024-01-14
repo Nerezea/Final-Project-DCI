@@ -1,17 +1,15 @@
 .layout {
   height: 100vh;
   display: grid;
-  
+
   grid-template-rows: max-content 1fr;
-  
+
   & > main {
     padding: 1rem;
     background:
-    url("../../image/shapelined-_JBKdviweXI-unsplash.jpg")
-    ;
-  
+    // url("../../image/shapelined-_JBKdviweXI-unsplash.jpg")
+      rgb(236, 234, 234);
 
-    
     overflow-y: auto;
   }
 }

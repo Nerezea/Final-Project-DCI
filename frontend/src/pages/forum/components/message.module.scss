@@ -12,14 +12,14 @@
   flex-direction: column;
   position: relative;
   padding: 1.5rem 0.5rem;
-  background-color: #f8e896;
+  background-color: #f6f0d2;
   border-radius: 0.5rem;
   min-width: 12rem;
   max-width: 80%;
 }
 .sender {
   font-size: 0.6rem;
-  color: rgb(65, 65, 237);
+  color: #1976d2;
   font-weight: bold;
   position: absolute;
   top: 0.2rem;
@@ -52,9 +52,8 @@
   color: #444;
 }
 
-
 .delete {
-  color : lightgray;
+  color: lightgray;
   font-size: 1rem !important;
   margin-top: 0.5rem;
   cursor: pointer;
