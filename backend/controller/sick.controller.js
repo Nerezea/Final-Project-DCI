@@ -46,11 +46,11 @@ export const getSickRests = async (req, res) => {
         .status(400)
         .send({ message: "you don't access to sick rest data" });
     const filter = {
-      user: id,
+      class : classObj._id
     };
-    if (!teacher.freeTeacher) filter.class = classObj._id;
 
-    const sickRests = await sickRestModel.find().populate("class")
+
+    const sickRests = await sickRestModel.find(filter).populate("class")
     .populate("user");
     res.status(200).json(sickRests);
   } else if (role === Roles.PARENT) {
