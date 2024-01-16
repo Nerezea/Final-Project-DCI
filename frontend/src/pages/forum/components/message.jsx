@@ -26,7 +26,7 @@ const Message = ({
       </Link>
       <div
         className={style.bubble}
-        style={{ background: isSender ? "#fbf98c90" : "#dee8f452" }}
+        style={{ background: isSender ? "#fefda7;" : "#f0f5fc" }}
       >
         <Link to={`/pv/${userId}`}>
           <span
