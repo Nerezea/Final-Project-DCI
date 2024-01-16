@@ -11,7 +11,7 @@ export const getMessages = async (req, res) => {
   if (role === Roles.MANAGER) {
     const school = await getSchoolOfManagerById(id);
     const messages = await messageModel
-      .find({ school: school._id, class: undefined })
+      .find({ school: school._id, class: undefined, pv: { $ne: true } })
       // nested populate
       .populate({
         path: "user",
@@ -29,7 +29,7 @@ export const getMessages = async (req, res) => {
     let messages;
     if (teacher.freeTeacher)
       messages = await messageModel
-        .find({ school: schoolId, class: undefined })
+        .find({ school: schoolId, class: undefined,pv: { $ne: true }  })
         // nested populate
         .populate({
           path: "user",
@@ -39,7 +39,7 @@ export const getMessages = async (req, res) => {
         });
     else
       messages = await messageModel
-        .find({ school: schoolId, class: classObj._id })
+        .find({ school: schoolId, class: classObj._id,pv: { $ne: true }  })
         .populate("user");
 
     res.send(messages);
@@ -51,6 +51,7 @@ export const getMessages = async (req, res) => {
       .find({
         school: student.school,
         class: forumType === "class" ? student.class : undefined,
+        pv: { $ne: true } 
       })
       .populate({
         path: "user",
