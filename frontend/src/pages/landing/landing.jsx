@@ -74,7 +74,7 @@ const Landing = () => {
         </Section>
         <Section>
           <div>
-            <h2>Sickness time register</h2>
+            <h2>Sickness register</h2>
             <iframe
               className="landing-iframe"
               src="https://lottie.host/embed/186232cc-4dad-4012-a454-3374a589bed0/UKiQ5VRrUd.json"
