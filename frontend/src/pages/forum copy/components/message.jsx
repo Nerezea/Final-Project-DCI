@@ -21,7 +21,7 @@ const Message = ({
       <Avatar src={userImage}></Avatar>
       <div
         className={style.bubble}
-        style={{ background: isSender ? "#fbf98c90" : "#dee8f452" }}
+        style={{ background: isSender ? "#fbf98c" : "#f0f5fc" }}
       >
         <span
           className={style.sender}
