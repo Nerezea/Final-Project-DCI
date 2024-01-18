@@ -13,12 +13,12 @@ const Login = () => {
   const dispatch = useDispatch();
 
   function handleLogin(e) {
-    e.preventDefault()
+    e.preventDefault();
     const { error } = loginSchema.validate({ username: email, password });
     if (error) return toast.warn(error.message);
     AuthApi.login(email, password)
       .then((res) => {
-        api.defaults.headers.token = res.data.token
+        api.defaults.headers.token = res.data.token;
         dispatch(
           login({
             token: res.data.token,
@@ -33,7 +33,7 @@ const Login = () => {
   }
 
   return (
-  /*   <div className={style.login}>
+    /*   <div className={style.login}>
       <div className={style.login_form}>
         <h1>Login</h1>
         <input
@@ -51,36 +51,44 @@ const Login = () => {
         <button onClick={handleLogin}>Login</button>
       </div>
     </div> */
-  <div className={style.logo_container}>
-  
-    <div className={style.login_box}>
-  <iframe className={style.frame}
-            
-            src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
-          ></iframe>
-    <form className={style.form}>
-      <div className={style.user_box}>
-        <input type="text" name="" required=""  value={email}  onChange={(e) => setEmail(e.target.value)} />
-        <label>Username</label>
+    <div className={style.logo_container}>
+      <div className={style.login_box}>
+        <iframe
+          className={style.frame}
+          src="https://lottie.host/embed/46e1efc7-148b-4537-92d0-1054c1188603/dGAswJ2qhq.json"
+        ></iframe>
+        <form className={style.form}>
+          <div className={style.user_box}>
+            <input
+              type="text"
+              name=""
+              required=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label>Username</label>
+          </div>
+          <div className={style.user_box}>
+            <input
+              type="password"
+              name=""
+              required=""
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label>Password</label>
+          </div>
+          <button className={style.onclick} onClick={handleLogin}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </button>
+        </form>
       </div>
-      <div className={style.user_box}>
-        <input type="password" name="" required="" value={password}  onChange={(e) => setPassword(e.target.value)} />
-        <label>Password</label>
-      </div>
-      <button className={style.onclick} onClick={handleLogin}>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-      </button>
-    </form>
-  </div>
-  
-  </div>
-  
-  
-    );
+    </div>
+  );
 };
 
 export default Login;
